@@ -1,38 +1,4 @@
-// Load header component
-async function loadHeaderComponent() {
-    try {
-        const response = await fetch('header-component.html');
-        const headerHTML = await response.text();
-        const headerContainer = document.getElementById('header-placeholder');
-        if (headerContainer) {
-            headerContainer.innerHTML = headerHTML;
-            // Initialize header functionality after loading
-            initializeHeaderComponent();
-        }
-    } catch (error) {
-        console.log('Header component not found, using inline header');
-    }
-}
-
-// Load footer component
-async function loadFooterComponent() {
-    try {
-        const response = await fetch('footer-component.html');
-        const footerHTML = await response.text();
-        const footerContainer = document.getElementById('footer-placeholder');
-        if (footerContainer) {
-            footerContainer.innerHTML = footerHTML;
-        }
-    } catch (error) {
-        console.log('Footer component not found, using inline footer');
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Load header and footer components first
-    loadHeaderComponent();
-    loadFooterComponent();
-    
     // Core Web Vitals Optimization
     // Preload critical resources
     const criticalImages = document.querySelectorAll('img[data-priority="high"]');

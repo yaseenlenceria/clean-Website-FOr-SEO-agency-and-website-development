@@ -184,66 +184,19 @@ body {
     background: var(--card-bg);
     border: 1px solid var(--border-dark);
     border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    min-width: 280px;
+    padding: var(--spacing-sm);
+    min-width: 220px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
-    box-shadow: var(--shadow-xl);
-    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-lg);
 }
 
 .nav-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}
-
-/* Enhanced multi-column dropdowns */
-.services-dropdown,
-.industries-dropdown,
-.resources-dropdown {
-    min-width: 380px;
-}
-
-.companies-dropdown {
-    min-width: 450px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
-}
-
-.industries-dropdown {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
-}
-
-.resources-dropdown {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
-}
-
-.dropdown-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-}
-
-.dropdown-section h4 {
-    color: var(--primary-color);
-    font-size: 12px;
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: var(--spacing-sm);
-    padding-bottom: var(--spacing-xs);
-    border-bottom: 1px solid var(--border-dark);
 }
 
 .dropdown-menu a {
@@ -254,45 +207,11 @@ body {
     border-radius: var(--radius-sm);
     transition: all 0.3s ease;
     font-size: 14px;
-    position: relative;
-    overflow: hidden;
-}
-
-.dropdown-menu a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.dropdown-menu a:hover::before {
-    left: 100%;
 }
 
 .dropdown-menu a:hover {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    background: var(--primary-color);
     color: var(--text-white);
-    transform: translateX(3px);
-}
-
-.view-all-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover)) !important;
-    color: var(--text-white) !important;
-    text-align: center;
-    font-weight: var(--font-weight-semibold);
-    padding: var(--spacing-sm) var(--spacing-md) !important;
-    border-radius: var(--radius-md) !important;
-    margin-top: var(--spacing-sm);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-}
-
-.view-all-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4) !important;
 }
 
 .nav-cta {
@@ -1740,28 +1659,6 @@ body {
         border-radius: var(--radius-sm);
         max-height: none;
         overflow: visible;
-        min-width: auto;
-        display: block !important;
-        grid-template-columns: 1fr !important;
-        gap: 0 !important;
-        padding: var(--spacing-sm) !important;
-    }
-
-    .dropdown-section {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .dropdown-section h4 {
-        color: var(--primary-color);
-        font-size: 11px;
-        margin-bottom: var(--spacing-xs);
-        padding-bottom: 4px;
-    }
-
-    .companies-dropdown,
-    .industries-dropdown,
-    .resources-dropdown {
-        min-width: auto;
     }
 
     .hero-content-grid {

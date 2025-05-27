@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Pricing & Packages | Transparent SEO Costs | OutsourceSU</title>
+    <meta name="description" content="Transparent SEO pricing with no hidden fees. Choose from our flexible SEO packages designed for UK businesses. Get a custom quote today.">
+    <meta name="keywords" content="SEO pricing, SEO packages, SEO costs, affordable SEO, UK SEO prices">
+    <meta name="author" content="OutsourceSU">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="SEO Pricing & Packages | Transparent SEO Costs | OutsourceSU">
+    <meta property="og:description" content="Transparent SEO pricing with no hidden fees. Choose from our flexible SEO packages for UK businesses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://outsourcesu.com/pricing.html">
+    <meta property="og:image" content="https://outsourcesu.com/attached_assets/logo1.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://outsourcesu.com/pricing.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-dark);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .pricing-header h3 {
+            font-size: 28px;
+            color: var(--text-white);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .pricing-period {
+            color: var(--text-gray);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .pricing-features li {
+            padding: var(--spacing-xs) 0;
+            position: relative;
+            padding-left: var(--spacing-lg);
+            color: var(--text-light-gray);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+        
+        .pricing-features li.unavailable {
+            color: var(--text-gray);
+            opacity: 0.5;
+        }
+        
+        .pricing-features li.unavailable::before {
+            content: '✗';
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Component -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="attached_assets/logo1.png" alt="OutsourceSU Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="construction-seo.html">Construction SEO</a>
+                        <a href="professional-services-seo.html">Professional Services</a>
+                        <a href="real-estate-seo.html">Real Estate SEO</a>
+                        <a href="services.html">View All Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link">Industries <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="roofing-seo-services-uk.html">Roofing SEO Services UK</a>
+                        <a href="best-law-firm-seo.html">Law Firm SEO</a>
+                        <a href="best-dentists-seo.html">Dentist SEO</a>
+                        <a href="best-accountants-seo.html">Accountant SEO</a>
+                        <a href="best-architects-seo.html">Architect SEO</a>
+                        <a href="best-financial-seo.html">Financial Services SEO</a>
+                        <a href="best-plumbers-seo.html">Plumber SEO</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link">Top 10 Companies <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="top-10-roofing-companies-london.html">Top 10 Roofing Companies London</a>
+                        <a href="top-10-roofing-companies-manchester.html">Top 10 Roofing Companies Manchester</a>
+                        <a href="top-10-roofing-companies-birmingham.html">Top 10 Roofing Companies Birmingham</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="contact.html" class="nav-cta">Get Free Audit</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Transparent SEO Pricing</h1>
+            <p>No hidden fees, no long-term contracts. Choose the SEO package that fits your business needs and budget.</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Pricing</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your SEO Package</h2>
+                <p>Flexible SEO solutions designed to grow with your business</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>SEO Starter</h3>
+                        <div class="pricing-price">£497</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>5 Target Keywords</li>
+                        <li>On-Page SEO Optimization</li>
+                        <li>Google My Business Setup</li>
+                        <li>Monthly Progress Report</li>
+                        <li>Basic Link Building</li>
+                        <li>Technical SEO Audit</li>
+                        <li>Content Optimization</li>
+                        <li class="unavailable">Advanced Analytics</li>
+                        <li class="unavailable">Social Media Integration</li>
+                        <li class="unavailable">Priority Support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline-modern">Get Started</a>
+                </div>
+
+                <!-- Professional Package -->
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>SEO Professional</h3>
+                        <div class="pricing-price">£897</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>15 Target Keywords</li>
+                        <li>Comprehensive On-Page SEO</li>
+                        <li>Google My Business Optimization</li>
+                        <li>Bi-weekly Progress Reports</li>
+                        <li>Advanced Link Building</li>
+                        <li>Complete Technical SEO</li>
+                        <li>Content Creation & Optimization</li>
+                        <li>Advanced Analytics Dashboard</li>
+                        <li>Local Citation Building</li>
+                        <li>Competitor Analysis</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary-modern">Most Popular</a>
+                </div>
+
+                <!-- Enterprise Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>SEO Enterprise</h3>
+                        <div class="pricing-price">£1,497</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Keywords</li>
+                        <li>Enterprise SEO Strategy</li>
+                        <li>Multi-Location Optimization</li>
+                        <li>Weekly Progress Reports</li>
+                        <li>Premium Link Building</li>
+                        <li>Advanced Technical SEO</li>
+                        <li>Content Marketing Strategy</li>
+                        <li>Real-time Analytics</li>
+                        <li>Social Media Integration</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Priority Phone Support</li>
+                        <li>Custom Strategy Development</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary-modern">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="help-business-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What's Included in Every Package</h2>
+                <p>Core SEO services that drive results for your business</p>
+            </div>
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Keyword Research & Strategy</h3>
+                    <p>In-depth keyword analysis to target the most valuable search terms for your business and industry.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Technical SEO Optimization</h3>
+                    <p>Complete technical audit and optimization to ensure your website meets Google's standards.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Content Optimization</h3>
+                    <p>Strategic content creation and optimization to engage your audience and rank higher in search results.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Link Building</h3>
+                    <p>High-quality backlink acquisition from relevant, authoritative websites in your industry.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Local SEO</h3>
+                    <p>Google My Business optimization and local citation building to dominate local search results.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Detailed monthly reports showing your rankings, traffic growth, and ROI from our SEO efforts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about our SEO pricing and packages</p>
+            </div>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are there any setup fees or hidden costs?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, our pricing is completely transparent. The monthly fee is all you pay - no setup fees, no hidden costs, no surprises. We believe in honest, straightforward pricing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you require long-term contracts?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No long-term contracts required. We work on a month-to-month basis because we're confident in our results. You can cancel anytime with 30 days notice.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long before I see results?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients see initial improvements in 30-60 days, with significant results typically appearing within 3-6 months. SEO is a long-term strategy that builds momentum over time.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I upgrade or downgrade my package?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can change your package at any time to better suit your needs and budget. We'll work with you to ensure a smooth transition.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if I'm not satisfied with the results?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 90-day satisfaction guarantee. If you're not completely satisfied with our service and results, we'll work to make it right or provide a full refund.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-modern">
+        <div class="container">
+            <div class="cta-content-modern">
+                <h2>Ready to Start Growing Your Business?</h2>
+                <p>Choose your SEO package and start seeing results. Get your free consultation and custom strategy today.</p>
+                <div class="cta-buttons-modern">
+                    <a href="contact.html" class="btn btn-primary-modern">
+                        <i class="fas fa-rocket"></i>
+                        Get Your Free Consultation
+                    </a>
+                    <a href="tel:07411575188" class="btn btn-outline-modern">
+                        <i class="fas fa-phone"></i>
+                        Call: 07411575188
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content-modern">
+                <div class="footer-section-modern">
+                    <div class="footer-logo">
+                        <img src="attached_assets/logo1.png" alt="OutsourceSU Logo" class="footer-logo-image">
+                    </div>
+                    <p>Professional SEO and digital marketing services delivering real results for businesses across the UK.</p>
+                    <div class="social-links-modern">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section-modern">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="construction-seo.html">Construction SEO</a></li>
+                        <li><a href="professional-services-seo.html">Professional Services SEO</a></li>
+                        <li><a href="real-estate-seo.html">Real Estate SEO</a></li>
+                        <li><a href="white-label-seo.html">White Label SEO</a></li>
+                        <li><a href="services.html">All Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section-modern">
+                    <h4>Industries We Serve</h4>
+                    <ul>
+                        <li><a href="roofing-seo-services-uk.html">Roofing SEO Services UK</a></li>
+                        <li><a href="best-law-firm-seo.html">Law Firm SEO</a></li>
+                        <li><a href="best-dentists-seo.html">Dentist SEO</a></li>
+                        <li><a href="best-accountants-seo.html">Accountant SEO</a></li>
+                        <li><a href="best-plumbers-seo.html">Plumber SEO</a></li>
+                        <li><a href="best-architects-seo.html">Architect SEO</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section-modern">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="our-work.html">Our Work</a></li>
+                        <li><a href="seo-audit-tool.html">Free SEO Audit</a></li>
+                        <li><a href="blog.html">SEO Blog</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section-modern">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section-modern">
+                    <h4>Contact OutsourceSU</h4>
+                    <div class="contact-info-modern">
+                        <p><i class="fas fa-phone"></i> 07411575188</p>
+                        <p><i class="fas fa-envelope"></i> contact@outsourcesu.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> London, Manchester, Birmingham</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-modern">
+                <p>&copy; 2024 OutsourceSU.com. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a> | <a href="cookie-policy.html">Cookie Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

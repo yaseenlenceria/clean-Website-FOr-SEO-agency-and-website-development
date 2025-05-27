@@ -1243,6 +1243,9 @@ body {
         padding: var(--spacing-md) 0;
         gap: 0;
         border-top: 1px solid var(--border-dark);
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menu.active {
@@ -1280,6 +1283,8 @@ body {
         background: var(--darker-bg);
         margin-top: var(--spacing-sm);
         border-radius: var(--radius-sm);
+        max-height: none;
+        overflow: visible;
     }
 
     .hero-content-grid {

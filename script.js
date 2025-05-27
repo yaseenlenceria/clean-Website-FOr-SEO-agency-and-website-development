@@ -60,8 +60,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Load header component
+    function loadHeaderComponent() {
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        if (headerPlaceholder) {
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Header component not found');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    headerPlaceholder.innerHTML = html;
+                    initializeHeaderComponent();
+                })
+                .catch(error => {
+                    console.log('Header component not found, using existing header');
+                    // If header component doesn't exist, ensure existing navbar works
+                    const existingNavbar = document.getElementById('navbar');
+                    if (existingNavbar) {
+                        initializeHeaderComponent();
+                    }
+                });
+        }
+    }
+
+    // Load footer component
+    function loadFooterComponent() {
+        const footerPlaceholder = document.getElementById('footer-placeholder');
+        if (footerPlaceholder) {
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Footer component not found');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    footerPlaceholder.innerHTML = html;
+                })
+                .catch(error => {
+                    console.log('Footer component not found, using existing footer');
+                });
+        }
+    }
+
     // Generate breadcrumb schema
     generateBreadcrumbSchema();
+
+    // Load header and footer components
+    loadHeaderComponent();
+    loadFooterComponent();
 
     // Track Core Web Vitals
     if ('web-vital' in window) {
@@ -168,13 +218,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const href = this.getAttribute('href');
+            // Skip empty anchors or invalid selectors
+            if (href === '#' || href.length <= 1) {
+                return;
+            }
+            
+            // Validate selector before trying to use it
+            try {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            } catch (error) {
+                console.warn('Invalid selector:', href);
+                // Don't prevent default for invalid selectors
             }
         });
     });

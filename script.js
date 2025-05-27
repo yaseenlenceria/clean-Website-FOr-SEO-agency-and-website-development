@@ -54,11 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navbar) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.borderBottom = '1px solid var(--border-dark)';
             } else {
-                navbar.style.background = '#ffffff';
-                navbar.style.backdropFilter = 'none';
+                navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.borderBottom = '1px solid var(--border-dark)';
             }
         });
     }

@@ -7,7 +7,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID'); // Replace with actual ID
+    // gtag('config', 'GA_MEASUREMENT_ID'); // Add your actual GA4 ID here when ready
 
     // Track SEO-relevant events
     function trackSEOEvents() {

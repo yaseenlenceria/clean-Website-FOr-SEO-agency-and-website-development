@@ -14,9 +14,24 @@ async function loadHeaderComponent() {
     }
 }
 
+// Load footer component
+async function loadFooterComponent() {
+    try {
+        const response = await fetch('footer-component.html');
+        const footerHTML = await response.text();
+        const footerContainer = document.getElementById('footer-placeholder');
+        if (footerContainer) {
+            footerContainer.innerHTML = footerHTML;
+        }
+    } catch (error) {
+        console.log('Footer component not found, using inline footer');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Load header component first
+    // Load header and footer components first
     loadHeaderComponent();
+    loadFooterComponent();
     
     // Core Web Vitals Optimization
     // Preload critical resources

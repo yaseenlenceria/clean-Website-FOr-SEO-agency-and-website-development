@@ -1504,7 +1504,7 @@ body {
 /* Why SEO Section */
 .why-seo-section {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: var(--darker-bg);
 }
 
 .benefits-grid {
@@ -1515,11 +1515,13 @@ body {
 }
 
 .benefit-card {
-    background: white;
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-lg);
     transition: transform 0.3s ease;
+    color: var(--text-white);
 }
 
 .benefit-card:hover {
@@ -1542,10 +1544,19 @@ body {
     color: white;
 }
 
+.benefit-card h3 {
+    color: var(--text-white);
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-card p {
+    color: var(--text-gray);
+}
+
 /* Services Detailed Section */
 .services-detailed {
     padding: 80px 0;
-    background: white;
+    background: var(--dark-bg);
 }
 
 .services-detailed-grid {
@@ -1556,16 +1567,28 @@ body {
 }
 
 .service-detailed-card {
-    background: #f8f9fa;
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
     padding: 40px;
     border-radius: 15px;
-    border-left: 5px solid #007BFF;
+    border-left: 5px solid var(--primary-color);
     transition: all 0.3s ease;
+    color: var(--text-white);
 }
 
 .service-detailed-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.service-detailed-card h3 {
+    color: var(--text-white);
+    margin-bottom: var(--spacing-md);
+}
+
+.service-detailed-card p {
+    color: var(--text-gray);
 }
 
 .service-detailed-icon {
@@ -1698,7 +1721,7 @@ body {
 /* Ranking Process Section */
 .ranking-process-section {
     padding: 80px 0;
-    background: white;
+    background: var(--darker-bg);
 }
 
 .ranking-process-grid {
@@ -1709,17 +1732,29 @@ body {
 }
 
 .ranking-process-card {
-    background: #f8f9fa;
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
     padding: 30px;
     border-radius: 15px;
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
+    color: var(--text-white);
 }
 
 .ranking-process-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.ranking-process-card h3 {
+    color: var(--text-white);
+    margin-bottom: var(--spacing-md);
+}
+
+.ranking-process-card p {
+    color: var(--text-gray);
 }
 
 .process-step {
@@ -1827,7 +1862,7 @@ body {
 /* Trust Building Section */
 .trust-building-section {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: var(--dark-bg);
 }
 
 .certifications {
@@ -1838,11 +1873,22 @@ body {
 }
 
 .cert-card {
-    background: white;
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
     padding: 30px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-white);
+}
+
+.cert-card h3 {
+    color: var(--text-white);
+    margin-bottom: var(--spacing-md);
+}
+
+.cert-card p {
+    color: var(--text-gray);
 }
 
 .cert-icon {
@@ -1869,10 +1915,12 @@ body {
 }
 
 .review-card {
-    background: white;
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-white);
 }
 
 .review-header {
@@ -1898,7 +1946,7 @@ body {
 /* FAQ Section */
 .faq-section {
     padding: 80px 0;
-    background: white;
+    background: var(--darker-bg);
 }
 
 .faq-content {
@@ -1907,7 +1955,7 @@ body {
 }
 
 .faq-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-dark);
     margin-bottom: 20px;
 }
 
@@ -1927,12 +1975,17 @@ body {
 .faq-question h3 {
     margin: 0;
     font-size: 18px;
+    color: var(--text-white);
+}
+
+.faq-question i {
+    color: var(--text-gray);
 }
 
 .faq-answer {
     display: none;
     padding: 0 0 20px 0;
-    color: #666;
+    color: var(--text-gray);
     line-height: 1.6;
 }
 

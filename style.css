@@ -5,6 +5,27 @@
     box-sizing: border-box;
 }
 
+/* Image Optimization for SEO */
+img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+img[alt=""] {
+    border: 2px solid red; /* Debug: Show images without alt text */
+}
+
+/* Lazy loading support */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
 :root {
     /* Color Palette - Modern Dark Theme */
     --primary-color: #ff6b35;

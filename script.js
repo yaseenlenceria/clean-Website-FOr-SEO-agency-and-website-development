@@ -1,4 +1,79 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Core Web Vitals Optimization
+    // Preload critical resources
+    const criticalImages = document.querySelectorAll('img[data-priority="high"]');
+    criticalImages.forEach(img => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = img.src;
+        document.head.appendChild(link);
+    });
+
+    // Lazy loading for images
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+
+    // Add structured data for breadcrumbs
+    function generateBreadcrumbSchema() {
+        const breadcrumbs = document.querySelectorAll('.breadcrumb-nav a, .breadcrumb-nav span:last-child');
+        if (breadcrumbs.length > 1) {
+            const breadcrumbList = {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": []
+            };
+
+            breadcrumbs.forEach((item, index) => {
+                if (item.tagName === 'A') {
+                    breadcrumbList.itemListElement.push({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "name": item.textContent.trim(),
+                        "item": item.href
+                    });
+                } else {
+                    breadcrumbList.itemListElement.push({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "name": item.textContent.trim()
+                    });
+                }
+            });
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(breadcrumbList);
+            document.head.appendChild(script);
+        }
+    }
+
+    // Generate breadcrumb schema
+    generateBreadcrumbSchema();
+
+    // Track Core Web Vitals
+    if ('web-vital' in window) {
+        import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+            getCLS(console.log);
+            getFID(console.log);
+            getFCP(console.log);
+            getLCP(console.log);
+            getTTFB(console.log);
+        });
+    }
+
     // Mobile Navigation Toggle and Universal Header Component
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');

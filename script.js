@@ -1,4 +1,23 @@
+// Load header component
+async function loadHeaderComponent() {
+    try {
+        const response = await fetch('header-component.html');
+        const headerHTML = await response.text();
+        const headerContainer = document.getElementById('header-placeholder');
+        if (headerContainer) {
+            headerContainer.innerHTML = headerHTML;
+            // Initialize header functionality after loading
+            initializeHeaderComponent();
+        }
+    } catch (error) {
+        console.log('Header component not found, using inline header');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Load header component first
+    loadHeaderComponent();
+    
     // Core Web Vitals Optimization
     // Preload critical resources
     const criticalImages = document.querySelectorAll('img[data-priority="high"]');

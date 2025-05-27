@@ -1243,6 +1243,9 @@ body {
         padding: var(--spacing-md) 0;
         gap: 0;
         border-top: 1px solid var(--border-dark);
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menu.active {
@@ -1280,6 +1283,8 @@ body {
         background: var(--darker-bg);
         margin-top: var(--spacing-sm);
         border-radius: var(--radius-sm);
+        max-height: none;
+        overflow: visible;
     }
 
     .hero-content-grid {
@@ -1436,6 +1441,64 @@ body {
 
 .fade-in-up {
     animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Ranking Styles */
+.ranking-badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: 14px;
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.rating-text {
+    font-size: 14px;
+    color: var(--text-gray);
+    font-weight: var(--font-weight-medium);
+}
+
+.company-contact {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-dark);
+}
+
+.company-contact p {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+.company-contact i {
+    color: var(--primary-color);
+    width: 16px;
 }
 
 /* Utility Classes */
@@ -2109,85 +2172,4 @@ body {
 
 .audit-features li {
     padding: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #000000;
-}
-
-.audit-features i {
-    color: #28a745;
-    font-size: 14px;
-}
-
-.btn-audit {
-    width: 100%;
-    background: linear-gradient(135deg, #007BFF, #0056b3);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-}
-
-.btn-audit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0,123,255,0.3);
-}
-
-.audit-note {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.audit-note p {
-    font-size: 12px;
-    color: #666;
-    margin: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .benefits-grid,
-    .services-detailed-grid,
-    .case-studies-grid,
-    .ranking-process-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .final-cta-content h2 {
-        font-size: 32px;
-    }
-
-    .cta-buttons-final {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn-primary-large,
-    .btn-secondary-large {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-
-    .case-study-metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .hero-right {
-        order: -1;
-    }
-}
-
-/* Add any additional styles here */
+    display

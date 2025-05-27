@@ -1,0 +1,14 @@
+
+User-agent: *
+Allow: /
+
+# XML Sitemap
+Sitemap: https://outsourcesu.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.config/

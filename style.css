@@ -2179,5 +2179,118 @@ body {
 }
 
 .audit-features li {
-    padding: 8px 0;
-    display
+    play: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.audit-features li:before {
+    content: "✓";
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Image Showcase Section */
+.image-showcase {
+    padding: 3rem 0;
+    background: var(--darker-bg);
+}
+
+.showcase-content {
+    display: grid;
+    grid-template-columns: 1fr 400px 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.showcase-text-left,
+.showcase-text-right {
+    color: var(--text-white);
+}
+
+.showcase-text-left h3,
+.showcase-text-right h3 {
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+}
+
+.showcase-text-left p,
+.showcase-text-right p {
+    font-size: 16px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.showcase-image {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.featured-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.showcase-features {
+    list-style: none;
+    margin-top: var(--spacing-md);
+}
+
+.showcase-features li {
+    padding: var(--spacing-xs) 0;
+    position: relative;
+    padding-left: var(--spacing-md);
+    color: var(--text-light-gray);
+    font-size: 14px;
+}
+
+.showcase-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 968px) {
+    .showcase-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+    
+    .featured-image {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-showcase {
+        padding: 2rem 0;
+    }
+
+    .featured-image {
+        border-radius: 8px;
+        max-width: 300px;
+    }
+    
+    .showcase-text-left h3,
+    .showcase-text-right h3 {
+        font-size: 20px;
+    }
+}

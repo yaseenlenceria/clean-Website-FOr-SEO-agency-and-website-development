@@ -100,10 +100,22 @@ body {
     color: var(--text-white);
     text-decoration: none;
     letter-spacing: -1px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-logo span {
     color: var(--primary-color);
+}
+
+.logo-image {
+    height: 45px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -736,6 +748,21 @@ body {
 
 .footer-section-modern h3 span {
     color: var(--primary-color);
+}
+
+.footer-logo {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo-image {
+    height: 40px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo-image:hover {
+    opacity: 1;
 }
 
 .footer-section-modern h4 {

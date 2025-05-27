@@ -5,10 +5,37 @@ Allow: /
 # XML Sitemap
 Sitemap: https://outsourcesu.com/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay for responsible crawling
 Crawl-delay: 1
+
+# Allow important directories
+Allow: /attached_assets/
+Allow: /services/
+Allow: /contact/
 
 # Disallow sensitive areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.config/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# Block common bot traffic that doesn't add value
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+# Allow Googlebot full access
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Allow Bingbot full access
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

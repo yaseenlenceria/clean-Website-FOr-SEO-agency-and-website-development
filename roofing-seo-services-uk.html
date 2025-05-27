@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Schema Markup for Local Business -->
     <script type="application/ld+json">
     {
@@ -787,9 +786,9 @@
                 const faqItem = question.parentElement;
                 const answer = faqItem.querySelector('.faq-answer');
                 const icon = question.querySelector('i');
-                
+
                 faqItem.classList.toggle('active');
-                
+
                 if (faqItem.classList.contains('active')) {
                     answer.style.display = 'block';
                     icon.classList.remove('fa-chevron-down');

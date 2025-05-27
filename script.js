@@ -76,13 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     initializeHeaderComponent();
                 })
                 .catch(error => {
-                    console.log('Header component not found, using existing header');
-                    // If header component doesn't exist, ensure existing navbar works
+                    // Silently handle missing header component
                     const existingNavbar = document.getElementById('navbar');
                     if (existingNavbar) {
                         initializeHeaderComponent();
                     }
                 });
+        } else {
+            // Initialize existing header if no placeholder
+            initializeHeaderComponent();
         }
     }
 
@@ -101,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     footerPlaceholder.innerHTML = html;
                 })
                 .catch(error => {
-                    console.log('Footer component not found, using existing footer');
+                    // Silently handle missing footer component
                 });
         }
     }
@@ -224,19 +226,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Validate selector before trying to use it
-            try {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            } catch (error) {
-                console.warn('Invalid selector:', href);
-                // Don't prevent default for invalid selectors
+            // Clean the href to make it a valid selector
+            let targetId = href.substring(1); // Remove the #
+            
+            // Skip if it's just a hash or contains invalid characters
+            if (!targetId || !/^[a-zA-Z][\w\-]*$/.test(targetId)) {
+                return;
+            }
+            
+            // Try to find the target element
+            const target = document.getElementById(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });

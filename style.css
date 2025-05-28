@@ -5651,7 +5651,69 @@ select:focus {
 }
 
 /* Responsive Design for Our Work Page */
+@media (max-width: 968px) {
+    .case-studies-section {
+        padding: 60px 0;
+    }
+    
+    .case-studies-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+    }
+    
+    .case-study-card {
+        padding: 25px;
+    }
+    
+    .case-study-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .rating {
+        align-self: flex-end;
+    }
+}
+
 @media (max-width: 768px) {
+    .case-studies-section {
+        padding: 50px 0;
+    }
+    
+    .case-studies-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    
+    .case-study-card {
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 500px;
+        width: 100%;
+    }
+    
+    .case-study-header {
+        margin-bottom: 15px;
+    }
+    
+    .case-study-metrics {
+        gap: 10px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .metric-number {
+        margin-bottom: 3px;
+    }
+    
+    .google-ranking {
+        padding: 8px 16px;
+        gap: 8px;
+    }
+    
     .work-showcase-card {
         grid-template-columns: 1fr;
         gap: 0;
@@ -5687,6 +5749,65 @@ select:focus {
     }
 }
 
+@media (max-width: 480px) {
+    .case-studies-section {
+        padding: 40px 0;
+    }
+    
+    .case-studies-grid {
+        margin-top: 25px;
+        gap: 15px;
+    }
+    
+    .case-study-card {
+        padding: 16px;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+    
+    .case-study-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .case-study-header h3 {
+        min-width: auto;
+    }
+    
+    .rating {
+        align-self: flex-start;
+        gap: 8px;
+    }
+    
+    .case-study-metrics {
+        gap: 8px;
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 8px;
+    }
+    
+    .case-study-content {
+        margin: 15px 0;
+    }
+    
+    .case-study-content p {
+        margin-bottom: 10px;
+    }
+    
+    .google-ranking {
+        padding: 6px 12px;
+        gap: 6px;
+        border-radius: 20px;
+    }
+    
+    .ranking-badge {
+        padding: 3px 8px;
+        border-radius: 12px;
+    }
+}
+
 /* Case Studies Section */
 .case-studies-section {
     padding: 80px 0;
@@ -5696,7 +5817,7 @@ select:focus {
 
 .case-studies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
@@ -5707,30 +5828,54 @@ select:focus {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 }
 
 .case-study-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.case-study-header h3 {
+    color: #333;
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
 }
 
 .rating {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .stars {
     color: #ffc107;
-    font-size: 18px;
+    font-size: clamp(16px, 3vw, 18px);
+}
+
+.rating-text {
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: #666;
+    font-weight: 600;
 }
 
 .case-study-metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 15px;
     margin: 25px 0;
     padding: 20px;
     background: #f8f9fa;
@@ -5742,17 +5887,36 @@ select:focus {
 }
 
 .metric-number {
-    font-size: 24px;
+    font-size: clamp(20px, 4vw, 24px);
     font-weight: 700;
     color: #007BFF;
     margin-bottom: 5px;
+    line-height: 1.2;
 }
 
 .metric-label {
-    font-size: 12px;
+    font-size: clamp(10px, 2.2vw, 12px);
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.case-study-content {
+    margin: 20px 0;
+}
+
+.case-study-content p {
+    font-size: clamp(14px, 3vw, 16px);
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.case-study-author {
+    font-size: clamp(13px, 2.8vw, 15px);
+    color: #007BFF;
+    font-weight: 600;
 }
 
 .ranking-screenshot {
@@ -5767,6 +5931,8 @@ select:focus {
     background: #f8f9fa;
     padding: 10px 20px;
     border-radius: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .ranking-badge {
@@ -5774,8 +5940,15 @@ select:focus {
     color: white;
     padding: 4px 12px;
     border-radius: 15px;
-    font-size: 12px;
+    font-size: clamp(11px, 2.5vw, 12px);
     font-weight: 600;
+    white-space: nowrap;
+}
+
+.google-ranking .keyword {
+    font-size: clamp(12px, 2.8vw, 14px);
+    color: #333;
+    font-weight: 500;
 }
 
 /* Ranking Process Section */

@@ -645,18 +645,36 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.6s;
+}
+
+.btn-primary-modern::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
 }
 
 .btn-primary-modern:hover::before {
     left: 100%;
 }
 
+.btn-primary-modern:hover::after {
+    transform: translateX(100%);
+}
+
 .btn-primary-modern:hover {
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-3px) scale(1.03);
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
     background: linear-gradient(135deg, #ff7f4f 0%, #ff6b35 25%, #e55a2e 50%, #ff8f5f 100%);
+    border-radius: 12px;
 }
 
 .btn-primary-modern:active {
@@ -697,15 +715,33 @@ body {
     z-index: -1;
 }
 
+.btn-secondary-modern::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
 .btn-secondary-modern:hover::before {
     opacity: 1;
 }
 
+.btn-secondary-modern:hover::after {
+    transform: translateX(100%);
+}
+
 .btn-secondary-modern:hover {
     color: var(--text-white);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
     border-color: var(--primary-color);
+    border-radius: 12px;
 }
 
 .btn-outline-modern {
@@ -826,10 +862,31 @@ body {
     overflow: hidden;
 }
 
+.process-card-modern::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.process-card-modern:hover::after {
+    transform: translateX(100%);
+}
+
 .process-card-modern:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
 }
 
 .process-number {
@@ -915,10 +972,31 @@ body {
     transform: scaleX(1);
 }
 
+.service-card-modern::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.service-card-modern:hover::after {
+    transform: translateX(100%);
+}
+
 .service-card-modern:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
 }
 
 .service-icon-modern {
@@ -1341,6 +1419,143 @@ body {
     z-index: 2;
 }
 
+/* Universal Premium Hover Effects for All Interactive Elements */
+.benefit-card,
+.stat-card,
+.cert-card,
+.review-card,
+.transformation-card,
+.expertise-card,
+.ranking-process-card,
+.work-showcase-card,
+.contact-form,
+.contact-info,
+.case-study-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.benefit-card::after,
+.stat-card::after,
+.cert-card::after,
+.review-card::after,
+.transformation-card::after,
+.expertise-card::after,
+.ranking-process-card::after,
+.work-showcase-card::after,
+.contact-form::after,
+.contact-info::after,
+.case-study-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.benefit-card:hover::after,
+.stat-card:hover::after,
+.cert-card:hover::after,
+.review-card:hover::after,
+.transformation-card:hover::after,
+.expertise-card:hover::after,
+.ranking-process-card:hover::after,
+.work-showcase-card:hover::after,
+.contact-form:hover::after,
+.contact-info:hover::after,
+.case-study-card:hover::after {
+    transform: translateX(100%);
+}
+
+.benefit-card:hover,
+.stat-card:hover,
+.cert-card:hover,
+.review-card:hover,
+.transformation-card:hover,
+.expertise-card:hover,
+.ranking-process-card:hover,
+.work-showcase-card:hover,
+.contact-form:hover,
+.contact-info:hover,
+.case-study-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
+}
+
+/* Apply Enhanced Hover to All Button Types */
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline-modern,
+.btn-audit,
+.service-link,
+.help-link,
+.nav-cta,
+.btn-primary-large,
+.btn-secondary-large,
+input[type="submit"],
+button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn::after,
+.btn-primary::after,
+.btn-secondary::after,
+.btn-outline-modern::after,
+.btn-audit::after,
+.service-link::after,
+.help-link::after,
+input[type="submit"]::after,
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.btn:hover::after,
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.btn-outline-modern:hover::after,
+.btn-audit:hover::after,
+.service-link:hover::after,
+.help-link:hover::after,
+input[type="submit"]:hover::after,
+button:hover::after {
+    transform: translateX(100%);
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-outline-modern:hover,
+.btn-audit:hover,
+.service-link:hover,
+.help-link:hover,
+input[type="submit"]:hover,
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
 /* Contact Section - Modern */
 .contact-section {
     padding: var(--spacing-xxl) 0;
@@ -1401,13 +1616,31 @@ body {
     font-family: var(--font-primary);
 }
 
+.form-group input,
+.form-group select,
+.form-group textarea {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+    border-color: rgba(255, 107, 53, 0.5);
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     background: var(--dark-bg);
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    box-shadow: 
+        0 0 0 3px rgba(255, 107, 53, 0.1),
+        0 8px 25px rgba(255, 107, 53, 0.3);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .form-group textarea {
@@ -1524,14 +1757,37 @@ body {
     border: 1px solid var(--border-dark);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-left: 4px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.service-card:hover::after {
+    transform: translateX(100%);
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
 }
 
 .service-card h3 {
@@ -1583,10 +1839,31 @@ body {
     border-top: 4px solid var(--primary-color);
 }
 
+.help-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.help-card:hover::after {
+    transform: translateX(100%);
+}
+
 .help-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
 }
 
 .help-icon {

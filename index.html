@@ -44,17 +44,123 @@
     <meta name="msapplication-TileImage" content="attached_assets/favicon.jpg">
     <meta name="theme-color" content="#1a1a1a">
 
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- DNS Prefetch for faster loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OutsourceSU",
+        "url": "https://outsourcesu.com",
+        "logo": "https://outsourcesu.com/attached_assets/logo1.png",
+        "description": "UK's leading SEO agency helping businesses dominate search results and drive sustainable growth",
+        "telephone": "+447411575188",
+        "email": "info@outsourcesu.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB",
+            "addressRegion": "England"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
+        },
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "51.5074",
+                "longitude": "-0.1278"
+            },
+            "geoRadius": "500000"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "SEO Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Construction SEO",
+                        "description": "Specialized SEO for construction companies and trades"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Professional Services SEO",
+                        "description": "SEO for law firms, dentists, accountants, and professionals"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Roofing SEO",
+                        "description": "Specialized SEO services for roofing companies"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Local SEO",
+                        "description": "Local search optimization for UK businesses"
+                    }
+                }
+            ]
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5"
+        },
+        "sameAs": [
+            "https://facebook.com/outsourcesu",
+            "https://twitter.com/outsourcesu",
+            "https://linkedin.com/company/outsourcesu"
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OutsourceSU",
+        "url": "https://outsourcesu.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://outsourcesu.com/services.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation Component -->
-    <script src="js/components.js"></script>
     <div id="global-header"></div>
 
     <!-- Hero Section -->
     <section class="hero-modern">
+        <div class="floating-particles"></div>
         <div class="container">
             <div class="hero-content-grid">
                 <div class="hero-left">
@@ -67,42 +173,34 @@
                     <div class="hero-buttons">
                         <a href="contact.html" class="btn btn-primary-modern">
                             <i class="fas fa-search"></i>
-                            Get Free SEO Audit
+                            Get Your Free Audit
                         </a>
                         <a href="our-work.html" class="btn btn-secondary-modern">
                             <i class="fas fa-play"></i>
                             See Our Work
                         </a>
                     </div>
-                    <div class="trust-indicators">
-                        <div class="trust-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>No Long-Term Contracts</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Proven Results</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-users"></i>
-                            <span>UK Based Team</span>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="hero-right">
                     <div class="audit-card">
                         <div class="audit-header">
                             <span class="audit-label">Complimentary</span>
-                            <h3>SEO AUDIT</h3>
+                            <h3>FREE SEO AUDIT</h3>
                         </div>
                         <div class="audit-cta">
                             <a href="contact.html" class="btn-audit">
-                                <i class="fas fa-search"></i>
-                                Claim Your Free Audit
+                                <i class="fas fa-rocket"></i>
+                                Get Your Free SEO Audit
                             </a>
                         </div>
                         <div class="audit-features">
-                            <p>No obligations • Professional insights • Takes 2 minutes</p>
+                            <ul>
+                                <li>Comprehensive website analysis</li>
+                                <li>Competitor research included</li>
+                                <li>Custom SEO strategy</li>
+                                <li>No obligations • Takes 2 minutes</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -396,7 +494,6 @@
         </div>
     </section>
 
-    <!-- Footer Component -->
     <!-- Global Footer -->
     <div id="global-footer"></div>
 

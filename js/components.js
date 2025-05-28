@@ -1,187 +1,257 @@
 
-// Enhanced Navigation Component JavaScript
-function loadComponent(selector, componentPath) {
-    const element = document.querySelector(selector);
-    if (element) {
-        fetch(componentPath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                element.innerHTML = html;
-                // Initialize navigation after header is loaded
-                if (selector === '#global-header') {
+// Global variables
+let navMenu = null;
+let navMenuDesktop = null;
+let navToggle = null;
+let isNavigationInitialized = false;
+
+// Global component loading with error handling
+let componentsLoaded = {
+    header: false,
+    footer: false
+};
+
+// Load Header Component
+function loadHeader() {
+    const headerElement = document.getElementById('global-header');
+    if (!headerElement) return;
+
+    fetch('components/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.text();
+        })
+        .then(data => {
+            headerElement.innerHTML = data;
+            componentsLoaded.header = true;
+
+            // Initialize navigation after header is loaded
+            setTimeout(() => {
+                if (!isNavigationInitialized) {
                     initializeNavigation();
                 }
-            })
-            .catch(error => {
-                console.error('Error loading component:', error);
-                element.innerHTML = '<p>Error loading component</p>';
+            }, 200);
+        })
+        .catch(error => {
+            console.error('Error loading header:', error);
+            // Fallback for SEO - ensure basic navigation exists
+            headerElement.innerHTML = `
+                <nav class="navbar">
+                    <div class="container">
+                        <a href="index.html" class="navbar-brand">OutsourceSU</a>
+                        <ul class="nav-menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            `;
+        });
+}
+
+// Load Footer Component
+function loadFooter() {
+    const footerElement = document.getElementById('global-footer');
+    if (!footerElement) return;
+
+    fetch('components/footer.html')
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.text();
+        })
+        .then(data => {
+            footerElement.innerHTML = data;
+            componentsLoaded.footer = true;
+        })
+        .catch(error => {
+            console.error('Error loading footer:', error);
+            // Fallback footer for SEO
+            footerElement.innerHTML = `
+                <footer class="footer">
+                    <div class="container">
+                        <p>&copy; 2024 OutsourceSU. All rights reserved.</p>
+                        <nav>
+                            <a href="privacy-policy.html">Privacy Policy</a>
+                            <a href="terms-of-service.html">Terms</a>
+                            <a href="contact.html">Contact</a>
+                        </nav>
+                    </div>
+                </footer>
+            `;
+        });
+}
+
+// Initialize Navigation with proper error handling
+function initializeNavigation() {
+    if (isNavigationInitialized) {
+        console.log('Navigation already initialized, skipping...');
+        return;
+    }
+
+    navToggle = document.querySelector('.nav-toggle');
+    navMenu = document.querySelector('.nav-menu');
+    navMenuDesktop = document.querySelector('.nav-menu-desktop');
+
+    if (navToggle && navMenu) {
+        console.log('Navigation elements found, initializing...');
+        
+        // Mobile navigation toggle
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = navMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (navMenu && navToggle && 
+                !navToggle.contains(event.target) && 
+                !navMenu.contains(event.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Handle window resize to close mobile menu on desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        isNavigationInitialized = true;
+        console.log('Navigation initialized successfully');
+    } else {
+        console.log('Navigation elements not found yet...');
     }
 }
 
-function initializeNavigation() {
-    // Wait a bit for DOM to be fully ready
-    setTimeout(() => {
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const navbar = document.getElementById('navbar');
-
-        // Mobile menu toggle functionality
-        if (navToggle && navMenu) {
-            // Clear any existing event listeners
-            navToggle.replaceWith(navToggle.cloneNode(true));
-            const newNavToggle = document.getElementById('nav-toggle');
-            
-            newNavToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const currentMenu = document.getElementById('nav-menu');
-                const currentToggle = document.getElementById('nav-toggle');
-                
-                if (currentMenu && currentToggle) {
-                    const isActive = currentMenu.classList.contains('active');
-                    
-                    if (isActive) {
-                        closeMenu();
-                    } else {
-                        openMenu();
-                    }
-                }
-            });
-
-            // Function to open menu
-            function openMenu() {
-                const menu = document.getElementById('nav-menu');
-                const toggle = document.getElementById('nav-toggle');
-                
-                if (menu && toggle) {
-                    menu.classList.add('active');
-                    toggle.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    document.body.style.position = 'fixed';
-                    document.body.style.width = '100%';
-                    document.body.style.top = `-${window.scrollY}px`;
-                }
-            }
-
-            // Function to close menu
-            function closeMenu() {
-                const menu = document.getElementById('nav-menu');
-                const toggle = document.getElementById('nav-toggle');
-                
-                if (menu && toggle) {
-                    menu.classList.remove('active');
-                    toggle.classList.remove('active');
-                    
-                    const scrollY = document.body.style.top;
-                    document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.width = '';
-                    document.body.style.top = '';
-                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
-                }
-            }
-
-            // Close mobile menu when clicking on a link (but not dropdowns)
-            document.addEventListener('click', function(e) {
-                const clickedLink = e.target.closest('.nav-link');
-                const clickedDropdown = e.target.closest('.nav-dropdown');
-                const menu = document.getElementById('nav-menu');
-                const toggle = document.getElementById('nav-toggle');
-                
-                // Close menu if clicking on a direct nav link (not dropdown parent)
-                if (clickedLink && !clickedDropdown && menu && menu.classList.contains('active')) {
-                    setTimeout(closeMenu, 150); // Small delay for better UX
-                }
-                
-                // Close menu if clicking outside navigation
-                if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
-                    closeMenu();
-                }
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    const menu = document.getElementById('nav-menu');
-                    if (menu && menu.classList.contains('active')) {
-                        closeMenu();
-                    }
-                }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 968) {
-                    closeMenu();
-                }
-            });
-        }
-    }, 100);
-
-    // Navbar scroll effect
+// Add scroll effects to navbar
+function addNavbarScrollEffects() {
+    const navbar = document.querySelector('.navbar');
     if (navbar) {
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        function updateNavbar() {
-            const scrollY = window.scrollY;
-            
-            if (scrollY > 50) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-            
-            lastScrollY = scrollY;
-            ticking = false;
-        }
+        });
+    }
+}
 
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateNavbar);
-                ticking = true;
-            }
-        }
+// SEO enhancements
+function addSEOEnhancements() {
+    // Add breadcrumb structured data
+    const breadcrumb = document.querySelector('.breadcrumb-nav');
+    if (breadcrumb) {
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": []
+        };
 
-        window.addEventListener('scroll', requestTick, { passive: true });
+        const breadcrumbLinks = breadcrumb.querySelectorAll('a');
+        breadcrumbLinks.forEach((link, index) => {
+            breadcrumbData.itemListElement.push({
+                "@type": "ListItem",
+                "position": index + 1,
+                "name": link.textContent,
+                "item": link.href
+            });
+        });
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(breadcrumbData);
+        document.head.appendChild(script);
     }
 
-    // Dropdown functionality for desktop
-    const dropdowns = document.querySelectorAll('.nav-dropdown');
-    dropdowns.forEach(dropdown => {
-        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-        let timeoutId;
+    // Add FAQ structured data if FAQ section exists
+    const faqSection = document.querySelector('.faq-section');
+    if (faqSection) {
+        const faqItems = faqSection.querySelectorAll('.faq-item');
+        if (faqItems.length > 0) {
+            const faqData = {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": []
+            };
 
-        dropdown.addEventListener('mouseenter', () => {
-            clearTimeout(timeoutId);
-            dropdownMenu.style.opacity = '1';
-            dropdownMenu.style.visibility = 'visible';
-            dropdownMenu.style.transform = 'translateY(0)';
-        });
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3, .faq-question');
+                const answer = item.querySelector('p, .faq-answer');
 
-        dropdown.addEventListener('mouseleave', () => {
-            timeoutId = setTimeout(() => {
-                dropdownMenu.style.opacity = '0';
-                dropdownMenu.style.visibility = 'hidden';
-                dropdownMenu.style.transform = 'translateY(-10px)';
-            }, 150);
-        });
-    });
+                if (question && answer) {
+                    faqData.mainEntity.push({
+                        "@type": "Question",
+                        "name": question.textContent,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": answer.textContent
+                        }
+                    });
+                }
+            });
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(faqData);
+            document.head.appendChild(script);
+        }
+    }
 }
 
 // Load components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('#global-header', 'components/header.html');
-    loadComponent('#global-footer', 'components/footer.html');
+    loadHeader();
+    loadFooter();
+    addSEOEnhancements();
+    addNavbarScrollEffects();
+
+    // Add lazy loading for images
+    const images = document.querySelectorAll('img[data-src]');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
 });
 
-// Export functions for global access
-window.loadComponent = loadComponent;
+// Export for global access
+window.loadHeader = loadHeader;
+window.loadFooter = loadFooter;
 window.initializeNavigation = initializeNavigation;

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 
@@ -205,6 +205,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Navigation is now handled in components.js
+// This section has been moved to avoid conflicts
 
 // Utility functions for dynamic content
 function updatePageContent(pageData) {

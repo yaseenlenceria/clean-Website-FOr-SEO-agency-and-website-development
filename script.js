@@ -74,46 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Mobile Navigation Toggle and Universal Header Component
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-    }
-
-    // Universal Header Component - Ensure consistent navigation across all pages
-    function initializeHeaderComponent() {
-        const navbar = document.getElementById('navbar');
-        if (navbar && !navbar.classList.contains('header-initialized')) {
-            navbar.classList.add('header-initialized');
-
-            // Add dropdown functionality
-            const dropdowns = navbar.querySelectorAll('.nav-dropdown');
-            dropdowns.forEach(dropdown => {
-                const link = dropdown.querySelector('.nav-link');
-                const menu = dropdown.querySelector('.dropdown-menu');
-
-                if (link && menu) {
-                    dropdown.addEventListener('mouseenter', () => {
-                        menu.style.display = 'block';
-                        menu.style.opacity = '1';
-                    });
-
-                    dropdown.addEventListener('mouseleave', () => {
-                        menu.style.display = 'none';
-                        menu.style.opacity = '0';
-                    });
-                }
-            });
-        }
-    }
-
-    // Initialize header component
-    initializeHeaderComponent();
+    // Navigation functionality will be handled by components.js
+    // This is kept for compatibility with pages not yet updated
 
     // Close mobile menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-link');

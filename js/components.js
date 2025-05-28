@@ -91,19 +91,16 @@ function initializeNavigation() {
             const newNavToggle = navToggle.cloneNode(true);
             navToggle.parentNode.replaceChild(newNavToggle, navToggle);
 
-            // Main navigation toggle
             newNavToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Nav toggle clicked');
                 navMenu.classList.toggle('active');
                 newNavToggle.classList.toggle('active');
-                
-                
             });
 
-            // Close menu when clicking on nav links
-            const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     console.log('Nav link clicked, closing menu');
@@ -117,14 +114,6 @@ function initializeNavigation() {
                 if (navMenu && newNavToggle && 
                     !newNavToggle.contains(event.target) && 
                     !navMenu.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                    newNavToggle.classList.remove('active');
-                }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 968) {
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
                 }

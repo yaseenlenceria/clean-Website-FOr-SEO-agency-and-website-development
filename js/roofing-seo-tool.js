@@ -174,9 +174,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (analysis.passed.length > 0) {
             analysis.passed.forEach(item => {
                 const passedItem = document.createElement('div');
-                passedItem.className = 'analysis-item';
+                passedItem.className = 'analysis-item passed';
+                passedItem.style.borderLeftColor = '#28a745';
+                passedItem.style.background = 'linear-gradient(135deg, #d4edda, #ffffff)';
                 passedItem.innerHTML = `
-                    <h4><i class="fas fa-check-circle" style="color: #28a745;"></i> ${item}</h4>
+                    <h4><i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i> ${item}</h4>
+                    <p style="color: #155724; font-weight: 500;">✓ This SEO element is properly implemented</p>
                 `;
                 analysisResults.appendChild(passedItem);
             });
@@ -187,13 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const issueItem = document.createElement('div');
             issueItem.className = `analysis-item ${issue.type}`;
             const icon = issue.type === 'error' ? 'fas fa-times-circle' : 'fas fa-exclamation-triangle';
-            const color = issue.type === 'error' ? '#dc3545' : '#ffc107';
+            const iconColor = issue.type === 'error' ? '#e74c3c' : '#f39c12';
             
             issueItem.innerHTML = `
-                <h4><i class="${icon}" style="color: ${color};"></i> ${issue.title}</h4>
-                <p><strong>Issue:</strong> ${issue.description}</p>
-                <p><strong>Impact:</strong> ${issue.impact}</p>
-                <p><strong>Solution:</strong> ${issue.solution}</p>
+                <h4><i class="${icon}" style="color: ${iconColor}; margin-right: 10px;"></i> ${issue.title}</h4>
+                <p><strong style="color: #2c3e50;">Issue:</strong> <span style="color: #555;">${issue.description}</span></p>
+                <p><strong style="color: #2c3e50;">Impact:</strong> <span style="color: #e67e22; font-weight: 600;">${issue.impact}</span></p>
+                <p><strong style="color: #2c3e50;">Solution:</strong> <span style="color: #27ae60; font-weight: 500;">${issue.solution}</span></p>
             `;
             analysisResults.appendChild(issueItem);
         });
@@ -201,11 +204,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add recommendations
         if (analysis.recommendations.length > 0) {
             const recommendationsSection = document.createElement('div');
-            recommendationsSection.className = 'analysis-item';
+            recommendationsSection.className = 'analysis-item recommendations';
+            recommendationsSection.style.borderLeftColor = '#17a2b8';
+            recommendationsSection.style.background = 'linear-gradient(135deg, #e6f7ff, #ffffff)';
             recommendationsSection.innerHTML = `
-                <h4><i class="fas fa-lightbulb" style="color: #007bff;"></i> Recommended Next Steps</h4>
-                <ul>
-                    ${analysis.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                <h4><i class="fas fa-lightbulb" style="color: #17a2b8; margin-right: 10px;"></i> Recommended Next Steps for Your Roofing Business</h4>
+                <p style="color: #0c5460; margin-bottom: 15px;">Here are the most important SEO improvements to prioritize:</p>
+                <ul style="list-style: none; padding-left: 0;">
+                    ${analysis.recommendations.map((rec, index) => `
+                        <li style="background: rgba(23,162,184,0.1); padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; border-left: 3px solid #17a2b8; color: #0c5460; font-weight: 500;">
+                            <i class="fas fa-arrow-right" style="color: #17a2b8; margin-right: 8px;"></i>
+                            ${rec}
+                        </li>
+                    `).join('')}
                 </ul>
             `;
             analysisResults.appendChild(recommendationsSection);

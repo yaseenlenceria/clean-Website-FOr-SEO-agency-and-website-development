@@ -2,35 +2,45 @@
 User-agent: *
 Allow: /
 
-# XML Sitemap
+# XML Sitemap - Primary directive for crawlers
 Sitemap: https://outsourcesu.com/sitemap.xml
 
 # Crawl-delay for responsible crawling
 Crawl-delay: 1
 
-# Allow important directories
+# Explicitly allow important directories and files
 Allow: /attached_assets/
+Allow: /components/
+Allow: /js/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.html
 Allow: /services/
 Allow: /contact/
+Allow: /about/
 
-# Disallow sensitive areas
+# Allow important file types
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.webp
+Allow: *.svg
+Allow: *.ico
+
+# Disallow sensitive and unnecessary areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.config/
 Disallow: /tmp/
 Disallow: /cgi-bin/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.log
+Disallow: /*.tmp
 
-# Block common bot traffic that doesn't add value
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: MJ12bot
-Crawl-delay: 10
-
-User-agent: DotBot
-Disallow: /
-
-# Allow Googlebot full access
+# Special directives for major search engines
+# Allow Googlebot full access with priority
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -39,3 +49,30 @@ Crawl-delay: 1
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+
+# Control other crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 5
+
+User-agent: DotBot
+Disallow: /
+
+# Prevent aggressive crawling
+User-agent: ia_archiver
+Crawl-delay: 10
+
+# Block bad bots
+User-agent: 008
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /

@@ -111,11 +111,19 @@ function initializeNavigation() {
             // Enhanced mobile dropdown functionality
             const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
             dropdownTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
+                // Remove existing listeners
+                const newTrigger = trigger.cloneNode(true);
+                trigger.parentNode.replaceChild(newTrigger, trigger);
+                
+                newTrigger.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
+                    console.log('Dropdown trigger clicked');
+                    
                     const dropdown = this.closest('.nav-dropdown');
+                    if (!dropdown) return;
+                    
                     const isActive = dropdown.classList.contains('active');
                     
                     // Close all other dropdowns
@@ -127,7 +135,13 @@ function initializeNavigation() {
                     });
                     
                     // Toggle current dropdown
-                    dropdown.classList.toggle('active', !isActive);
+                    if (isActive) {
+                        dropdown.classList.remove('active');
+                    } else {
+                        dropdown.classList.add('active');
+                    }
+                    
+                    console.log('Dropdown state:', dropdown.classList.contains('active'));
                 });
             });
 

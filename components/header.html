@@ -1,60 +1,567 @@
 
-<!-- Navigation Component -->
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <a href="index.html">
-                <img src="attached_assets/logo1.png" alt="OutsourceSU Logo" class="logo-image">
+<!-- Modern Responsive Navigation Component -->
+<nav class="navbar-modern" id="navbar">
+    <div class="nav-container-modern">
+        <!-- Logo Section -->
+        <div class="nav-logo-modern">
+            <a href="index.html" class="logo-link">
+                <img src="attached_assets/logo1.png" alt="OutsourceSU - UK SEO Agency" class="logo-image-modern">
+                <span class="logo-text-modern">OutsourceSU</span>
             </a>
         </div>
-        <div class="nav-menu" id="nav-menu">
-            <a href="index.html" class="nav-link">Home</a>
-            <div class="nav-dropdown">
-                <a href="services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="construction-seo.html">Construction SEO</a>
-                    <a href="professional-services-seo.html">Professional Services</a>
-                    <a href="real-estate-seo.html">Real Estate SEO</a>
-                    <a href="services.html">View All Services</a>
+
+        <!-- Desktop Navigation Menu -->
+        <div class="nav-menu-modern" id="nav-menu">
+            <div class="nav-links-wrapper">
+                <a href="index.html" class="nav-link-modern">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>Home</span>
+                </a>
+                
+                <!-- Services Dropdown -->
+                <div class="nav-dropdown-modern">
+                    <button class="nav-link-modern dropdown-trigger" type="button">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <span>Services</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu-modern">
+                        <div class="dropdown-section">
+                            <h4>Core Services</h4>
+                            <a href="construction-seo.html" class="dropdown-link">
+                                <i class="fas fa-hard-hat"></i>
+                                Construction SEO
+                            </a>
+                            <a href="professional-services-seo.html" class="dropdown-link">
+                                <i class="fas fa-briefcase"></i>
+                                Professional Services
+                            </a>
+                            <a href="real-estate-seo.html" class="dropdown-link">
+                                <i class="fas fa-home"></i>
+                                Real Estate SEO
+                            </a>
+                            <a href="white-label-seo.html" class="dropdown-link">
+                                <i class="fas fa-label"></i>
+                                White Label SEO
+                            </a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>All Services</h4>
+                            <a href="services.html" class="dropdown-link dropdown-cta">
+                                <i class="fas fa-arrow-right"></i>
+                                View All Services
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-dropdown">
-                <a href="#" class="nav-link">Industries <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="roofing-seo-services-uk.html">Roofing SEO Services UK</a>
-                    <a href="best-law-firm-seo.html">Law Firm SEO</a>
-                    <a href="best-dentists-seo.html">Dentist SEO</a>
-                    <a href="best-accountants-seo.html">Accountant SEO</a>
-                    <a href="best-architects-seo.html">Architect SEO</a>
-                    <a href="best-financial-seo.html">Financial Services SEO</a>
-                    <a href="best-plumbers-seo.html">Plumber SEO</a>
+
+                <!-- Industries Dropdown -->
+                <div class="nav-dropdown-modern">
+                    <button class="nav-link-modern dropdown-trigger" type="button">
+                        <i class="fas fa-industry nav-icon"></i>
+                        <span>Industries</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu-modern">
+                        <div class="dropdown-section">
+                            <h4>Professional Services</h4>
+                            <a href="best-law-firm-seo.html" class="dropdown-link">
+                                <i class="fas fa-balance-scale"></i>
+                                Law Firm SEO
+                            </a>
+                            <a href="best-dentists-seo.html" class="dropdown-link">
+                                <i class="fas fa-tooth"></i>
+                                Dentist SEO
+                            </a>
+                            <a href="best-accountants-seo.html" class="dropdown-link">
+                                <i class="fas fa-calculator"></i>
+                                Accountant SEO
+                            </a>
+                            <a href="best-architects-seo.html" class="dropdown-link">
+                                <i class="fas fa-drafting-compass"></i>
+                                Architect SEO
+                            </a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Trade Services</h4>
+                            <a href="roofing-seo-services-uk.html" class="dropdown-link">
+                                <i class="fas fa-home"></i>
+                                Roofing SEO
+                            </a>
+                            <a href="best-plumbers-seo.html" class="dropdown-link">
+                                <i class="fas fa-wrench"></i>
+                                Plumber SEO
+                            </a>
+                            <a href="best-financial-seo.html" class="dropdown-link">
+                                <i class="fas fa-chart-line"></i>
+                                Financial Services SEO
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-dropdown">
-                <a href="#" class="nav-link">Top 10 Companies <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="top-10-roofing-companies-london.html">Top 10 Roofing Companies London</a>
-                    <a href="top-10-roofing-companies-manchester.html">Top 10 Roofing Companies Manchester</a>
-                    <a href="top-10-roofing-companies-birmingham.html">Top 10 Roofing Companies Birmingham</a>
-                    <a href="top-10-plumbers-london.html">Top 10 Plumbers London</a>
-                    <a href="top-10-plumbers-manchester.html">Top 10 Plumbers Manchester</a>
-                    <a href="top-10-electricians-london.html">Top 10 Electricians London</a>
-                    <a href="top-10-dentists-london.html">Top 10 Dentists London</a>
-                    <a href="top-10-dentists-manchester.html">Top 10 Dentists Manchester</a>
-                    <a href="top-10-law-firms-london.html">Top 10 Law Firms London</a>
-                    <a href="top-10-accountants-london.html">Top 10 Accountants London</a>
-                    <a href="top-10-architects-london.html">Top 10 Architects London</a>
-                    <a href="top-10-financial-advisors-london.html">Top 10 Financial Advisors London</a>
+
+                <!-- Top Companies Dropdown -->
+                <div class="nav-dropdown-modern">
+                    <button class="nav-link-modern dropdown-trigger" type="button">
+                        <i class="fas fa-trophy nav-icon"></i>
+                        <span>Top Companies</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu-modern">
+                        <div class="dropdown-section">
+                            <h4>London Rankings</h4>
+                            <a href="top-10-roofing-companies-london.html" class="dropdown-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Top Roofing Companies London
+                            </a>
+                            <a href="top-10-plumbers-london.html" class="dropdown-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Top Plumbers London
+                            </a>
+                            <a href="top-10-dentists-london.html" class="dropdown-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Top Dentists London
+                            </a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Other Cities</h4>
+                            <a href="top-10-roofing-companies-manchester.html" class="dropdown-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Manchester Rankings
+                            </a>
+                            <a href="top-10-roofing-companies-birmingham.html" class="dropdown-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Birmingham Rankings
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <a href="about.html" class="nav-link-modern">
+                    <i class="fas fa-info-circle nav-icon"></i>
+                    <span>About</span>
+                </a>
+                
+                <a href="contact.html" class="nav-link-modern">
+                    <i class="fas fa-envelope nav-icon"></i>
+                    <span>Contact</span>
+                </a>
             </div>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-            <a href="contact.html" class="nav-cta">Get Free Audit</a>
+
+            <!-- CTA Button -->
+            <div class="nav-cta-wrapper">
+                <a href="contact.html" class="nav-cta-modern">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Free Audit</span>
+                </a>
+                <a href="tel:07411575188" class="nav-phone-modern">
+                    <i class="fas fa-phone"></i>
+                    <span class="phone-text">07411575188</span>
+                </a>
+            </div>
         </div>
-        <div class="nav-toggle" id="nav-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-nav-controls">
+            <a href="tel:07411575188" class="mobile-phone-btn">
+                <i class="fas fa-phone"></i>
+            </a>
+            <button class="nav-toggle-modern" id="nav-toggle" type="button" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-overlay"></div>
 </nav>
+
+<!-- Add required styles for the modern header -->
+<style>
+/* Modern Navbar Styles */
+.navbar-modern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-container-modern {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/* Logo Styles */
+.nav-logo-modern .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 12px;
+}
+
+.logo-image-modern {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text-modern {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    display: none;
+}
+
+/* Desktop Navigation */
+.nav-menu-modern {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link-modern {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-link-modern:hover {
+    color: var(--primary-blue);
+}
+
+.nav-icon {
+    font-size: 14px;
+    display: none;
+}
+
+/* Dropdown Styles */
+.nav-dropdown-modern {
+    position: relative;
+}
+
+.dropdown-trigger .dropdown-arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown-modern:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu-modern {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 280px;
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.nav-dropdown-modern:hover .dropdown-menu-modern {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-section {
+    margin-bottom: 20px;
+}
+
+.dropdown-section:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-section h4 {
+    color: var(--primary-blue);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+}
+
+.dropdown-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-blue);
+}
+
+.dropdown-link i {
+    font-size: 12px;
+    width: 16px;
+    opacity: 0.7;
+}
+
+.dropdown-cta {
+    background: var(--primary-blue);
+    color: white;
+    font-weight: 600;
+}
+
+.dropdown-cta:hover {
+    background: var(--primary-blue-hover);
+    color: white;
+}
+
+/* CTA Buttons */
+.nav-cta-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-cta-modern {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-cta-modern:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-2px);
+}
+
+.nav-phone-modern {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-phone-modern:hover {
+    color: var(--primary-blue);
+}
+
+/* Mobile Controls */
+.mobile-nav-controls {
+    display: none;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-phone-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-phone-btn:hover {
+    background: var(--primary-blue-hover);
+}
+
+.nav-toggle-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle-modern:hover {
+    border-color: var(--primary-blue);
+}
+
+.hamburger-line {
+    width: 20px;
+    height: 2px;
+    background: var(--text-light);
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.nav-toggle-modern.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-toggle-modern.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle-modern.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-container-modern {
+        height: 60px;
+        padding: 0 16px;
+    }
+
+    .logo-image-modern {
+        height: 32px;
+    }
+
+    .nav-menu-modern {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .nav-menu-modern.active {
+        transform: translateX(0);
+    }
+
+    .nav-links-wrapper {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .nav-link-modern {
+        width: 100%;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 16px;
+    }
+
+    .nav-icon {
+        display: block;
+        font-size: 16px;
+    }
+
+    .nav-dropdown-modern .dropdown-menu-modern {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 10px 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .nav-cta-wrapper {
+        flex-direction: column;
+        width: 100%;
+        gap: 16px;
+    }
+
+    .nav-cta-modern,
+    .nav-phone-modern {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .nav-phone-modern {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .phone-text {
+        font-size: 16px;
+    }
+
+    .mobile-nav-controls {
+        display: flex;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .logo-text-modern {
+        display: block;
+    }
+}
+
+/* Active link state */
+.nav-link-modern.active {
+    color: var(--primary-blue);
+}
+</style>

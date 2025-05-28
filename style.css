@@ -4422,11 +4422,15 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #000000;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
 }
 
 .audit-features li:before {
     content: "✓";
-    color: #28a745;
+    color: var(--accent-green);
     font-weight: bold;
     margin-right: 5px;
 }

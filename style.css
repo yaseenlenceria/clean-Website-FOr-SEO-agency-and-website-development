@@ -140,9 +140,9 @@ body {
 }
 
 .logo-image {
-    height: clamp(45px, 6vw, 65px);
+    height: clamp(50px, 8vw, 65px);
     width: auto;
-    max-width: clamp(160px, 25vw, 220px);
+    max-width: clamp(180px, 35vw, 220px);
     object-fit: contain;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: brightness(1.1);
@@ -1917,8 +1917,8 @@ body {
     }
 
     .logo-image {
-        height: clamp(40px, 8vw, 55px);
-        max-width: clamp(140px, 35vw, 180px);
+        height: clamp(45px, 10vw, 60px);
+        max-width: clamp(160px, 40vw, 200px);
     }
 
     .nav-toggle {
@@ -1943,11 +1943,12 @@ body {
         border-top: 3px solid var(--primary-color);
         height: calc(100vh - 70px);
         overflow-y: auto;
-        z-index: 999;
+        z-index: 9999;
     }
 
     .nav-menu.active {
         left: 0;
+        display: flex;
     }
 
     .nav-link {
@@ -2261,8 +2262,8 @@ body {
     }
 
     .logo-image {
-        height: clamp(35px, 9vw, 50px);
-        max-width: clamp(120px, 40vw, 160px);
+        height: clamp(40px, 11vw, 55px);
+        max-width: clamp(140px, 45vw, 180px);
     }
 
     .nav-menu {

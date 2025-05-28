@@ -82,15 +82,19 @@ function initializeNavigation() {
     // Wait for DOM elements to be available
     const checkElements = () => {
         const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        navMenu = document.querySelector('.nav-menu');
 
         if (navToggle && navMenu) {
-            // Remove any existing listeners
-            navToggle.replaceWith(navToggle.cloneNode(true));
-            const newNavToggle = document.querySelector('.nav-toggle');
+            console.log('Navigation elements found, initializing...');
+            
+            // Remove any existing listeners to prevent duplicates
+            const newNavToggle = navToggle.cloneNode(true);
+            navToggle.parentNode.replaceChild(newNavToggle, navToggle);
 
             newNavToggle.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('Nav toggle clicked');
                 navMenu.classList.toggle('active');
                 newNavToggle.classList.toggle('active');
             });
@@ -99,6 +103,7 @@ function initializeNavigation() {
             const navLinks = document.querySelectorAll('.nav-menu a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
+                    console.log('Nav link clicked, closing menu');
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
                 });
@@ -106,18 +111,25 @@ function initializeNavigation() {
 
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
-                if (!newNavToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                if (navMenu && newNavToggle && 
+                    !newNavToggle.contains(event.target) && 
+                    !navMenu.contains(event.target)) {
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
                 }
             });
+
+            console.log('Navigation initialized successfully');
+        } else {
+            console.log('Navigation elements not found yet...');
         }
     };
 
     // Try multiple times to ensure elements are loaded
-    setTimeout(checkElements, 50);
-    setTimeout(checkElements, 200);
-    setTimeout(checkElements, 500);
+    setTimeout(checkElements, 100);
+    setTimeout(checkElements, 300);
+    setTimeout(checkElements, 700);
+    setTimeout(checkElements, 1500);
 }
 
 // SEO enhancements

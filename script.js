@@ -77,14 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation functionality will be handled by components.js
     // This is kept for compatibility with pages not yet updated
 
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-        });
-    });
+    // Mobile navigation is now handled in components.js
 
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');

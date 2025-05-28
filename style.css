@@ -140,15 +140,17 @@ body {
 }
 
 .logo-image {
-    height: clamp(50px, 8vw, 75px);
+    height: clamp(45px, 6vw, 65px);
     width: auto;
-    max-width: 200px;
+    max-width: clamp(160px, 25vw, 220px);
+    object-fit: contain;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: brightness(1.1);
+    display: block;
 }
 
 .logo-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     filter: brightness(1.2);
 }
 
@@ -290,14 +292,36 @@ body {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    z-index: 1001;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 107, 53, 0.2);
 }
 
 .bar {
-    width: 28px;
+    width: 24px;
     height: 3px;
-    background: var(--text-white);
+    background: var(--primary-color);
     transition: 0.3s;
     border-radius: 2px;
+}
+
+.nav-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Hero Section - Modern */
@@ -1880,13 +1904,27 @@ body {
 @media (max-width: 968px) {
     .nav-container {
         height: 70px;
-        padding: 0 var(--spacing-md);
+        padding: 0 clamp(12px, 3vw, 20px);
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo {
+        flex-shrink: 0;
+        max-width: 60%;
     }
 
     .logo-image {
-        height: 50px;
-        max-width: 150px;
+        height: clamp(40px, 8vw, 55px);
+        max-width: clamp(140px, 35vw, 180px);
+    }
+
+    .nav-toggle {
+        display: flex;
+        order: 3;
+        flex-shrink: 0;
     }
 
     .nav-menu {
@@ -1894,14 +1932,15 @@ body {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background: var(--dark-bg);
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(20px);
         width: 100vw;
         text-align: left;
         transition: left 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        padding: var(--spacing-md) 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        padding: var(--spacing-lg) 0;
         gap: 0;
-        border-top: 2px solid var(--primary-color);
+        border-top: 3px solid var(--primary-color);
         height: calc(100vh - 70px);
         overflow-y: auto;
         z-index: 999;
@@ -1912,20 +1951,29 @@ body {
     }
 
     .nav-link {
-        padding: var(--spacing-md) var(--spacing-lg);
-        display: block;
+        padding: clamp(14px, 4vw, 18px) clamp(16px, 5vw, 24px);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 18px;
+        font-size: clamp(16px, 4vw, 18px);
         color: var(--text-white);
         text-decoration: none;
         transition: all 0.3s ease;
         position: relative;
+        font-weight: 500;
     }
 
     .nav-link:hover {
-        background: var(--primary-color);
+        background: linear-gradient(90deg, var(--primary-color), rgba(255, 107, 53, 0.8));
         color: var(--text-white);
-        transform: translateX(8px);
+        transform: translateX(6px);
+        padding-left: clamp(20px, 6vw, 28px);
+    }
+
+    .nav-link i {
+        font-size: clamp(14px, 3.5vw, 16px);
+        opacity: 0.8;
     }
 
     .nav-dropdown {
@@ -1937,16 +1985,18 @@ body {
     }
 
     .nav-cta {
-        margin: var(--spacing-lg);
-        padding: var(--spacing-md) var(--spacing-lg);
+        margin: clamp(16px, 5vw, 24px);
+        padding: clamp(12px, 3vw, 16px) clamp(20px, 6vw, 28px);
         justify-content: center;
         border-radius: 25px;
-        min-height: 50px;
-        font-size: 16px;
+        min-height: clamp(48px, 12vw, 56px);
+        font-size: clamp(15px, 4vw, 17px);
+        font-weight: 600;
         text-align: center;
         display: flex;
         align-items: center;
-        gap: var(--spacing-xs);
+        gap: var(--spacing-sm);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
     }
 
     .nav-toggle {
@@ -1991,24 +2041,26 @@ body {
         opacity: 1;
         visibility: visible;
         transform: none;
-        background: var(--darker-bg);
+        background: rgba(15, 15, 15, 0.95);
         margin: 0;
         border-radius: 0;
         border: none;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         max-height: none;
         overflow: visible;
-        box-shadow: none;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         padding: var(--spacing-sm) 0;
     }
 
     .dropdown-menu a {
-        padding: var(--spacing-sm) var(--spacing-xl);
-        font-size: 16px;
+        padding: clamp(10px, 3vw, 14px) clamp(24px, 7vw, 32px);
+        font-size: clamp(14px, 3.5vw, 16px);
         color: var(--text-gray);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        display: block;
+        display: flex;
+        align-items: center;
         transition: all 0.3s ease;
+        font-weight: 400;
     }
 
     .dropdown-menu a:last-child {
@@ -2016,9 +2068,10 @@ body {
     }
 
     .dropdown-menu a:hover {
-        background: rgba(255, 107, 53, 0.1);
+        background: linear-gradient(90deg, rgba(255, 107, 53, 0.15), rgba(255, 107, 53, 0.1));
         color: var(--primary-color);
-        transform: translateX(8px);
+        transform: translateX(6px);
+        padding-left: clamp(28px, 8vw, 36px);
     }
 
     .hero-content-grid {
@@ -2194,58 +2247,71 @@ body {
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 var(--spacing-md);
+        padding: 0 clamp(12px, 4vw, 16px);
     }
 
     .nav-container {
-        padding: 0 var(--spacing-md);
+        padding: 0 clamp(12px, 4vw, 16px);
         height: 65px;
+        gap: var(--spacing-sm);
+    }
+
+    .nav-logo {
+        max-width: 65%;
     }
 
     .logo-image {
-        height: 45px;
-        max-width: 140px;
+        height: clamp(35px, 9vw, 50px);
+        max-width: clamp(120px, 40vw, 160px);
     }
 
     .nav-menu {
         top: 65px;
         height: calc(100vh - 65px);
-        padding: var(--spacing-lg) 0;
+        padding: clamp(16px, 5vw, 24px) 0;
     }
 
     .nav-link {
-        padding: var(--spacing-lg) var(--spacing-md);
-        font-size: 17px;
+        padding: clamp(12px, 4vw, 16px) clamp(12px, 4vw, 16px);
+        font-size: clamp(15px, 4.5vw, 17px);
         font-weight: 500;
+        gap: clamp(8px, 2.5vw, 12px);
+    }
+
+    .nav-link i {
+        font-size: clamp(13px, 4vw, 15px);
     }
 
     .nav-cta {
-        margin: var(--spacing-lg) var(--spacing-md);
-        padding: var(--spacing-md) var(--spacing-lg);
-        min-height: 50px;
-        font-size: 16px;
-        border-radius: 25px;
+        margin: clamp(12px, 4vw, 16px);
+        padding: clamp(10px, 3vw, 14px) clamp(16px, 5vw, 22px);
+        min-height: clamp(44px, 12vw, 52px);
+        font-size: clamp(14px, 4vw, 16px);
+        border-radius: 22px;
         font-weight: 600;
     }
 
     .nav-toggle {
-        padding: 8px;
-        gap: 4px;
+        padding: 6px;
+        gap: 3px;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
     }
 
     .bar {
-        width: 22px;
-        height: 3px;
+        width: 20px;
+        height: 2.5px;
     }
 
     .dropdown-menu {
         margin: 0;
-        padding: var(--spacing-md) 0;
+        padding: clamp(8px, 2.5vw, 12px) 0;
     }
 
     .dropdown-menu a {
-        padding: var(--spacing-md) var(--spacing-xl);
-        font-size: 15px;
+        padding: clamp(8px, 2.5vw, 12px) clamp(20px, 6vw, 28px);
+        font-size: clamp(13px, 3.5vw, 15px);
         font-weight: 400;
     }
 

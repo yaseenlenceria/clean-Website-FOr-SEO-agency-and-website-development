@@ -726,7 +726,10 @@ body {
 .audit-card h3 {
     font-size: 36px;
     font-weight: var(--font-weight-extra-bold);
-    color: var(--accent-green);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-green) 50%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -1px;
     margin-bottom: var(--spacing-md);
     position: relative;
@@ -1361,19 +1364,20 @@ body {
 }
 
 .service-highlights li {
-    padding: var(--spacing-xs) 0;
+    padding: 6px 0 6px var(--spacing-lg);
     color: var(--text-light-gray);
     font-size: 14px;
     position: relative;
-    padding-left: var(--spacing-lg);
     transition: all 0.3s ease;
     font-weight: var(--font-weight-medium);
+    line-height: 1.5;
 }
 
 .service-highlights li::before {
     content: '✓';
     position: absolute;
     left: 0;
+    top: 4px;
     color: var(--accent-green);
     font-weight: var(--font-weight-bold);
     width: 18px;
@@ -5788,20 +5792,29 @@ select:focus {
 }
 
 .audit-features li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     color: #000000;
-    padding: 8px 0;
+    padding: 8px 0 8px 25px;
     font-size: 14px;
     font-weight: var(--font-weight-medium);
+    position: relative;
+    line-height: 1.5;
 }
 
 .audit-features li:before {
     content: "✓";
+    position: absolute;
+    left: 0;
+    top: 8px;
     color: var(--accent-green);
     font-weight: bold;
-    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 50%;
+    font-size: 12px;
 }
 
 /* Image Showcase Section */

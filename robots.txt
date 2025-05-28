@@ -15,9 +15,6 @@ Allow: /js/
 Allow: /*.css
 Allow: /*.js
 Allow: /*.html
-Allow: /services/
-Allow: /contact/
-Allow: /about/
 
 # Allow important file types
 Allow: *.png
@@ -38,14 +35,18 @@ Disallow: /.git/
 Disallow: /node_modules/
 Disallow: /*.log
 Disallow: /*.tmp
+Disallow: /seo-*.js
+Disallow: /meta-optimizer.js
+Disallow: /sitemap-generator.js
+Disallow: /update-all-pages.js
+Disallow: /process-components.html
+Disallow: /template-update.txt
 
 # Special directives for major search engines
-# Allow Googlebot full access with priority
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-# Allow Bingbot full access
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1

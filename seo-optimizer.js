@@ -45,6 +45,13 @@ const metaConfigs = {
         keywords: 'professional services SEO, law firm SEO, dentist SEO, accountant SEO',
         canonical: 'https://outsourcesu.com/professional-services-seo.html',
         ogType: 'service'
+    },
+    'roofing-seo-services-uk.html': {
+        title: 'Best Roofing SEO Services UK | Roofing Company Digital Marketing',
+        description: 'Dominate local search results with our specialized roofing SEO services. Drive more leads for your roofing business across the UK.',
+        keywords: 'roofing SEO, roofing company SEO, roofer digital marketing UK',
+        canonical: 'https://outsourcesu.com/roofing-seo-services-uk.html',
+        ogType: 'service'
     }
 };
 
@@ -53,7 +60,8 @@ function optimizeAllPages() {
 
     const htmlFiles = fs.readdirSync('.')
         .filter(file => file.endsWith('.html'))
-        .filter(file => !file.startsWith('google-') && !file.startsWith('template'));
+        .filter(file => !file.startsWith('google-') && !file.startsWith('template'))
+        .filter(file => file !== 'process-components.html');
 
     htmlFiles.forEach(file => {
         try {
@@ -71,9 +79,13 @@ function optimizeAllPages() {
                 $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
             }
 
-            // Add robots meta
+            // Add robots meta (different for 404)
             if (!$('meta[name="robots"]').length) {
-                $('head').append('<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">');
+                if (file === '404.html') {
+                    $('head').append('<meta name="robots" content="noindex, follow">');
+                } else {
+                    $('head').append('<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">');
+                }
             }
 
             if (!$('meta[name="googlebot"]').length) {
@@ -141,7 +153,7 @@ function optimizeAllPages() {
                 }
             }
 
-            // Add structured data for specific pages
+            // Add structured data for homepage
             if (file === 'index.html' && !$('script[type="application/ld+json"]').length) {
                 const structuredData = {
                     "@context": "https://schema.org",
@@ -165,9 +177,33 @@ function optimizeAllPages() {
                         "https://facebook.com/outsourcesu",
                         "https://twitter.com/outsourcesu",
                         "https://linkedin.com/company/outsourcesu"
-                    ]
+                    ],
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "4.9",
+                        "reviewCount": "127"
+                    }
                 };
                 $('head').append(`<script type="application/ld+json">${JSON.stringify(structuredData, null, 2)}</script>`);
+            }
+
+            // Add service-specific structured data
+            if (file.includes('-seo.html') && !$('script[type="application/ld+json"]').length) {
+                const serviceData = {
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "serviceType": "SEO Services",
+                    "provider": {
+                        "@type": "Organization",
+                        "name": "OutsourceSU",
+                        "url": "https://outsourcesu.com"
+                    },
+                    "areaServed": {
+                        "@type": "Country",
+                        "name": "United Kingdom"
+                    }
+                };
+                $('head').append(`<script type="application/ld+json">${JSON.stringify(serviceData, null, 2)}</script>`);
             }
 
             // Add alt text to images missing it
@@ -182,15 +218,13 @@ function optimizeAllPages() {
 
             // Add missing lang attribute
             if (!$('html').attr('lang')) {
-                $('html').attr('lang', 'en');
+                $('html').attr('lang', 'en-GB');
             }
 
-            // Ensure proper heading structure
-            const h1Count = $('h1').length;
-            if (h1Count === 0) {
-                console.log(`  ⚠️  No H1 tag found in ${file}`);
-            } else if (h1Count > 1) {
-                console.log(`  ⚠️  Multiple H1 tags found in ${file} (${h1Count})`);
+            // Add hreflang for international SEO
+            if (!$('link[rel="alternate"][hreflang]').length) {
+                $('head').append('<link rel="alternate" hreflang="en-gb" href="https://outsourcesu.com/">');
+                $('head').append('<link rel="alternate" hreflang="en" href="https://outsourcesu.com/">');
             }
 
             fs.writeFileSync(file, $.html());

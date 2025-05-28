@@ -75,6 +75,7 @@ function generateSitemap() {
     let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">`;
 
@@ -94,7 +95,19 @@ function generateSitemap() {
     <loc>${url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${config.changefreq}</changefreq>
-    <priority>${config.priority}</priority>
+    <priority>${config.priority}</priority>`;
+
+        // Add image sitemap data for pages with images
+        if (file === 'index.html') {
+            sitemapContent += `
+    <image:image>
+      <image:loc>https://outsourcesu.com/attached_assets/logo1.png</image:loc>
+      <image:title>OutsourceSU Logo</image:title>
+      <image:caption>OutsourceSU - Leading SEO Agency UK</image:caption>
+    </image:image>`;
+        }
+
+        sitemapContent += `
   </url>`;
     });
 
@@ -103,7 +116,7 @@ function generateSitemap() {
 
     fs.writeFileSync('sitemap.xml', sitemapContent);
     
-    console.log(`✅ Sitemap generated with ${sortedFiles.length} pages`);
+    console.log(`✅ Enhanced sitemap generated with ${sortedFiles.length} pages`);
     console.log('📊 Page distribution:');
     
     // Show priority distribution

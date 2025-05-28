@@ -99,81 +99,16 @@ function initializeNavigation() {
                 navMenu.classList.toggle('active');
                 newNavToggle.classList.toggle('active');
                 
-                // Close all dropdowns when main menu is closed
-                if (!navMenu.classList.contains('active')) {
-                    const activeDropdowns = document.querySelectorAll('.nav-dropdown.active');
-                    activeDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
-                }
-            });
-
-            // Enhanced mobile dropdown functionality
-            const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-            dropdownTriggers.forEach(trigger => {
-                // Remove existing listeners
-                const newTrigger = trigger.cloneNode(true);
-                trigger.parentNode.replaceChild(newTrigger, trigger);
                 
-                newTrigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    console.log('Dropdown trigger clicked');
-                    
-                    const dropdown = this.closest('.nav-dropdown');
-                    if (!dropdown) return;
-                    
-                    const isActive = dropdown.classList.contains('active');
-                    
-                    // Close all other dropdowns
-                    const allDropdowns = document.querySelectorAll('.nav-dropdown');
-                    allDropdowns.forEach(dd => {
-                        if (dd !== dropdown) {
-                            dd.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current dropdown
-                    if (isActive) {
-                        dropdown.classList.remove('active');
-                    } else {
-                        dropdown.classList.add('active');
-                    }
-                    
-                    console.log('Dropdown state:', dropdown.classList.contains('active'));
-                });
             });
 
-            // Close menu when clicking on regular nav links (not dropdown triggers)
-            const navLinks = document.querySelectorAll('.nav-menu .nav-link:not(.dropdown-trigger)');
+            // Close menu when clicking on nav links
+            const navLinks = document.querySelectorAll('.nav-menu .nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     console.log('Nav link clicked, closing menu');
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
-                    
-                    // Close all dropdowns
-                    const activeDropdowns = document.querySelectorAll('.nav-dropdown.active');
-                    activeDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
-                });
-            });
-
-            // Close dropdown menu items
-            const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    console.log('Dropdown link clicked, closing menu');
-                    navMenu.classList.remove('active');
-                    newNavToggle.classList.remove('active');
-                    
-                    // Close all dropdowns
-                    const activeDropdowns = document.querySelectorAll('.nav-dropdown.active');
-                    activeDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
                 });
             });
 
@@ -184,12 +119,6 @@ function initializeNavigation() {
                     !navMenu.contains(event.target)) {
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
-                    
-                    // Close all dropdowns
-                    const activeDropdowns = document.querySelectorAll('.nav-dropdown.active');
-                    activeDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
                 }
             });
 
@@ -198,12 +127,6 @@ function initializeNavigation() {
                 if (window.innerWidth > 968) {
                     navMenu.classList.remove('active');
                     newNavToggle.classList.remove('active');
-                    
-                    // Close all dropdowns
-                    const activeDropdowns = document.querySelectorAll('.nav-dropdown.active');
-                    activeDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
                 }
             });
 

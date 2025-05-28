@@ -8,6 +8,25 @@
 html, body {
     overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow on all elements */
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+/* Ensure sections don't overflow */
+section {
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Image Optimization for SEO */
@@ -2889,14 +2908,16 @@ button:hover {
 
 @media (max-width: 968px) {
     .nav-container {
-        height: 85px;
-        padding: 0 20px;
+        height: 75px;
+        padding: 0 16px;
         position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: linear-gradient(135deg, rgba(15, 15, 15, 0.99), rgba(26, 26, 26, 0.98));
         backdrop-filter: blur(30px);
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* Hide desktop navigation on mobile */
@@ -2911,13 +2932,13 @@ button:hover {
 
     .nav-logo {
         flex-shrink: 0;
-        max-width: 65%;
+        max-width: 60%;
         z-index: 1002;
     }
 
     .logo-image {
-        height: 55px;
-        max-width: 180px;
+        height: 50px;
+        max-width: 160px;
         filter: brightness(1.1) contrast(1.1);
         transition: all 0.3s ease;
     }
@@ -2996,25 +3017,27 @@ button:hover {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 85px;
+        top: 75px;
         flex-direction: column;
         background: linear-gradient(135deg, rgba(15, 15, 15, 0.99), rgba(26, 26, 26, 0.98));
         backdrop-filter: blur(30px);
         width: 100vw;
+        max-width: 100%;
         text-align: left;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         box-shadow: 
             0 12px 40px rgba(0, 0, 0, 0.9),
             inset 0 1px 0 rgba(255, 255, 255, 0.1),
             0 0 100px rgba(255, 107, 53, 0.1);
-        padding: 40px 0 50px;
-        gap: 12px;
+        padding: 20px 0 30px;
+        gap: 8px;
         
-        height: calc(100vh - 85px);
+        height: calc(100vh - 75px);
         overflow-y: auto;
         z-index: 9999;
         transform: translateX(-30px);
         opacity: 0;
+        box-sizing: border-box;
     }
 
     .nav-menu.active {
@@ -3025,24 +3048,25 @@ button:hover {
     }
 
     .nav-link {
-        padding: 24px 36px;
+        padding: 18px 20px;
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 16px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 19px;
+        font-size: 16px;
         color: var(--text-white);
         text-decoration: none;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         position: relative;
         font-weight: 600;
         letter-spacing: 0.5px;
-        margin: 0 24px;
-        border-radius: 18px;
+        margin: 0 16px;
+        border-radius: 12px;
         overflow: hidden;
-        min-height: 72px;
-        width: calc(100% - 48px);
+        min-height: 54px;
+        width: calc(100% - 32px);
         background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 53, 0.02) 50%, transparent 100%);
+        box-sizing: border-box;
     }
 
     .nav-link::before {
@@ -3095,28 +3119,29 @@ button:hover {
     /* Mobile navigation links with enhanced hover effects */
 
     .nav-cta {
-        margin: 40px 24px 30px;
-        padding: 24px 36px;
+        margin: 20px 16px 20px;
+        padding: 16px 24px;
         justify-content: center;
-        border-radius: 35px;
-        min-height: 72px;
-        font-size: 18px;
+        border-radius: 28px;
+        min-height: 54px;
+        font-size: 15px;
         font-weight: 700;
         text-align: center;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
         box-shadow: 
-            0 12px 35px rgba(255, 107, 53, 0.5),
+            0 8px 25px rgba(255, 107, 53, 0.5),
             inset 0 2px 0 rgba(255, 255, 255, 0.3),
-            0 0 30px rgba(255, 107, 53, 0.3);
+            0 0 20px rgba(255, 107, 53, 0.3);
         background: var(--gradient-brand);
-        border: 3px solid rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
         position: relative;
         overflow: hidden;
-        width: calc(100% - 48px);
+        width: calc(100% - 32px);
+        box-sizing: border-box;
     }
 
     .nav-cta::before {
@@ -3173,11 +3198,18 @@ button:hover {
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 var(--spacing-sm);
+        padding: 0 16px;
         max-width: 100%;
         overflow-x: hidden;
         width: 100%;
         box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    /* Ensure no horizontal overflow on mobile */
+    body, html {
+        overflow-x: hidden;
+        max-width: 100%;
     }
 
     .hero-modern {
@@ -3194,6 +3226,8 @@ button:hover {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
+        padding: 0;
+        margin: 0;
     }
 
     .hero-left {
@@ -3201,7 +3235,8 @@ button:hover {
         overflow-x: hidden;
         width: 100%;
         box-sizing: border-box;
-        padding: 0 8px;
+        padding: 0;
+        margin: 0;
     }
 
     .hero-left h1 {
@@ -3269,12 +3304,13 @@ button:hover {
 
     .audit-card {
         margin-top: var(--spacing-lg);
-        max-width: calc(100% - 16px);
+        max-width: 100%;
         overflow-x: hidden;
-        width: auto;
-        margin-left: 8px;
-        margin-right: 8px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
         box-sizing: border-box;
+        padding: var(--spacing-lg);
     }
 
     .section-header-modern h2,
@@ -3323,17 +3359,19 @@ button:hover {
     .btn-primary,
     .btn-secondary {
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
         text-align: center;
         justify-content: center;
-        padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 28px);
-        font-size: clamp(14px, 3.5vw, 16px);
+        padding: 16px 24px;
+        font-size: 15px;
         min-height: 48px;
-        border-radius: 25px;
+        border-radius: 24px;
         font-weight: var(--font-weight-bold);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        box-sizing: border-box;
+        margin: 0 auto;
     }
 
     .nav-cta {
@@ -3440,6 +3478,21 @@ button:hover {
         gap: 8px;
         width: 100%;
         box-sizing: border-box;
+    }
+
+    /* Prevent horizontal scroll */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Fix any elements that might cause overflow */
+    .hero-content-grid,
+    .audit-card,
+    .hero-buttons,
+    .trust-indicators {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     .nav-logo {

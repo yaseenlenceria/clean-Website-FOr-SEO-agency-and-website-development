@@ -40,6 +40,7 @@ img[loading="lazy"].loaded {
     --brand-orange: #ff6b35;
     --brand-blue: #1e40af;
     --brand-teal: #0d9488;
+    --success-color: #00ff88;
     --dark-bg: #0f0f0f;
     --darker-bg: #080808;
     --card-bg: #1a1a1a;
@@ -567,22 +568,24 @@ body {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
-    background: linear-gradient(135deg, #ff6b35 0%, #e55a2e 25%, #ff7f4f 50%, #f7931e 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
     color: var(--text-white);
-    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
-    border-radius: 30px;
+    padding: clamp(14px, 3vw, 18px) clamp(24px, 5vw, 32px);
+    border-radius: 35px;
     text-decoration: none;
-    font-weight: var(--font-weight-bold);
-    font-size: clamp(14px, 2.8vw, 17px);
+    font-weight: var(--font-weight-extra-bold);
+    font-size: clamp(15px, 3.2vw, 18px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     width: 100%;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-    min-height: 50px;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+    min-height: 56px;
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-audit::before {
@@ -621,21 +624,23 @@ body {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
-    background: linear-gradient(135deg, #ff6b35 0%, #e55a2e 25%, #ff7f4f 50%, #f7931e 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
     color: var(--text-white);
-    padding: clamp(10px, 2vw, 14px) clamp(16px, 3vw, 24px);
-    border-radius: 25px;
+    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    border-radius: 30px;
     text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-    font-size: clamp(13px, 2.5vw, 15px);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: none;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-    min-height: 42px;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    min-height: 48px;
     white-space: nowrap;
+    width: 100%;
+    max-width: 280px;
 }
 
 .btn-primary-modern::before {
@@ -687,19 +692,22 @@ body {
     justify-content: center;
     gap: var(--spacing-xs);
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
-    color: var(--text-light-gray);
-    padding: clamp(10px, 2vw, 14px) clamp(16px, 3vw, 24px);
-    border: 2px solid transparent;
-    border-radius: 25px;
+    color: var(--text-white);
+    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+    border-radius: 30px;
     text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-    font-size: clamp(13px, 2.5vw, 15px);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
-    min-height: 42px;
+    min-height: 48px;
     white-space: nowrap;
+    width: 100%;
+    max-width: 280px;
 }
 
 .btn-secondary-modern::before {
@@ -751,18 +759,20 @@ body {
     gap: var(--spacing-xs);
     background: transparent;
     color: var(--text-white);
-    padding: clamp(10px, 2vw, 14px) clamp(16px, 3vw, 24px);
+    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
     border: 2px solid;
-    border-image: linear-gradient(135deg, #ff6b35, #00d9ff) 1;
-    border-radius: 25px;
+    border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+    border-radius: 30px;
     text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-    font-size: clamp(13px, 2.5vw, 15px);
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
-    min-height: 42px;
+    min-height: 48px;
     white-space: nowrap;
+    width: 100%;
+    max-width: 280px;
 }
 
 .btn-outline-modern::before {
@@ -1054,22 +1064,24 @@ body {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
-    color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(0, 217, 255, 0.15) 100%);
+    color: var(--text-white);
     text-decoration: none;
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     margin-top: auto;
-    padding: clamp(8px, 1.5vw, 12px) clamp(14px, 2.5vw, 20px);
-    border-radius: 20px;
-    border: 2px solid transparent;
+    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    border-radius: 25px;
+    border: 2px solid;
     border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
-    font-size: clamp(12px, 2.2vw, 14px);
+    font-size: clamp(14px, 2.8vw, 16px);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
-    min-height: 36px;
+    min-height: 44px;
     white-space: nowrap;
+    width: 100%;
+    max-width: 220px;
 }
 
 .service-link::before {
@@ -1291,9 +1303,13 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #ff6b35 0%, #e55a2e 25%, #ff7f4f 50%, #f7931e 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
     color: var(--text-white);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    min-height: 48px;
+    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    font-weight: var(--font-weight-bold);
+    border-radius: 30px;
 }
 
 .btn-primary::before {
@@ -2729,7 +2745,8 @@ button:hover {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-sm);
+        gap: var(--spacing-md);
+        width: 100%;
     }
 
     .btn,
@@ -2737,14 +2754,18 @@ button:hover {
     .btn-secondary-modern,
     .btn-outline-modern,
     .btn-audit,
-    .service-link {
+    .service-link,
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
-        max-width: 320px;
+        max-width: 340px;
         text-align: center;
         justify-content: center;
-        padding: 12px 20px;
-        font-size: 14px;
-        min-height: 44px;
+        padding: clamp(14px, 3vw, 18px) clamp(24px, 5vw, 32px);
+        font-size: clamp(15px, 3.2vw, 17px);
+        min-height: 52px;
+        border-radius: 30px;
+        font-weight: var(--font-weight-bold);
     }
 
     .nav-cta {
@@ -2969,11 +2990,16 @@ button:hover {
     }
 
     .audit-card {
-        padding: var(--spacing-md);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-xl);
     }
 
     .audit-card h3 {
-        font-size: 28px;
+        font-size: 32px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .btn,
@@ -2981,13 +3007,18 @@ button:hover {
     .btn-secondary-modern,
     .btn-outline-modern,
     .btn-audit,
-    .service-link {
+    .service-link,
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
-        max-width: 280px;
-        padding: 14px 18px;
-        font-size: 13px;
-        min-height: 46px;
-        border-radius: 23px;
+        max-width: 300px;
+        padding: clamp(16px, 4vw, 20px) clamp(28px, 6vw, 36px);
+        font-size: clamp(16px, 3.5vw, 18px);
+        min-height: 56px;
+        border-radius: 35px;
+        font-weight: var(--font-weight-extra-bold);
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .nav-cta {
@@ -2998,10 +3029,11 @@ button:hover {
     }
 
     .btn-audit {
-        padding: 16px 22px;
-        font-size: 15px;
-        min-height: 52px;
-        border-radius: 26px;
+        padding: clamp(18px, 4.5vw, 22px) clamp(32px, 7vw, 40px);
+        font-size: clamp(17px, 3.8vw, 19px);
+        min-height: 60px;
+        border-radius: 40px;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
     }
 
     .stats-grid {
@@ -3010,6 +3042,7 @@ button:hover {
 
     .stat-number {
         font-size: 36px;
+        color: var(--primary-color);
     }
 
     /* Contact Page Mobile Optimization */

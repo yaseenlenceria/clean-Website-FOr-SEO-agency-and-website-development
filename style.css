@@ -4422,7 +4422,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--text-white);
+    color: #000000;
     padding: 8px 0;
     font-size: 14px;
     font-weight: var(--font-weight-medium);

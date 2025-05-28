@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const path = require('path');
 
@@ -12,12 +13,12 @@ const pageConfig = {
     'services.html': { priority: 0.9, changefreq: 'weekly' },
     'contact.html': { priority: 0.9, changefreq: 'monthly' },
     'about.html': { priority: 0.8, changefreq: 'monthly' },
-
+    
     // Main service categories - high priority
     'construction-seo.html': { priority: 0.9, changefreq: 'weekly' },
     'professional-services-seo.html': { priority: 0.9, changefreq: 'weekly' },
     'real-estate-seo.html': { priority: 0.9, changefreq: 'weekly' },
-
+    
     // Roofing SEO pages - high priority
     'roofing-seo-services-uk.html': { priority: 0.9, changefreq: 'weekly' },
     'best-roofing-seo-specialists.html': { priority: 0.8, changefreq: 'weekly' },
@@ -28,8 +29,7 @@ const pageConfig = {
     'roof-replacement-seo.html': { priority: 0.8, changefreq: 'weekly' },
     'commercial-roofing-seo.html': { priority: 0.8, changefreq: 'weekly' },
     'roofing-company-rankings.html': { priority: 0.8, changefreq: 'weekly' },
-    'roofing-seo-tool.html': { priority: 0.9, changefreq: 'monthly' },
-
+    
     // Professional services SEO pages
     'best-law-firm-seo.html': { priority: 0.8, changefreq: 'weekly' },
     'best-dentists-seo.html': { priority: 0.8, changefreq: 'weekly' },
@@ -37,11 +37,11 @@ const pageConfig = {
     'best-architects-seo.html': { priority: 0.8, changefreq: 'weekly' },
     'best-financial-seo.html': { priority: 0.8, changefreq: 'weekly' },
     'best-plumbers-seo.html': { priority: 0.8, changefreq: 'weekly' },
-
+    
     // Location-based SEO pages
     'best-seo-agency-manchester.html': { priority: 0.7, changefreq: 'weekly' },
     'seo-agency-birmingham.html': { priority: 0.7, changefreq: 'weekly' },
-
+    
     // Top 10 company pages - local SEO value
     'top-10-roofing-companies-london.html': { priority: 0.7, changefreq: 'monthly' },
     'top-10-roofing-companies-manchester.html': { priority: 0.7, changefreq: 'monthly' },
@@ -49,13 +49,13 @@ const pageConfig = {
     'top-10-dentists-london.html': { priority: 0.6, changefreq: 'monthly' },
     'top-10-plumbers-london.html': { priority: 0.6, changefreq: 'monthly' },
     'top-10-plumbers-manchester.html': { priority: 0.6, changefreq: 'monthly' },
-
+    
     // Additional service pages
     'white-label-seo.html': { priority: 0.7, changefreq: 'weekly' },
     'professional-seo-services-uk.html': { priority: 0.7, changefreq: 'weekly' },
     'our-work.html': { priority: 0.7, changefreq: 'monthly' },
     'careers.html': { priority: 0.6, changefreq: 'monthly' },
-
+    
     // Legal and policy pages - low priority but necessary
     'privacy-policy.html': { priority: 0.3, changefreq: 'yearly' },
     'terms-of-service.html': { priority: 0.3, changefreq: 'yearly' },
@@ -88,7 +88,7 @@ function generateSitemap() {
     sortedFiles.forEach(file => {
         const config = pageConfig[file] || { priority: 0.5, changefreq: 'monthly' };
         const url = file === 'index.html' ? domain + '/' : `${domain}/${file}`;
-
+        
         sitemapContent += `
   <url>
     <loc>${url}</loc>
@@ -102,17 +102,17 @@ function generateSitemap() {
 </urlset>`;
 
     fs.writeFileSync('sitemap.xml', sitemapContent);
-
+    
     console.log(`✅ Sitemap generated with ${sortedFiles.length} pages`);
     console.log('📊 Page distribution:');
-
+    
     // Show priority distribution
     const priorityCount = {};
     sortedFiles.forEach(file => {
         const priority = pageConfig[file]?.priority || 0.5;
         priorityCount[priority] = (priorityCount[priority] || 0) + 1;
     });
-
+    
     Object.keys(priorityCount)
         .sort((a, b) => b - a)
         .forEach(priority => {

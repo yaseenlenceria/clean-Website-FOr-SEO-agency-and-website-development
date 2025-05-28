@@ -60,60 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Load header component
-    function loadHeaderComponent() {
-        const headerPlaceholder = document.getElementById('header-placeholder');
-        if (headerPlaceholder) {
-            fetch('header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Header component not found');
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    headerPlaceholder.innerHTML = html;
-                    initializeHeaderComponent();
-                })
-                .catch(error => {
-                    // Silently handle missing header component
-                    const existingNavbar = document.getElementById('navbar');
-                    if (existingNavbar) {
-                        initializeHeaderComponent();
-                    }
-                });
-        } else {
-            // Initialize existing header if no placeholder
-            initializeHeaderComponent();
-        }
-    }
-
-    // Load footer component
-    function loadFooterComponent() {
-        const footerPlaceholder = document.getElementById('footer-placeholder');
-        if (footerPlaceholder) {
-            fetch('footer.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Footer component not found');
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    footerPlaceholder.innerHTML = html;
-                })
-                .catch(error => {
-                    // Silently handle missing footer component
-                });
-        }
-    }
-
     // Generate breadcrumb schema
     generateBreadcrumbSchema();
-
-    // Load header and footer components
-    loadHeaderComponent();
-    loadFooterComponent();
 
     // Track Core Web Vitals
     if ('web-vital' in window) {
@@ -220,24 +168,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            // Skip empty anchors or invalid selectors
-            if (href === '#' || href.length <= 1) {
-                return;
-            }
-            
-            // Clean the href to make it a valid selector
-            let targetId = href.substring(1); // Remove the #
-            
-            // Skip if it's just a hash or contains invalid characters
-            if (!targetId || !/^[a-zA-Z][\w\-]*$/.test(targetId)) {
-                return;
-            }
-            
-            // Try to find the target element
-            const target = document.getElementById(targetId);
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                e.preventDefault();
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'

@@ -12,9 +12,8 @@ img {
     border: 0;
 }
 
-/* Remove debug styling for production */
 img[alt=""] {
-    /* Remove red border for production */
+    border: 2px solid red; /* Debug: Show images without alt text */
 }
 
 /* Lazy loading support */

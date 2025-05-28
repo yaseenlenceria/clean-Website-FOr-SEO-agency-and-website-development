@@ -83,8 +83,6 @@ function initializeNavigation() {
     const checkElements = () => {
         const navToggle = document.querySelector('.nav-toggle');
         navMenu = document.querySelector('.nav-menu');
-        const navClose = document.querySelector('.nav-close');
-        const navOverlay = document.querySelector('.nav-overlay');
 
         if (navToggle && navMenu) {
             console.log('Navigation elements found, initializing...');
@@ -93,168 +91,32 @@ function initializeNavigation() {
             const newNavToggle = navToggle.cloneNode(true);
             navToggle.parentNode.replaceChild(newNavToggle, navToggle);
 
-            // Toggle menu function
-            const toggleMenu = (open) => {
-                if (open) {
-                    navMenu.classList.add('active');
-                    newNavToggle.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    navMenu.classList.remove('active');
-                    newNavToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                    // Close all dropdowns when closing menu
-                    const dropdowns = document.querySelectorAll('.nav-dropdown');
-                    dropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('open');
-                    });
-                }
-            };
-
-            // Hamburger menu toggle
             newNavToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Nav toggle clicked');
-                const isActive = navMenu.classList.contains('active');
-                toggleMenu(!isActive);
+                navMenu.classList.toggle('active');
+                newNavToggle.classList.toggle('active');
             });
 
-            // Close button functionality
-            if (navClose) {
-                navClose.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMenu(false);
-                });
-            }
-
-            // Overlay click to close
-            if (navOverlay) {
-                navOverlay.addEventListener('click', function() {
-                    toggleMenu(false);
-                });
-            }
-
-            // Close menu when clicking on regular nav links (not dropdowns)
-            const regularNavLinks = document.querySelectorAll('.nav-link:not(.dropdown-trigger)');
-            regularNavLinks.forEach(link => {
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     console.log('Nav link clicked, closing menu');
-                    toggleMenu(false);
+                    navMenu.classList.remove('active');
+                    newNavToggle.classList.remove('active');
                 });
             });
 
-            // Initialize dropdown functionality
-            const dropdowns = document.querySelectorAll('.nav-dropdown');
-            
-            dropdowns.forEach(dropdown => {
-                const trigger = dropdown.querySelector('.dropdown-trigger');
-                const menu = dropdown.querySelector('.dropdown-menu');
-                
-                if (trigger && menu) {
-                    // Desktop hover behavior
-                    if (window.innerWidth > 968) {
-                        dropdown.addEventListener('mouseenter', () => {
-                            dropdown.classList.add('open');
-                            dropdown.setAttribute('aria-expanded', 'true');
-                        });
-                        
-                        dropdown.addEventListener('mouseleave', () => {
-                            dropdown.classList.remove('open');
-                            dropdown.setAttribute('aria-expanded', 'false');
-                        });
-                    } else {
-                        // Mobile click behavior
-                        trigger.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const isOpen = dropdown.classList.contains('open');
-                            
-                            // Close all other dropdowns
-                            dropdowns.forEach(d => {
-                                if (d !== dropdown) {
-                                    d.classList.remove('open');
-                                    d.setAttribute('aria-expanded', 'false');
-                                }
-                            });
-                            
-                            // Toggle current dropdown
-                            if (!isOpen) {
-                                dropdown.classList.add('open');
-                                dropdown.setAttribute('aria-expanded', 'true');
-                            } else {
-                                dropdown.classList.remove('open');
-                                dropdown.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                    }
-                    
-                    // Keyboard navigation
-                    trigger.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            const isOpen = dropdown.classList.contains('open');
-                            
-                            dropdowns.forEach(d => {
-                                if (d !== dropdown) {
-                                    d.classList.remove('open');
-                                    d.setAttribute('aria-expanded', 'false');
-                                }
-                            });
-                            
-                            if (!isOpen) {
-                                dropdown.classList.add('open');
-                                dropdown.setAttribute('aria-expanded', 'true');
-                            } else {
-                                dropdown.classList.remove('open');
-                                dropdown.setAttribute('aria-expanded', 'false');
-                            }
-                        }
-                        
-                        if (e.key === 'Escape') {
-                            dropdown.classList.remove('open');
-                            dropdown.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-
-                    // Close menu when clicking dropdown links
-                    const dropdownLinks = menu.querySelectorAll('.dropdown-link');
-                    dropdownLinks.forEach(link => {
-                        link.addEventListener('click', function() {
-                            toggleMenu(false);
-                        });
-                    });
-                }
-            });
-
-            // Close menu when clicking outside (but not when clicking inside dropdowns)
+            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
-                // Don't close if clicking inside the menu or toggle button
                 if (navMenu && newNavToggle && 
                     !newNavToggle.contains(event.target) && 
                     !navMenu.contains(event.target)) {
-                    toggleMenu(false);
+                    navMenu.classList.remove('active');
+                    newNavToggle.classList.remove('active');
                 }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 968) {
-                    // Reset mobile menu
-                    toggleMenu(false);
-                    
-                    // Reset dropdowns for desktop
-                    dropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('open');
-                        dropdown.setAttribute('aria-expanded', 'false');
-                    });
-                }
-            });
-
-            // Prevent menu from closing when clicking inside dropdowns
-            navMenu.addEventListener('click', function(e) {
-                e.stopPropagation();
             });
 
             console.log('Navigation initialized successfully');

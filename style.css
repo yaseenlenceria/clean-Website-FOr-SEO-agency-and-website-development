@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 /* Image Optimization for SEO */
 img {
     max-width: 100%;
@@ -3171,11 +3176,15 @@ button:hover {
         padding: 0 var(--spacing-sm);
         max-width: 100%;
         overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-modern {
         padding: 100px 0 var(--spacing-xl);
         overflow-x: hidden;
+        width: 100%;
+        position: relative;
     }
 
     .hero-content-grid {
@@ -3183,11 +3192,16 @@ button:hover {
         gap: var(--spacing-lg);
         text-align: center;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-left {
         max-width: 100%;
         overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 8px;
     }
 
     .hero-left h1 {
@@ -3196,6 +3210,9 @@ button:hover {
         margin-bottom: var(--spacing-md);
         word-wrap: break-word;
         hyphens: auto;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        white-space: normal;
     }
 
     .hero-left p {
@@ -3204,6 +3221,8 @@ button:hover {
         margin-bottom: var(--spacing-lg);
         max-width: 100%;
         word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
     }
 
     .award-badge {
@@ -3211,8 +3230,11 @@ button:hover {
         padding: var(--spacing-xs) var(--spacing-md);
         margin-bottom: var(--spacing-md);
         text-align: center;
-        max-width: 100%;
+        max-width: calc(100% - 16px);
         word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        box-sizing: border-box;
     }
 
     .hero-buttons {
@@ -3221,6 +3243,8 @@ button:hover {
         gap: var(--spacing-md);
         width: 100%;
         margin-bottom: var(--spacing-lg);
+        padding: 0 8px;
+        box-sizing: border-box;
     }
 
     .trust-indicators {
@@ -3229,18 +3253,28 @@ button:hover {
         gap: var(--spacing-sm);
         justify-content: center;
         text-align: center;
+        width: 100%;
+        padding: 0 8px;
+        box-sizing: border-box;
     }
 
     .trust-item {
         font-size: clamp(12px, 3vw, 14px);
         max-width: 100%;
         word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        text-align: center;
     }
 
     .audit-card {
         margin-top: var(--spacing-lg);
-        max-width: 100%;
+        max-width: calc(100% - 16px);
         overflow-x: hidden;
+        width: auto;
+        margin-left: 8px;
+        margin-right: 8px;
+        box-sizing: border-box;
     }
 
     .section-header-modern h2,
@@ -3396,16 +3430,21 @@ button:hover {
         padding: 0 12px;
         max-width: 100%;
         overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .nav-container {
         padding: 0 12px;
         height: 70px;
         gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .nav-logo {
         max-width: 65%;
+        flex-shrink: 0;
     }
 
     .logo-image {
@@ -3418,6 +3457,8 @@ button:hover {
         height: calc(100vh - 70px);
         padding: 20px 0 24px;
         gap: 4px;
+        width: 100vw;
+        left: -100%;
     }
 
     .nav-link {
@@ -3429,6 +3470,7 @@ button:hover {
         min-height: 52px;
         width: calc(100% - 24px);
         border-radius: 12px;
+        box-sizing: border-box;
     }
 
     .nav-link i {
@@ -3441,6 +3483,7 @@ button:hover {
         margin: 4px 12px;
         width: calc(100% - 24px);
         border-radius: 12px;
+        box-sizing: border-box;
     }
 
     .nav-dropdown > .nav-link {
@@ -3448,6 +3491,7 @@ button:hover {
         margin: 0;
         padding: 16px 20px;
         min-height: 52px;
+        box-sizing: border-box;
     }
 
     .nav-cta {
@@ -3459,6 +3503,7 @@ button:hover {
         font-weight: 700;
         width: calc(100% - 24px);
         gap: 10px;
+        box-sizing: border-box;
     }
 
     .nav-toggle {
@@ -3479,6 +3524,7 @@ button:hover {
         margin: 0;
         padding: 6px 0;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .dropdown-menu a {
@@ -3487,6 +3533,7 @@ button:hover {
         font-weight: 500;
         min-height: 44px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .dropdown-menu a::before {
@@ -3506,16 +3553,22 @@ button:hover {
     .hero-modern {
         padding: 90px 0 var(--spacing-lg);
         overflow-x: hidden;
+        width: 100%;
+        position: relative;
     }
 
     .hero-content-grid {
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-left {
         max-width: 100%;
         overflow-x: hidden;
         padding: 0 4px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-left h1 {
@@ -3525,6 +3578,8 @@ button:hover {
         word-wrap: break-word;
         hyphens: auto;
         overflow-wrap: break-word;
+        max-width: 100%;
+        white-space: normal;
     }
 
     .hero-left p {
@@ -3534,6 +3589,8 @@ button:hover {
         word-wrap: break-word;
         hyphens: auto;
         overflow-wrap: break-word;
+        max-width: 100%;
+        white-space: normal;
     }
 
     .award-badge {
@@ -3541,9 +3598,11 @@ button:hover {
         padding: 6px var(--spacing-sm);
         margin-bottom: var(--spacing-sm);
         text-align: center;
-        max-width: 100%;
+        max-width: calc(100% - 8px);
         word-wrap: break-word;
         overflow-wrap: break-word;
+        white-space: normal;
+        box-sizing: border-box;
     }
 
     .hero-buttons {
@@ -3553,6 +3612,7 @@ button:hover {
         width: 100%;
         margin-bottom: var(--spacing-md);
         padding: 0 4px;
+        box-sizing: border-box;
     }
 
     .trust-indicators {
@@ -3562,6 +3622,8 @@ button:hover {
         justify-content: center;
         text-align: center;
         padding: 0 4px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .trust-item {
@@ -3569,14 +3631,20 @@ button:hover {
         max-width: 100%;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        white-space: normal;
+        text-align: center;
     }
 
     .audit-card {
         margin-top: var(--spacing-md);
-        max-width: 100%;
+        max-width: calc(100% - 8px);
         overflow-x: hidden;
         padding: var(--spacing-md);
         border-radius: var(--radius-lg);
+        margin-left: 4px;
+        margin-right: 4px;
+        box-sizing: border-box;
+        width: auto;
     }
 
     .audit-card h3 {
@@ -3614,8 +3682,8 @@ button:hover {
     .btn-primary,
     .btn-secondary {
         width: 100%;
-        max-width: 280px;
-        padding: clamp(14px, 3.5vw, 18px) clamp(24px, 5vw, 32px);
+        max-width: calc(100vw - 32px);
+        padding: clamp(14px, 3.5vw, 18px) clamp(16px, 4vw, 24px);
         font-size: clamp(13px, 3.2vw, 16px);
         min-height: 48px;
         border-radius: 24px;
@@ -3624,6 +3692,7 @@ button:hover {
         overflow: hidden;
         text-overflow: ellipsis;
         box-sizing: border-box;
+        margin: 0 auto;
     }
 
     .nav-cta {

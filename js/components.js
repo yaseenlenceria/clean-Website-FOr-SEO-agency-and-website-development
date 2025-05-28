@@ -19,7 +19,7 @@ function loadComponent(selector, componentPath) {
             })
             .catch(error => {
                 console.error('Error loading component:', error);
-                // Don't show error message in production
+                element.innerHTML = '<p>Error loading component</p>';
             });
     }
 }

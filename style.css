@@ -1430,10 +1430,55 @@ body {
 .work-showcase-card,
 .contact-form,
 .contact-info,
-.case-study-card {
+.case-study-card,
+.help-card,
+.service-card,
+.service-card-modern,
+.process-card-modern,
+.audit-card,
+.trust-item,
+.footer-section-modern,
+.service-detailed-card,
+.webdev-step-card,
+.process-step-card {
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(42, 42, 42, 0.9) 100%);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+}
+
+.benefit-card::before,
+.stat-card::before,
+.cert-card::before,
+.review-card::before,
+.transformation-card::before,
+.expertise-card::before,
+.ranking-process-card::before,
+.work-showcase-card::before,
+.contact-form::before,
+.contact-info::before,
+.case-study-card::before,
+.help-card::before,
+.service-card::before,
+.service-card-modern::before,
+.process-card-modern::before,
+.audit-card::before,
+.service-detailed-card::before,
+.webdev-step-card::before,
+.process-step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+    z-index: 1;
 }
 
 .benefit-card::after,
@@ -1446,7 +1491,15 @@ body {
 .work-showcase-card::after,
 .contact-form::after,
 .contact-info::after,
-.case-study-card::after {
+.case-study-card::after,
+.help-card::after,
+.service-card::after,
+.service-card-modern::after,
+.process-card-modern::after,
+.audit-card::after,
+.service-detailed-card::after,
+.webdev-step-card::after,
+.process-step-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -1457,6 +1510,29 @@ body {
     transform: translateX(-100%);
     transition: transform 0.6s;
     pointer-events: none;
+    z-index: 2;
+}
+
+.benefit-card:hover::before,
+.stat-card:hover::before,
+.cert-card:hover::before,
+.review-card:hover::before,
+.transformation-card:hover::before,
+.expertise-card:hover::before,
+.ranking-process-card:hover::before,
+.work-showcase-card:hover::before,
+.contact-form:hover::before,
+.contact-info:hover::before,
+.case-study-card:hover::before,
+.help-card:hover::before,
+.service-card:hover::before,
+.service-card-modern:hover::before,
+.process-card-modern:hover::before,
+.audit-card:hover::before,
+.service-detailed-card:hover::before,
+.webdev-step-card:hover::before,
+.process-step-card:hover::before {
+    transform: scaleX(1);
 }
 
 .benefit-card:hover::after,
@@ -1469,7 +1545,15 @@ body {
 .work-showcase-card:hover::after,
 .contact-form:hover::after,
 .contact-info:hover::after,
-.case-study-card:hover::after {
+.case-study-card:hover::after,
+.help-card:hover::after,
+.service-card:hover::after,
+.service-card-modern:hover::after,
+.process-card-modern:hover::after,
+.audit-card:hover::after,
+.service-detailed-card:hover::after,
+.webdev-step-card:hover::after,
+.process-step-card:hover::after {
     transform: translateX(100%);
 }
 
@@ -1483,12 +1567,21 @@ body {
 .work-showcase-card:hover,
 .contact-form:hover,
 .contact-info:hover,
-.case-study-card:hover {
-    transform: translateY(-6px) scale(1.02);
+.case-study-card:hover,
+.help-card:hover,
+.service-card:hover,
+.service-card-modern:hover,
+.process-card-modern:hover,
+.audit-card:hover,
+.service-detailed-card:hover,
+.webdev-step-card:hover,
+.process-step-card:hover {
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.3),
         0 0 0 1px rgba(255, 107, 53, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
 }
 
@@ -1753,41 +1846,56 @@ button:hover {
 }
 
 .service-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-dark);
-    border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-left: 4px solid var(--primary-color);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-brand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
     position: relative;
     overflow: hidden;
 }
 
-.service-card::after {
+.service-icon::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.6s;
-    pointer-events: none;
 }
 
-.service-card:hover::after {
+.service-card:hover .service-icon::before {
     transform: translateX(100%);
 }
 
-.service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 107, 53, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-color);
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+}
+
+.service-icon i {
+    font-size: 32px;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.service-card:hover .service-icon i {
+    transform: scale(1.1);
 }
 
 .service-card h3 {
@@ -1831,55 +1939,56 @@ button:hover {
 }
 
 .help-card {
-    background: var(--card-bg);
     padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-dark);
     transition: all 0.3s ease;
-    border-top: 4px solid var(--primary-color);
 }
 
-.help-card::after {
+.help-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-brand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.help-icon::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.6s;
-    pointer-events: none;
 }
 
-.help-card:hover::after {
+.help-card:hover .help-icon::before {
     transform: translateX(100%);
 }
 
-.help-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 107, 53, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-color);
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%, rgba(0, 217, 255, 0.05) 100%);
-}
-
-.help-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--spacing-md);
+.help-card:hover .help-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
 }
 
 .help-icon i {
-    font-size: 24px;
+    font-size: 28px;
     color: var(--text-white);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.help-card:hover .help-icon i {
+    transform: scale(1.1);
 }
 
 .help-card h3 {
@@ -4556,19 +4665,51 @@ select:focus {
 }
 
 .transformation-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    width: 90px;
+    height: 90px;
+    background: var(--gradient-brand);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 25px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.transformation-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.transformation-card:hover .transformation-icon::before {
+    transform: translateX(100%);
+}
+
+.transformation-card:hover .transformation-icon {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
 }
 
 .transformation-icon i {
-    font-size: 32px;
-    color: white;
+    font-size: 36px;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.transformation-card:hover .transformation-icon i {
+    transform: scale(1.1);
 }
 
 .transformation-card h3 {
@@ -4865,19 +5006,51 @@ select:focus {
 }
 
 .process-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #007BFF, #0056b3);
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-brand);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px auto;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.process-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.ranking-process-card:hover .process-icon::before {
+    transform: translateX(100%);
+}
+
+.ranking-process-card:hover .process-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
 }
 
 .process-icon i {
-    font-size: 24px;
-    color: white;
+    font-size: 28px;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.ranking-process-card:hover .process-icon i {
+    transform: scale(1.1);
 }
 
 .process-features {
@@ -4964,12 +5137,8 @@ select:focus {
 }
 
 .cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-dark);
     padding: 30px;
-    border-radius: 15px;
     text-align: center;
-    box-shadow: var(--shadow-lg);
     color: var(--text-white);
 }
 
@@ -4983,19 +5152,51 @@ select:focus {
 }
 
 .cert-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #007BFF, #0056b3);
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-brand);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.cert-card:hover .cert-icon::before {
+    transform: translateX(100%);
+}
+
+.cert-card:hover .cert-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
 }
 
 .cert-icon i {
-    font-size: 24px;
-    color: white;
+    font-size: 32px;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.cert-card:hover .cert-icon i {
+    transform: scale(1.1);
 }
 
 .social-proof {

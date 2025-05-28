@@ -1,7 +1,9 @@
+
 // Global variables
 let navMenu = null;
-let header = null;
-let footer = null;
+let navMenuDesktop = null;
+let navToggle = null;
+let isNavigationInitialized = false;
 
 // Global component loading with error handling
 let componentsLoaded = {
@@ -24,7 +26,11 @@ function loadHeader() {
             componentsLoaded.header = true;
 
             // Initialize navigation after header is loaded
-            setTimeout(initializeNavigation, 100);
+            setTimeout(() => {
+                if (!isNavigationInitialized) {
+                    initializeNavigation();
+                }
+            }, 200);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -79,57 +85,83 @@ function loadFooter() {
 
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
-    // Wait for DOM elements to be available
-    const checkElements = () => {
-        const navToggle = document.querySelector('.nav-toggle');
-        navMenu = document.querySelector('.nav-menu');
+    if (isNavigationInitialized) {
+        console.log('Navigation already initialized, skipping...');
+        return;
+    }
 
-        if (navToggle && navMenu) {
-            console.log('Navigation elements found, initializing...');
+    navToggle = document.querySelector('.nav-toggle');
+    navMenu = document.querySelector('.nav-menu');
+    navMenuDesktop = document.querySelector('.nav-menu-desktop');
+
+    if (navToggle && navMenu) {
+        console.log('Navigation elements found, initializing...');
+        
+        // Mobile navigation toggle
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Remove any existing listeners to prevent duplicates
-            const newNavToggle = navToggle.cloneNode(true);
-            navToggle.parentNode.replaceChild(newNavToggle, navToggle);
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
 
-            newNavToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Nav toggle clicked');
-                navMenu.classList.toggle('active');
-                newNavToggle.classList.toggle('active');
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = navMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
 
-            // Close menu when clicking on a link
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    console.log('Nav link clicked, closing menu');
-                    navMenu.classList.remove('active');
-                    newNavToggle.classList.remove('active');
-                });
-            });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (navMenu && navToggle && 
+                !navToggle.contains(event.target) && 
+                !navMenu.contains(event.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (navMenu && newNavToggle && 
-                    !newNavToggle.contains(event.target) && 
-                    !navMenu.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                    newNavToggle.classList.remove('active');
-                }
-            });
+        // Handle window resize to close mobile menu on desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
-            console.log('Navigation initialized successfully');
-        } else {
-            console.log('Navigation elements not found yet...');
-        }
-    };
+        isNavigationInitialized = true;
+        console.log('Navigation initialized successfully');
+    } else {
+        console.log('Navigation elements not found yet...');
+    }
+}
 
-    // Try multiple times to ensure elements are loaded
-    setTimeout(checkElements, 100);
-    setTimeout(checkElements, 300);
-    setTimeout(checkElements, 700);
-    setTimeout(checkElements, 1500);
+// Add scroll effects to navbar
+function addNavbarScrollEffects() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 }
 
 // SEO enhancements
@@ -199,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
     loadFooter();
     addSEOEnhancements();
+    addNavbarScrollEffects();
 
     // Add lazy loading for images
     const images = document.querySelectorAll('img[data-src]');
@@ -216,20 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         images.forEach(img => imageObserver.observe(img));
     }
-
-    // Backup initialization
-    setTimeout(() => {
-        if (!componentsLoaded.header || !componentsLoaded.footer) {
-            console.log('Retrying component load...');
-            if (!componentsLoaded.header) loadHeader();
-            if (!componentsLoaded.footer) loadFooter();
-        }
-    }, 2000);
-});
-
-// Ensure navigation works even if components fail
-window.addEventListener('load', function() {
-    setTimeout(initializeNavigation, 1000);
 });
 
 // Export for global access

@@ -44,6 +44,18 @@
     <meta name="msapplication-TileImage" content="attached_assets/favicon.jpg">
     <meta name="theme-color" content="#1a1a1a">
 
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- DNS Prefetch for faster loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -76,19 +88,69 @@
             },
             "geoRadius": "500000"
         },
-        "services": [
-            "SEO Services",
-            "Digital Marketing",
-            "Construction SEO",
-            "Professional Services SEO",
-            "Local SEO",
-            "Technical SEO"
-        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "SEO Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Construction SEO",
+                        "description": "Specialized SEO for construction companies and trades"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Professional Services SEO",
+                        "description": "SEO for law firms, dentists, accountants, and professionals"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Roofing SEO",
+                        "description": "Specialized SEO services for roofing companies"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Local SEO",
+                        "description": "Local search optimization for UK businesses"
+                    }
+                }
+            ]
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5"
+        },
         "sameAs": [
             "https://facebook.com/outsourcesu",
             "https://twitter.com/outsourcesu",
             "https://linkedin.com/company/outsourcesu"
         ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OutsourceSU",
+        "url": "https://outsourcesu.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://outsourcesu.com/services.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
     }
     </script>
 </head>

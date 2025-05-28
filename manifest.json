@@ -1,0 +1,25 @@
+
+{
+  "name": "OutsourceSU - Leading SEO Agency UK",
+  "short_name": "OutsourceSU",
+  "description": "UK's leading SEO agency helping businesses dominate search results and drive sustainable growth",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "attached_assets/favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "attached_assets/logo1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "marketing", "seo"],
+  "lang": "en-GB"
+}

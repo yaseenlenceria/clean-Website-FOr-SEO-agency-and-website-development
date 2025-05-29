@@ -27,8 +27,10 @@ function loadHeader() {
 
             // Initialize navigation after header is loaded
             setTimeout(() => {
-                initializeNavigation();
-            }, 100);
+                if (!isNavigationInitialized) {
+                    initializeNavigation();
+                }
+            }, 200);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -84,6 +86,7 @@ function loadFooter() {
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
     if (isNavigationInitialized) {
+        console.log('Navigation already initialized, skipping...');
         return;
     }
 
@@ -110,70 +113,9 @@ function initializeNavigation() {
             }
         });
 
-        // Handle mobile dropdown toggles
-        const mobileDropdowns = navMenu.querySelectorAll('.nav-dropdown');
-        mobileDropdowns.forEach(dropdown => {
-            const dropdownLink = dropdown.querySelector('.nav-link');
-            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-            
-            if (dropdownLink && dropdownMenu) {
-                // Prevent default link behavior for dropdown triggers
-                dropdownLink.addEventListener('click', function(e) {
-                    // Only prevent default if this is a dropdown trigger (has dropdown menu)
-                    if (dropdownMenu) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        // Close other dropdowns
-                        mobileDropdowns.forEach(otherDropdown => {
-                            if (otherDropdown !== dropdown) {
-                                otherDropdown.classList.remove('active');
-                            }
-                        });
-                        
-                        // Toggle current dropdown
-                        dropdown.classList.toggle('active');
-                    }
-                });
-                
-                // Add touch event for better mobile interaction
-                dropdownLink.addEventListener('touchend', function(e) {
-                    if (dropdownMenu) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        // Close other dropdowns
-                        mobileDropdowns.forEach(otherDropdown => {
-                            if (otherDropdown !== dropdown) {
-                                otherDropdown.classList.remove('active');
-                            }
-                        });
-                        
-                        // Toggle current dropdown
-                        dropdown.classList.toggle('active');
-                    }
-                });
-            }
-        });
-
-        // Close mobile menu when clicking on a dropdown link (not main nav link)
-        const dropdownLinks = navMenu.querySelectorAll('.dropdown-menu a');
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Close all dropdowns
-                mobileDropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            });
-        });
-
-        // Close mobile menu when clicking on main nav links (not dropdown triggers)
-        const mainNavLinks = navMenu.querySelectorAll('a:not(.nav-dropdown .nav-link)');
-        mainNavLinks.forEach(link => {
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = navMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
             link.addEventListener('click', function() {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');

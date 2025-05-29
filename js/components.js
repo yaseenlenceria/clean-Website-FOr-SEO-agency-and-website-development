@@ -1,4 +1,3 @@
-
 // Global variables
 let navMenu = null;
 let navMenuDesktop = null;
@@ -42,8 +41,20 @@ function loadHeader() {
                         <ul class="nav-menu">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="services.html">Services</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li>
+                                <a href="about.html" class="nav-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    About
+                                </a>
+                                <a href="blog.html" class="nav-link">
+                                    <i class="fas fa-blog"></i>
+                                    Blog
+                                </a>
+                                <a href="contact.html" class="nav-link">
+                                    <i class="fas fa-envelope"></i>
+                                    Contact
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -96,15 +107,15 @@ function initializeNavigation() {
 
     if (navToggle && navMenu) {
         console.log('Navigation elements found, initializing...');
-        
+
         // Mobile navigation toggle
         navToggle.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
-            
+
             // Prevent body scroll when menu is open
             if (navMenu.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';

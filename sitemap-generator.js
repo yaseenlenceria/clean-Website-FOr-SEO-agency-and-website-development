@@ -56,6 +56,10 @@ const pageConfig = {
     'our-work.html': { priority: 0.7, changefreq: 'monthly' },
     'careers.html': { priority: 0.6, changefreq: 'monthly' },
     
+    // Blog pages
+    'blog.html': { priority: 0.8, changefreq: 'weekly' },
+    'blog/digital-marketing-real-estate-2025.html': { priority: 0.7, changefreq: 'monthly' },
+    
     // Legal and policy pages - low priority but necessary
     'privacy-policy.html': { priority: 0.3, changefreq: 'yearly' },
     'terms-of-service.html': { priority: 0.3, changefreq: 'yearly' },

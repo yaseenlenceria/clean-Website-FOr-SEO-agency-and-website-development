@@ -355,22 +355,22 @@ body {
 .nav-menu .dropdown-menu {
     position: static;
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(0, 217, 255, 0.1));
-    border: 2px solid rgba(255, 107, 53, 0.3);
+    border: 1px solid rgba(255, 107, 53, 0.2);
     border-radius: var(--radius-md);
-    margin: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-lg);
-    padding: var(--spacing-sm);
+    margin: 8px 12px 12px 24px;
+    padding: 8px;
     min-width: auto;
-    width: calc(100% - 32px);
+    width: calc(100% - 48px);
     box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
     opacity: 0;
     visibility: hidden;
     max-height: 0;
     overflow: hidden;
-    transform: translateY(-10px);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(-5px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 100;
 }
 
@@ -383,17 +383,17 @@ body {
 
 .dropdown-menu a {
     display: block;
-    padding: 12px 16px;
+    padding: 10px 12px;
     color: var(--text-white);
     text-decoration: none;
     border-radius: var(--radius-sm);
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: var(--font-weight-medium);
     white-space: nowrap;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     border: 1px solid transparent;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .dropdown-menu a:hover {
@@ -3108,9 +3108,8 @@ button:hover {
             0 12px 40px rgba(0, 0, 0, 0.9),
             inset 0 1px 0 rgba(255, 255, 255, 0.1),
             0 0 100px rgba(255, 107, 53, 0.1);
-        padding: 20px 0 30px;
-        gap: 8px;
-
+        padding: 16px 0 20px;
+        gap: 0;
         height: calc(100vh - 75px);
         overflow-y: auto;
         z-index: 9999;
@@ -3127,23 +3126,23 @@ button:hover {
     }
 
     .nav-link {
-        padding: 18px 20px;
+        padding: 16px 20px;
         display: flex;
         align-items: center;
-        gap: 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 16px;
+        gap: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 15px;
         color: var(--text-white);
         text-decoration: none;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         position: relative;
         font-weight: 600;
-        letter-spacing: 0.5px;
-        margin: 0 16px;
-        border-radius: 12px;
+        letter-spacing: 0.3px;
+        margin: 2px 12px;
+        border-radius: 10px;
         overflow: hidden;
-        min-height: 54px;
-        width: calc(100% - 32px);
+        min-height: 48px;
+        width: calc(100% - 24px);
         background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 53, 0.02) 50%, transparent 100%);
         box-sizing: border-box;
     }
@@ -3209,28 +3208,28 @@ button:hover {
     /* Mobile navigation links with enhanced hover effects */
 
     .nav-cta {
-        margin: 20px 16px 20px;
-        padding: 16px 24px;
+        margin: 16px 12px 16px;
+        padding: 14px 20px;
         justify-content: center;
-        border-radius: 28px;
-        min-height: 54px;
-        font-size: 15px;
+        border-radius: 25px;
+        min-height: 48px;
+        font-size: 14px;
         font-weight: 700;
         text-align: center;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         box-shadow: 
-            0 8px 25px rgba(255, 107, 53, 0.5),
-            inset 0 2px 0 rgba(255, 255, 255, 0.3),
-            0 0 20px rgba(255, 107, 53, 0.3);
+            0 6px 20px rgba(255, 107, 53, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            0 0 15px rgba(255, 107, 53, 0.2);
         background: var(--gradient-brand);
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.15);
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.8px;
         position: relative;
         overflow: hidden;
-        width: calc(100% - 32px);
+        width: calc(100% - 24px);
         box-sizing: border-box;
     }
 

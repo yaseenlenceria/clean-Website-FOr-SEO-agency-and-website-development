@@ -27,10 +27,8 @@ function loadHeader() {
 
             // Initialize navigation after header is loaded
             setTimeout(() => {
-                if (!isNavigationInitialized) {
-                    initializeNavigation();
-                }
-            }, 200);
+                initializeNavigation();
+            }, 100);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -86,7 +84,6 @@ function loadFooter() {
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
     if (isNavigationInitialized) {
-        console.log('Navigation already initialized, skipping...');
         return;
     }
 

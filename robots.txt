@@ -1,16 +1,14 @@
-
 User-agent: *
 Allow: /
 
-# XML Sitemap - Primary directive for crawlers
+# Primary sitemap location
 Sitemap: https://outsourcesu.com/sitemap.xml
 
-# Explicitly allow important directories and files
+# Allow important directories
 Allow: /attached_assets/
 Allow: /js/
 Allow: /*.css
 Allow: /*.js
-Allow: /*.html
 
 # Allow important file types
 Allow: *.png
@@ -21,7 +19,7 @@ Allow: *.webp
 Allow: *.svg
 Allow: *.ico
 
-# Disallow development and utility files
+# Disallow development files only
 Disallow: /.config/
 Disallow: /components/
 Disallow: /*.log
@@ -32,17 +30,9 @@ Disallow: /sitemap-generator.js
 Disallow: /update-all-pages.js
 Disallow: /process-components.html
 Disallow: /template-update.txt
-Disallow: /audit-card
-Disallow: /logo.png
+Disallow: /audit-card/
 
-# Special directives for major search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Control SEO crawlers
+# Crawl delay for SEO bots
 User-agent: AhrefsBot
 Crawl-delay: 10
 
@@ -51,16 +41,3 @@ Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 5
-
-# Block problematic bots
-User-agent: DotBot
-Disallow: /
-
-User-agent: 008
-Disallow: /
-
-User-agent: WebReaper
-Disallow: /
-
-User-agent: WebCopier
-Disallow: /

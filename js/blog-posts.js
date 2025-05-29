@@ -36,10 +36,36 @@ window.BLOG_POSTS = [
   }
 ];
 
+// Blog posts data
+window.BLOG_POSTS = [
+    {
+        title: "Digital Marketing for Real Estate 2025: Complete Guide",
+        excerpt: "Discover the latest digital marketing strategies that will transform your real estate business in 2025. From AI-powered lead generation to advanced SEO techniques for property websites.",
+        category: "Real Estate Marketing",
+        date: "2025-01-28",
+        readTime: "12 min read",
+        image: "/attached_assets/best_SEO_for_construction_industry_in_uk.png",
+        url: "/blog/digital-marketing-real-estate-2025.html",
+        tags: ["Real Estate SEO", "Digital Marketing", "Lead Generation"],
+        featured: false
+    },
+    {
+        title: "Best Roofing Companies SEO 2025: Complete Guide",
+        excerpt: "Uncover the top SEO strategies to elevate your roofing business in 2025. From optimizing roofing websites to leveraging AI-driven lead generation techniques.",
+        category: "Roofing SEO",
+        date: "2025-01-28",
+        readTime: "12 min read",
+        image: "/attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png",
+        url: "/blog/best-roofing-companies-seo.html",
+        tags: ["Roofing SEO", "Digital Marketing", "Lead Generation"],
+        featured: false
+    }
+];
+
 // Function to load blog posts dynamically
 window.loadDynamicBlogPosts = function() {
     const blogGrid = document.querySelector('.blog-grid');
-    if (!blogGrid || !window.BLOG_POSTS) return;
+    if (!blogGrid) return;
 
     // Clear existing non-featured posts
     const existingPosts = blogGrid.querySelectorAll('.blog-post-card:not(.featured)');
@@ -63,4 +89,5 @@ window.loadDynamicBlogPosts = function() {
     });
 
     console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts`);
+};
 };

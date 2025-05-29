@@ -71,6 +71,16 @@ RewriteRule ^([^/]+)/?$ $1.html [L]
 # Handle root directory requests
 DirectoryIndex index.html
 
+# Set proper MIME types for XML files
+AddType application/xml .xml
+AddType text/xml .xml
+
+# Ensure sitemap.xml is served correctly
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+    Header set Cache-Control "public, max-age=3600"
+</Files>
+
 # Prevent access to sensitive files
 <Files "robots.txt">
     Allow from all

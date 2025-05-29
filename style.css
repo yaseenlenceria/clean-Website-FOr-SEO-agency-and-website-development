@@ -526,7 +526,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: var(--spacing-xxl);
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 2;
 }
@@ -693,6 +693,10 @@ body {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: fit-content;
 }
 
 .audit-card::before {
@@ -1072,8 +1076,8 @@ body {
 
 /* Stats Section */
 .stats-section {
-    padding: var(--spacing-xxl) 0;
-    background: var(--darker-bg);
+    padding: var(--spacing-xl) 0;
+    background: var(--dark-bg);
 }
 
 .stats-grid {
@@ -1081,6 +1085,16 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-xl);
     text-align: center;
+}
+
+/* Trust indicators in stats section */
+.stats-section .trust-indicators {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .stat-item {
@@ -3251,15 +3265,13 @@ button:hover {
 
     /* Fix audit card mobile layout */
     .audit-card {
-        margin: var(--spacing-xl) auto 0;
+        margin: 0 auto;
         max-width: calc(100vw - 32px);
         width: calc(100vw - 32px);
         overflow-x: hidden;
         padding: var(--spacing-lg);
         border-radius: var(--radius-lg);
         box-sizing: border-box;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     /* Fix service cards mobile layout */
@@ -3299,11 +3311,12 @@ button:hover {
         gap: var(--spacing-xl);
         text-align: center;
         overflow-x: hidden;
-        width: calc(100vw - 32px);
-        max-width: calc(100vw - 32px);
+        width: 100%;
+        max-width: 100%;
         padding: 0;
         margin: 0 auto;
         box-sizing: border-box;
+        align-items: center;
     }
 
     .hero-left {
@@ -3409,16 +3422,15 @@ button:hover {
 
     /* Proper mobile audit card */
     .audit-card {
-        margin-top: var(--spacing-xl);
-        max-width: calc(100vw - 32px);
-        width: calc(100vw - 32px);
+        margin: var(--spacing-lg) auto 0;
+        max-width: calc(100% - 32px);
+        width: calc(100% - 32px);
         overflow-x: hidden;
         padding: var(--spacing-lg);
         border-radius: var(--radius-lg);
-        margin-left: auto;
-        margin-right: auto;
         box-sizing: border-box;
         display: block;
+        height: auto;
     }
 
     .audit-card h3 {

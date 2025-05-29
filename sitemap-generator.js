@@ -88,7 +88,13 @@ function generateSitemap() {
 
     sortedFiles.forEach(file => {
         const config = pageConfig[file] || { priority: 0.5, changefreq: 'monthly' };
-        const url = file === 'index.html' ? domain + '/' : `${domain}/${file}`;
+        // Always use clean URLs without .html extension, root domain for index
+        let url;
+        if (file === 'index.html') {
+            url = domain + '/';
+        } else {
+            url = `${domain}/${file.replace('.html', '')}`;
+        }
         
         sitemapContent += `
   <url>

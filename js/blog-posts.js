@@ -67,6 +67,101 @@ window.loadDynamicBlogPosts = function() {
     const blogGrid = document.querySelector('.blog-grid');
     if (!blogGrid) return;
 
+    // Clear existing dynamic content but keep manually added posts
+    const existingPosts = blogGrid.querySelectorAll('.blog-post-card');
+    
+    // Add new blog posts to the grid
+    window.BLOG_POSTS.forEach((post, index) => {
+        // Check if this post already exists
+        const existingPost = Array.from(existingPosts).find(card => {
+            const titleLink = card.querySelector('h2 a, h3 a');
+            return titleLink && titleLink.textContent.trim() === post.title;
+        });
+
+        if (existingPost) {
+            // Update existing post
+            updateBlogPostCard(existingPost, post);
+        } else {
+            // Create new post card
+            const postCard = createBlogPostCard(post);
+            blogGrid.appendChild(postCard);
+        }
+    });
+
+    console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts`);
+};
+
+// Helper function to create blog post card
+function createBlogPostCard(post) {
+    const article = document.createElement('article');
+    article.className = 'blog-post-card featured';
+
+    article.innerHTML = `
+        <div class="blog-image">
+            <img src="${post.image}" alt="${post.title}" loading="lazy">
+            <div class="blog-category">${post.category}</div>
+        </div>
+        <div class="blog-content">
+            <div class="blog-meta">
+                <time datetime="${post.date}">${formatDate(post.date)}</time>
+                <span class="read-time">${post.readTime}</span>
+            </div>
+            <h2><a href="${post.url}">${post.title}</a></h2>
+            <p>${post.excerpt}</p>
+            <div class="blog-tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <a href="${post.url}" class="blog-read-more">
+                Read Full Article <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    `;
+
+    return article;
+}
+
+// Helper function to update existing blog post card
+function updateBlogPostCard(card, post) {
+    const title = card.querySelector('h2 a, h3 a');
+    const excerpt = card.querySelector('p');
+    const readMoreLinks = card.querySelectorAll('a[href]');
+    const date = card.querySelector('time');
+    const readTime = card.querySelector('.read-time');
+    const tags = card.querySelector('.blog-tags');
+    const image = card.querySelector('img');
+
+    if (title) title.textContent = post.title;
+    if (excerpt) excerpt.textContent = post.excerpt;
+    if (date) {
+        date.setAttribute('datetime', post.date);
+        date.textContent = formatDate(post.date);
+    }
+    if (readTime) readTime.textContent = post.readTime;
+    if (tags) {
+        tags.innerHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    }
+    if (image) {
+        image.src = post.image;
+        image.alt = post.title;
+    }
+
+    readMoreLinks.forEach(link => {
+        if (link.classList.contains('blog-read-more') || link.closest('h2, h3')) {
+            link.href = post.url;
+        }
+    });
+}
+
+// Helper function to format date
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+}
+
     // Clear existing non-featured posts
     const existingPosts = blogGrid.querySelectorAll('.blog-post-card:not(.featured)');
     existingPosts.forEach(post => post.remove());

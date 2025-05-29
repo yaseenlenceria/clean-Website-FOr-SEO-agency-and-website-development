@@ -2959,10 +2959,15 @@ button:hover {
 
     /* Hide desktop navigation on mobile */
     .nav-menu-desktop {
-        display: none;
+        display: none !important;
     }
 
-    /* Show mobile navigation */
+    /* Show mobile navigation toggle */
+    .nav-toggle {
+        display: flex !important;
+    }
+
+    /* Mobile navigation menu hidden by default */
     .nav-menu {
         display: flex;
     }
@@ -5364,6 +5369,16 @@ button:hover {
     gap: 0;
 }
 
+.blog-post-card a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.blog-post-card a:hover {
+    color: var(--primary-color);
+}
+
 .blog-post-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
@@ -6107,12 +6122,25 @@ button:hover {
         max-width: 100%;
         margin: 0 auto;
         overflow: hidden;
+        cursor: pointer;
     }
     
     .blog-post-card.featured {
         grid-column: span 1;
         display: block;
         max-width: 100%;
+    }
+
+    /* Make entire blog cards clickable on mobile */
+    .blog-post-card:hover {
+        cursor: pointer;
+    }
+
+    .blog-post-card h2 a,
+    .blog-post-card h3 a {
+        display: block;
+        width: 100%;
+        height: 100%;
     }
     
     .blog-image {

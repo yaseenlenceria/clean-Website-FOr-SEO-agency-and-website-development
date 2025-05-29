@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 
@@ -14,7 +13,7 @@ const BLOG_CONFIG = {
 function extractBlogMetadata(filePath) {
     try {
         const content = fs.readFileSync(filePath, 'utf8');
-        
+
         // Extract title
         const titleMatch = content.match(/<title>(.*?)<\/title>/i);
         const h1Match = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
@@ -30,11 +29,16 @@ function extractBlogMetadata(filePath) {
         const keywordsMatch = content.match(/<meta\s+name=["']keywords["']\s+content=["'](.*?)["']/i);
         const keywords = keywordsMatch?.[1] || '';
         const tags = keywords.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).slice(0, 3);
-        if (tags.length === 0) tags.push('SEO', 'Digital Marketing');
+        if (tags.length === 0) {
+            if (filePath.includes('real-estate')) tags.push('Real Estate SEO', 'Digital Marketing', 'Lead Generation');
+            else if (filePath.includes('roofing')) tags.push('Roofing SEO', 'Construction Marketing', 'Local SEO');
+            else tags.push('SEO', 'Digital Marketing', 'Business Growth');
+        }
 
         // Extract category from filename or content
         let category = BLOG_CONFIG.defaultCategory;
         if (filePath.includes('real-estate')) category = 'Real Estate Marketing';
+        else if (filePath.includes('roofing')) category = 'Roofing SEO';
         else if (filePath.includes('construction')) category = 'Construction SEO';
         else if (filePath.includes('law') || filePath.includes('legal')) category = 'Legal Marketing';
 
@@ -46,6 +50,12 @@ function extractBlogMetadata(filePath) {
         const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
+        // Set appropriate image based on category
+        let image = BLOG_CONFIG.defaultImage;
+        if (filePath.includes('roofing')) {
+            image = 'attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png';
+        }
+
         return {
             filename: path.basename(filePath),
             url: `blog/${path.basename(filePath)}`,
@@ -54,7 +64,7 @@ function extractBlogMetadata(filePath) {
             category,
             date,
             readTime: `${readTime} min read`,
-            image: BLOG_CONFIG.defaultImage,
+            image,
             tags,
             featured: filePath.includes('digital-marketing-real-estate-2025.html') && !filePath.includes('copy')
         };
@@ -67,7 +77,7 @@ function extractBlogMetadata(filePath) {
 // Main function to scan and generate blog posts
 function generateBlogPosts() {
     console.log('🔍 Scanning for blog posts...');
-    
+
     if (!fs.existsSync(BLOG_CONFIG.blogDir)) {
         console.log('❌ Blog directory not found');
         return;
@@ -123,50 +133,15 @@ window.loadDynamicBlogPosts = function() {
 
     // Write the generated file
     fs.writeFileSync(BLOG_CONFIG.outputFile, jsContent);
-    
+
     console.log(`✅ Generated blog posts data: ${BLOG_CONFIG.outputFile}`);
     console.log(`📊 Blog posts summary:`);
-    
+
     blogPosts.forEach(post => {
         console.log(`   • ${post.title} (${post.category})`);
     });
 
-    // Update blog.html to include the generated script
-    updateBlogPage();
-}
-
-function updateBlogPage() {
-    const blogPagePath = './blog.html';
-    if (!fs.existsSync(blogPagePath)) {
-        console.log('❌ blog.html not found');
-        return;
-    }
-
-    let blogContent = fs.readFileSync(blogPagePath, 'utf8');
-    
-    // Add script tag if not present
-    if (!blogContent.includes('js/blog-posts.js')) {
-        blogContent = blogContent.replace(
-            '<script src="script.js"></script>',
-            '<script src="js/blog-posts.js"></script>\n    <script src="script.js"></script>'
-        );
-        
-        // Add initialization script
-        const initScript = `
-    <script>
-        // Initialize dynamic blog loading
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof window.loadDynamicBlogPosts === 'function') {
-                setTimeout(window.loadDynamicBlogPosts, 300);
-            }
-        });
-    </script>`;
-        
-        blogContent = blogContent.replace('</body>', `${initScript}\n</body>`);
-        
-        fs.writeFileSync(blogPagePath, blogContent);
-        console.log('✅ Updated blog.html with dynamic loading');
-    }
+    return blogPosts;
 }
 
 // Run the generator

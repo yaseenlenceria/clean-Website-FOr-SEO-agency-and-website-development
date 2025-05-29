@@ -92,6 +92,31 @@
         <div class="container">
             <div class="blog-grid">
                 <!-- Featured Blog Post -->
+
+                <article class="blog-post-card featured">
+                    <div class="blog-image">
+                        <img src="attached_assets/top_roofing_marketing_agencies_2025.png" alt="Top Roofing Marketing Agencies 2025" loading="lazy">
+                        <div class="blog-category">Roofing Marketing</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <time datetime="2025-01-28">January 28, 2025</time>
+                            <span class="read-time">12 min read</span>
+                        </div>
+                        <h2><a href="https://outsourcesu.com/blog/top-roofing-marketing-agencies-2025">9+ Top Roofing Marketing Agencies [Ranked By Reviews] 2025</a></h2>
+                        <p>Discover the top roofing marketing agencies for 2025, ranked by reviews. Learn how these expert partners can boost your roofing business with SEO, PPC, and lead generation.</p>
+                        <div class="blog-tags">
+                            <span class="tag">Roofing Marketing</span>
+                            <span class="tag">SEO</span>
+                            <span class="tag">Lead Generation</span>
+                        </div>
+                        <a href="https://outsourcesu.com/blog/top-roofing-marketing-agencies-2025" class="blog-read-more">
+                            Read Full Article <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                
                 <article class="blog-post-card featured">
                     <div class="blog-image">
                         <img src="attached_assets/best_SEO_for_construction_industry_in_uk.png" alt="Digital Marketing for Real Estate 2025" loading="lazy">
@@ -115,45 +140,28 @@
                     </div>
                 </article>
 
-                <!-- Coming Soon Posts -->
-                <article class="blog-post-card">
+                <article class="blog-post-card featured">
                     <div class="blog-image">
-                        <img src="attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png" alt="Construction SEO Trends 2025" loading="lazy">
-                        <div class="blog-category">Construction SEO</div>
+                        <img src="https://outsourcesu.com/attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png" alt="SEO for Roofing Companies 2025" loading="lazy">
+                        <div class="blog-category">Roofing SEO</div>
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <time datetime="2025-02-01">Coming Soon</time>
-                            <span class="read-time">10 min read</span>
+                            <time datetime="2025-01-28">January 28, 2025</time>
+                            <span class="read-time">12 min read</span>
                         </div>
-                        <h3>Construction SEO Trends 2025: What Contractors Need to Know</h3>
-                        <p>Explore the latest SEO strategies specifically designed for construction companies, contractors, and trade businesses in 2025.</p>
+                        <h2><a href="https://clean-website-f-or-seo-agency-and-website-develo-yaseenlenceria.replit.app/blog/best-roofing-companies-seo.html">Best Roofing Companies SEO 2025: Complete Guide</a></h2>
+                        <p>Uncover the top SEO strategies to elevate your roofing business in 2025. From optimizing roofing websites to leveraging AI-driven lead generation techniques.</p>
                         <div class="blog-tags">
-                            <span class="tag">Construction SEO</span>
-                            <span class="tag">Local SEO</span>
+                            <span class="tag">Roofing SEO</span>
+                            <span class="tag">Digital Marketing</span>
+                            <span class="tag">Lead Generation</span>
                         </div>
+                        <a href="blog/best-roofing-companies-seo.html" class="blog-read-more">
+                            Read Full Article <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </article>
-
-                <article class="blog-post-card">
-                    <div class="blog-image">
-                        <img src="attached_assets/Best_SEO_services_for_Law_firms_in_the_UK.png" alt="Legal Marketing 2025" loading="lazy">
-                        <div class="blog-category">Legal Marketing</div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <time datetime="2025-02-05">Coming Soon</time>
-                            <span class="read-time">15 min read</span>
-                        </div>
-                        <h3>Law Firm Marketing Strategies That Actually Work in 2025</h3>
-                        <p>Comprehensive guide to digital marketing for law firms, including ethical considerations and proven client acquisition strategies.</p>
-                        <div class="blog-tags">
-                            <span class="tag">Law Firm SEO</span>
-                            <span class="tag">Legal Marketing</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
 
             <!-- Newsletter Signup -->
             <div class="blog-newsletter">
@@ -191,6 +199,16 @@
     <!-- Global Footer -->
     <div id="global-footer"></div>
 
+    <script src="js/blog-posts.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Initialize dynamic blog loading
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.loadDynamicBlogPosts === 'function') {
+                setTimeout(window.loadDynamicBlogPosts, 300);
+            }
+        });
+    </script>
 </body>
 </html>

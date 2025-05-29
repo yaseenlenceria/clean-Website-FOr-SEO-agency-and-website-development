@@ -251,6 +251,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFooter();
     addSEOEnhancements();
     addNavbarScrollEffects();
+    
+    // Load blog posts if on blog page
+    if (window.location.pathname.includes('blog.html') || window.location.pathname.endsWith('/blog')) {
+        setTimeout(loadBlogPosts, 500); // Small delay to ensure DOM is ready
+    }
 
     // Add lazy loading for images
     const images = document.querySelectorAll('img[data-src]');
@@ -270,7 +275,162 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Dynamic Blog Posts Loading
+async function loadBlogPosts() {
+    const blogGrid = document.querySelector('.blog-grid');
+    if (!blogGrid) return;
+
+    // Known blog posts with metadata
+    const blogPosts = [
+        {
+            url: 'blog/digital-marketing-real-estate-2025.html',
+            title: 'Digital Marketing for Real Estate 2025: Complete Guide',
+            excerpt: 'Discover the latest digital marketing strategies that will transform your real estate business in 2025. From AI-powered lead generation to advanced SEO techniques for property websites.',
+            category: 'Real Estate Marketing',
+            date: '2025-01-28',
+            readTime: '12 min read',
+            image: 'attached_assets/best_SEO_for_construction_industry_in_uk.png',
+            tags: ['Real Estate SEO', 'Digital Marketing', 'Lead Generation'],
+            featured: true
+        }
+        // Add more blog posts here as needed
+    ];
+
+    // Clear existing blog posts except featured
+    const existingPosts = blogGrid.querySelectorAll('.blog-post-card:not(.featured)');
+    existingPosts.forEach(post => post.remove());
+
+    // Try to detect additional blog posts dynamically
+    try {
+        const blogFiles = [
+            'digital-marketing-real-estate-2025.html',
+            'digital-marketing-real-estate-2025 (copy).html',
+            'digital-marketing-real-estate-2025 (copy) 1.html'
+        ];
+
+        for (const file of blogFiles) {
+            // Skip if already in our known posts
+            if (blogPosts.some(post => post.url.includes(file.replace(' (copy)', '').replace(' 1', '')))) {
+                continue;
+            }
+
+            // Try to fetch and parse the blog post
+            try {
+                const response = await fetch(`blog/${file}`);
+                if (response.ok) {
+                    const content = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(content, 'text/html');
+                    
+                    const title = doc.querySelector('h1')?.textContent || 
+                                 doc.querySelector('title')?.textContent || 
+                                 'Untitled Blog Post';
+                    
+                    const metaDesc = doc.querySelector('meta[name="description"]')?.content || 
+                                    'Expert insights and strategies for your business growth.';
+
+                    // Add to blog posts array
+                    blogPosts.push({
+                        url: `blog/${file}`,
+                        title: title.replace(' | OutsourceSU', ''),
+                        excerpt: metaDesc,
+                        category: 'Business Growth',
+                        date: new Date().toISOString().split('T')[0],
+                        readTime: '8 min read',
+                        image: 'attached_assets/best_SEO_for_construction_industry_in_uk.png',
+                        tags: ['SEO', 'Digital Marketing', 'Business'],
+                        featured: false
+                    });
+                }
+            } catch (error) {
+                console.log(`Could not load blog post: ${file}`);
+            }
+        }
+    } catch (error) {
+        console.log('Dynamic blog detection not available');
+    }
+
+    // Render all blog posts
+    blogPosts.forEach((post, index) => {
+        if (index === 0 && post.featured) {
+            // Update featured post if it exists
+            const featuredPost = blogGrid.querySelector('.blog-post-card.featured');
+            if (featuredPost) {
+                updateBlogPostCard(featuredPost, post);
+            }
+        } else {
+            // Create new blog post card
+            const postCard = createBlogPostCard(post);
+            blogGrid.appendChild(postCard);
+        }
+    });
+}
+
+function createBlogPostCard(post) {
+    const article = document.createElement('article');
+    article.className = 'blog-post-card';
+    
+    article.innerHTML = `
+        <div class="blog-image">
+            <img src="${post.image}" alt="${post.title}" loading="lazy">
+            <div class="blog-category">${post.category}</div>
+        </div>
+        <div class="blog-content">
+            <div class="blog-meta">
+                <time datetime="${post.date}">${formatDate(post.date)}</time>
+                <span class="read-time">${post.readTime}</span>
+            </div>
+            <h3><a href="${post.url}">${post.title}</a></h3>
+            <p>${post.excerpt}</p>
+            <div class="blog-tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <a href="${post.url}" class="blog-read-more">
+                Read Full Article <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    `;
+    
+    return article;
+}
+
+function updateBlogPostCard(card, post) {
+    const title = card.querySelector('h2 a, h3 a');
+    const excerpt = card.querySelector('p');
+    const readMoreLinks = card.querySelectorAll('a[href]');
+    const date = card.querySelector('time');
+    const readTime = card.querySelector('.read-time');
+    const tags = card.querySelector('.blog-tags');
+
+    if (title) title.textContent = post.title;
+    if (excerpt) excerpt.textContent = post.excerpt;
+    if (date) {
+        date.setAttribute('datetime', post.date);
+        date.textContent = formatDate(post.date);
+    }
+    if (readTime) readTime.textContent = post.readTime;
+    if (tags) {
+        tags.innerHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    }
+    
+    readMoreLinks.forEach(link => {
+        if (link.classList.contains('blog-read-more') || link.closest('h2, h3')) {
+            link.href = post.url;
+        }
+    });
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+}
+
 // Export for global access
 window.loadHeader = loadHeader;
 window.loadFooter = loadFooter;
 window.initializeNavigation = initializeNavigation;
+window.loadBlogPosts = loadBlogPosts;

@@ -15,7 +15,11 @@ function loadHeader() {
     const headerElement = document.getElementById('global-header');
     if (!headerElement) return;
 
-    fetch('components/header.html')
+    // Determine if we're in a subdirectory
+    const isInSubdirectory = window.location.pathname.includes('/blog/');
+    const headerPath = isInSubdirectory ? '../components/header.html' : 'components/header.html';
+
+    fetch(headerPath)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.text();
@@ -67,7 +71,11 @@ function loadFooter() {
     const footerElement = document.getElementById('global-footer');
     if (!footerElement) return;
 
-    fetch('components/footer.html')
+    // Determine if we're in a subdirectory
+    const isInSubdirectory = window.location.pathname.includes('/blog/');
+    const footerPath = isInSubdirectory ? '../components/footer.html' : 'components/footer.html';
+
+    fetch(footerPath)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.text();

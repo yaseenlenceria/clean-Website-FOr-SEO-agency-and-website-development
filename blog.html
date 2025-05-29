@@ -191,6 +191,16 @@
     <!-- Global Footer -->
     <div id="global-footer"></div>
 
+    <script src="js/blog-posts.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Initialize dynamic blog loading
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.loadDynamicBlogPosts === 'function') {
+                setTimeout(window.loadDynamicBlogPosts, 300);
+            }
+        });
+    </script>
 </body>
 </html>

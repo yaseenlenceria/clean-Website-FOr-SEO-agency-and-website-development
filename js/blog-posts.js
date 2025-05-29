@@ -66,6 +66,9 @@ window.BLOG_POSTS = [
 window.loadDynamicBlogPosts = function() {
     const blogGrid = document.querySelector('.blog-grid');
     if (!blogGrid) return;
+    
+    console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts`);
+};
 
     // Clear existing dynamic content but keep manually added posts
     const existingPosts = blogGrid.querySelectorAll('.blog-post-card');

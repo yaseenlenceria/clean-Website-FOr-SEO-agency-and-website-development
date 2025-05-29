@@ -120,19 +120,41 @@ function initializeNavigation() {
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
             
             if (dropdownLink && dropdownMenu) {
+                // Prevent default link behavior for dropdown triggers
                 dropdownLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Close other dropdowns
-                    mobileDropdowns.forEach(otherDropdown => {
-                        if (otherDropdown !== dropdown) {
-                            otherDropdown.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current dropdown
-                    dropdown.classList.toggle('active');
+                    // Only prevent default if this is a dropdown trigger (has dropdown menu)
+                    if (dropdownMenu) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close other dropdowns
+                        mobileDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active');
+                    }
+                });
+                
+                // Add touch event for better mobile interaction
+                dropdownLink.addEventListener('touchend', function(e) {
+                    if (dropdownMenu) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close other dropdowns
+                        mobileDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active');
+                    }
                 });
             }
         });

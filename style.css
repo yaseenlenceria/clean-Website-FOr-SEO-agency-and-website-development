@@ -3249,6 +3249,42 @@ button:hover {
         padding-right: 0;
     }
 
+    /* Fix audit card mobile layout */
+    .audit-card {
+        margin: var(--spacing-xl) auto 0;
+        max-width: calc(100vw - 32px);
+        width: calc(100vw - 32px);
+        overflow-x: hidden;
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Fix service cards mobile layout */
+    .service-card-modern,
+    .process-card-modern {
+        max-width: calc(100vw - 32px);
+        width: calc(100vw - 32px);
+        margin: 0 auto var(--spacing-lg);
+        overflow-x: hidden;
+        padding: var(--spacing-lg);
+        box-sizing: border-box;
+    }
+
+    /* Fix grid containers */
+    .services-grid-modern,
+    .process-grid-modern {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        width: 100%;
+        max-width: calc(100vw - 32px);
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     .hero-modern {
         padding: 120px 0 var(--spacing-xl);
         overflow-x: hidden;
@@ -3374,14 +3410,37 @@ button:hover {
     /* Proper mobile audit card */
     .audit-card {
         margin-top: var(--spacing-xl);
-        max-width: calc(100% - 16px);
+        max-width: calc(100vw - 32px);
+        width: calc(100vw - 32px);
         overflow-x: hidden;
-        padding: var(--spacing-xl);
-        border-radius: var(--radius-xl);
-        margin-left: 8px;
-        margin-right: 8px;
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        margin-left: auto;
+        margin-right: auto;
         box-sizing: border-box;
-        width: auto;
+        display: block;
+    }
+
+    .audit-card h3 {
+        font-size: clamp(22px, 5.5vw, 28px);
+        line-height: 1.2;
+        margin-bottom: var(--spacing-md);
+        word-wrap: break-word;
+        text-align: center;
+    }
+
+    .audit-features ul {
+        padding: 0;
+        margin: var(--spacing-md) 0;
+        list-style: none;
+    }
+
+    .audit-features li {
+        font-size: clamp(13px, 3.2vw, 15px);
+        line-height: 1.4;
+        padding: var(--spacing-xs) 0;
+        word-wrap: break-word;
+        color: #333;
     }
 
     /* Proper mobile section headers with natural text flow */
@@ -3591,7 +3650,8 @@ button:hover {
         padding: var(--spacing-lg);
         margin: 0 auto var(--spacing-lg);
         min-height: auto;
-        max-width: calc(100% - 16px);
+        max-width: calc(100vw - 32px);
+        width: calc(100vw - 32px);
         overflow-x: hidden;
         box-sizing: border-box;
     }
@@ -3600,17 +3660,51 @@ button:hover {
     .service-card-modern h3,
     .process-card-modern h3 {
         font-size: clamp(18px, 4.5vw, 22px);
-        line-height: 1.4;
-        margin-bottom: var(--spacing-lg);
+        line-height: 1.3;
+        margin-bottom: var(--spacing-md);
         word-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
     }
 
     .service-card-modern p,
     .process-card-modern p {
         font-size: clamp(14px, 3.5vw, 16px);
-        line-height: 1.6;
-        margin-bottom: var(--spacing-lg);
+        line-height: 1.5;
+        margin-bottom: var(--spacing-md);
         word-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
+    }
+
+    /* Fix service highlights list */
+    .service-highlights {
+        padding: var(--spacing-sm);
+        margin: var(--spacing-md) 0;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: var(--radius-sm);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-highlights li {
+        font-size: clamp(13px, 3.2vw, 15px);
+        line-height: 1.4;
+        padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+        word-wrap: break-word;
+        text-align: left;
+    }
+
+    /* Fix service links */
+    .service-link {
+        width: 100%;
+        max-width: 100%;
+        margin-top: var(--spacing-md);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
 
     /* Proper mobile footer */

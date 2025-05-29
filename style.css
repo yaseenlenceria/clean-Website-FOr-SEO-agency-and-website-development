@@ -3238,9 +3238,9 @@ button:hover {
     /* Strict container control to prevent overflow */
     .container {
         padding: 0 16px;
-        max-width: calc(100vw - 32px);
+        max-width: 100%;
         overflow-x: hidden;
-        width: calc(100vw - 32px);
+        width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
     }
@@ -3266,23 +3266,25 @@ button:hover {
     /* Fix audit card mobile layout */
     .audit-card {
         margin: 0 auto;
-        max-width: calc(100vw - 32px);
-        width: calc(100vw - 32px);
+        max-width: 100%;
+        width: 100%;
         overflow-x: hidden;
         padding: var(--spacing-lg);
         border-radius: var(--radius-lg);
         box-sizing: border-box;
+        text-align: center;
     }
 
     /* Fix service cards mobile layout */
     .service-card-modern,
     .process-card-modern {
-        max-width: calc(100vw - 32px);
-        width: calc(100vw - 32px);
+        max-width: 100%;
+        width: 100%;
         margin: 0 auto var(--spacing-lg);
         overflow-x: hidden;
         padding: var(--spacing-lg);
         box-sizing: border-box;
+        text-align: center;
     }
 
     /* Fix grid containers */
@@ -3291,9 +3293,9 @@ button:hover {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
         width: 100%;
-        max-width: calc(100vw - 32px);
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0;
+        padding: 0 16px;
         box-sizing: border-box;
     }
 
@@ -3376,9 +3378,9 @@ button:hover {
         flex-direction: column;
         align-items: center;
         gap: var(--spacing-md);
-        width: calc(100vw - 32px);
+        width: 100%;
         margin-bottom: var(--spacing-xl);
-        padding: 0;
+        padding: 0 16px;
         box-sizing: border-box;
     }
 
@@ -3389,15 +3391,15 @@ button:hover {
         gap: var(--spacing-md);
         justify-content: center;
         text-align: center;
-        width: calc(100vw - 32px);
-        padding: 0;
+        width: 100%;
+        padding: 0 16px;
         box-sizing: border-box;
-        margin-top: var(--spacing-xl);
+        margin: var(--spacing-xl) auto 0;
     }
 
     .trust-item {
         font-size: clamp(13px, 3.5vw, 16px);
-        max-width: calc(100% - 24px);
+        max-width: 100%;
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: normal;
@@ -3405,12 +3407,13 @@ button:hover {
         padding: var(--spacing-md) var(--spacing-lg);
         min-height: 48px;
         justify-content: center;
-        width: auto;
-        min-width: 220px;
+        width: 100%;
+        max-width: 300px;
         border-radius: 24px;
         display: flex;
         align-items: center;
         gap: var(--spacing-sm);
+        margin: 0 auto;
     }
 
     .trust-item i {
@@ -3662,10 +3665,11 @@ button:hover {
         padding: var(--spacing-lg);
         margin: 0 auto var(--spacing-lg);
         min-height: auto;
-        max-width: calc(100vw - 32px);
-        width: calc(100vw - 32px);
+        max-width: 100%;
+        width: 100%;
         overflow-x: hidden;
         box-sizing: border-box;
+        text-align: center;
     }
 
     /* Proper mobile service card headers with natural text flow */
@@ -3792,7 +3796,7 @@ button:hover {
         padding: var(--spacing-xl) 0;
     }
 
-    /* All card elements with strict width control */
+    /* All card elements with proper mobile centering */
     .service-card-modern,
     .process-card-modern,
     .audit-card,
@@ -3800,13 +3804,13 @@ button:hover {
     .contact-info,
     .help-card,
     .benefit-card {
-        max-width: calc(100vw - 24px);
-        width: calc(100vw - 24px);
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto var(--spacing-lg);
         overflow-x: hidden;
         box-sizing: border-box;
         padding: var(--spacing-md);
+        text-align: center;
     }
 
     /* Single-line card headings */

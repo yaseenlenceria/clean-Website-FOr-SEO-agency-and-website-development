@@ -1,15 +1,47 @@
 // Auto-generated blog posts data
-// Last updated: 2025-05-29T13:26:14.214Z
+// Last updated: 2025-05-29T17:58:44.274Z
 
 window.BLOG_POSTS = [
+  {
+    "filename": "best-roofers-in-birmingham.html",
+    "url": "blog/best-roofers-in-birmingham.html",
+    "title": "7 Best Roofing Companies in Birmingham (2025)",
+    "excerpt": "Expert insights and strategies for your business.",
+    "category": "Business Growth",
+    "date": "2025-05-29",
+    "readTime": "1 min read",
+    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "tags": [
+      "SEO",
+      "Digital Marketing",
+      "Business Growth"
+    ],
+    "featured": false
+  },
+  {
+    "filename": "best-roofing-companies-seo.html",
+    "url": "blog/best-roofing-companies-seo.html",
+    "title": "How to Do SEO for Roofing Companies in 4 Simple Steps",
+    "excerpt": "Complete guide to roofing company SEO in 2025. Learn the 4 essential steps to dominate local search results, generate more leads, and grow your roofing business online.",
+    "category": "Roofing SEO",
+    "date": "2025-05-29",
+    "readTime": "8 min read",
+    "image": "attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png",
+    "tags": [
+      "roofing company SEO",
+      "roofing contractor marketing",
+      "local SEO for roofers"
+    ],
+    "featured": false
+  },
   {
     "filename": "digital-marketing-real-estate-2025.html",
     "url": "blog/digital-marketing-real-estate-2025.html",
     "title": "Digital Marketing for Real Estate 2025: Complete Guide",
     "excerpt": "Complete guide to real estate digital marketing in 2025. Learn advanced SEO strategies, AI-powered lead generation, and proven techniques to dominate the property market online.",
     "category": "Real Estate Marketing",
-    "date": "2025-01-28",
-    "readTime": "12 min read",
+    "date": "2025-05-29",
+    "readTime": "11 min read",
     "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
     "tags": [
       "real estate digital marketing 2025",
@@ -19,121 +51,39 @@ window.BLOG_POSTS = [
     "featured": true
   },
   {
-    "filename": "best-roofing-companies-seo.html",
-    "url": "blog/best-roofing-companies-seo.html",
-    "title": "How to Do SEO for Roofing Companies in 4 Simple Steps",
-    "excerpt": "Complete guide to roofing company SEO in 2025. Learn the 4 essential steps to dominate local search results, generate more leads, and grow your roofing business online.",
-    "category": "Roofing SEO",
-    "date": "2025-01-28",
-    "readTime": "8 min read",
-    "image": "attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png",
+    "filename": "top-5-dental-digital-marketing-agencies.html",
+    "url": "blog/top-5-dental-digital-marketing-agencies.html",
+    "title": "Top 5 Dental Marketing Agencies in the UK (2025)",
+    "excerpt": "Discover the best dental marketing agencies in the UK for 2025. Compare services, specialties, and find the perfect partner to grow your dental practice online.",
+    "category": "Business Growth",
+    "date": "2025-05-29",
+    "readTime": "7 min read",
+    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
     "tags": [
-      "roofing company SEO",
-      "roofing contractor marketing",
-      "local SEO for roofers"
+      "dental marketing agencies",
+      "dental SEO",
+      "practice growth"
     ],
     "featured": false
   }
 ];
 
-// Function to format date
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
-}
-
 // Function to load blog posts dynamically
 window.loadDynamicBlogPosts = function() {
-    const blogGrid = document.querySelector('.blog-grid');
-    if (!blogGrid) return;
-    
-    console.log(`✅ Loaded ${window.BLOG_POSTS ? window.BLOG_POSTS.length : 0} blog posts`);
-    
-    // Clear existing dynamic content but keep manually added posts
-    const existingPosts = blogGrid.querySelectorAll('.blog-post-card');
-    
-    // Add new blog posts to the grid
-    window.BLOG_POSTS.forEach((post, index) => {
-        // Check if this post already exists
-        const existingPost = Array.from(existingPosts).find(card => {
-            const titleLink = card.querySelector('h2 a, h3 a');
-            return titleLink && titleLink.textContent.trim() === post.title;
-        });
+    const blogGrid = document.querySelector('.blog-grid, #dynamic-blog-grid');
+    if (!blogGrid || !window.BLOG_POSTS) return;
 
-        if (existingPost) {
-            // Update existing post
-            updateBlogPostCard(existingPost, post);
-        } else {
-            // Create new post card
-            const postCard = createBlogPostCard(post);
-            blogGrid.appendChild(postCard);
+    // Clear existing content
+    blogGrid.innerHTML = '';
+
+    // Add all blog posts to the grid
+    window.BLOG_POSTS.forEach((post, index) => {
+        const postCard = createBlogPostCard(post);
+        if (post.featured) {
+            postCard.classList.add('featured');
         }
+        blogGrid.appendChild(postCard);
     });
 
     console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts`);
 };
-
-// Helper function to create blog post card
-function createBlogPostCard(post) {
-    const article = document.createElement('article');
-    article.className = 'blog-post-card featured';
-
-    article.innerHTML = `
-        <div class="blog-image">
-            <img src="${post.image}" alt="${post.title}" loading="lazy">
-            <div class="blog-category">${post.category}</div>
-        </div>
-        <div class="blog-content">
-            <div class="blog-meta">
-                <time datetime="${post.date}">${formatDate(post.date)}</time>
-                <span class="read-time">${post.readTime}</span>
-            </div>
-            <h2><a href="${post.url}">${post.title}</a></h2>
-            <p>${post.excerpt}</p>
-            <div class="blog-tags">
-                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-            <a href="${post.url}" class="blog-read-more">
-                Read Full Article <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    `;
-
-    return article;
-}
-
-// Helper function to update existing blog post card
-function updateBlogPostCard(card, post) {
-    const title = card.querySelector('h2 a, h3 a');
-    const excerpt = card.querySelector('p');
-    const readMoreLinks = card.querySelectorAll('a[href]');
-    const date = card.querySelector('time');
-    const readTime = card.querySelector('.read-time');
-    const tags = card.querySelector('.blog-tags');
-    const image = card.querySelector('img');
-
-    if (title) title.textContent = post.title;
-    if (excerpt) excerpt.textContent = post.excerpt;
-    if (date) {
-        date.setAttribute('datetime', post.date);
-        date.textContent = formatDate(post.date);
-    }
-    if (readTime) readTime.textContent = post.readTime;
-    if (tags) {
-        tags.innerHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-    }
-    if (image) {
-        image.src = post.image;
-        image.alt = post.title;
-    }
-
-    readMoreLinks.forEach(link => {
-        if (link.classList.contains('blog-read-more') || link.closest('h2, h3')) {
-            link.href = post.url;
-        }
-    });
-}

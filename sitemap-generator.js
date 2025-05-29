@@ -56,6 +56,15 @@ const pageConfig = {
     'our-work.html': { priority: 0.7, changefreq: 'monthly' },
     'careers.html': { priority: 0.6, changefreq: 'monthly' },
     
+    // Missing service pages (now created)
+    'best-medical-seo.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-consultancy-seo.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-heating-engineer-seo.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-electrician-seo.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-contractors-seo.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-roofing-companies-manchester.html': { priority: 0.8, changefreq: 'weekly' },
+    'best-roofing-companies-birmingham.html': { priority: 0.8, changefreq: 'weekly' },
+    
     // Blog pages
     'blog.html': { priority: 0.8, changefreq: 'weekly' },
     'blog/digital-marketing-real-estate-2025.html': { priority: 0.7, changefreq: 'monthly' },

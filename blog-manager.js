@@ -13,61 +13,94 @@ const BLOG_CONFIG = {
 function extractBlogMetadata(filePath) {
     try {
         const content = fs.readFileSync(filePath, 'utf8');
+        const filename = path.basename(filePath);
 
-        // Extract title
-        const titleMatch = content.match(/<title>(.*?)<\/title>/i);
+        // Extract title from various sources
+        let title = '';
         const h1Match = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
-        const title = (titleMatch?.[1] || h1Match?.[1] || 'Untitled Post')
-            .replace(/\s*\|\s*OutsourceSU.*$/i, '')
-            .trim();
+        const titleMatch = content.match(/<title[^>]*>(.*?)<\/title>/i);
 
-        // Extract description
-        const descMatch = content.match(/<meta\s+name=["']description["']\s+content=["'](.*?)["']/i);
-        const excerpt = descMatch?.[1] || 'Expert insights and strategies for your business.';
-
-        // Extract keywords for tags
-        const keywordsMatch = content.match(/<meta\s+name=["']keywords["']\s+content=["'](.*?)["']/i);
-        const keywords = keywordsMatch?.[1] || '';
-        const tags = keywords.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).slice(0, 3);
-        if (tags.length === 0) {
-            if (filePath.includes('real-estate')) tags.push('Real Estate SEO', 'Digital Marketing', 'Lead Generation');
-            else if (filePath.includes('roofing')) tags.push('Roofing SEO', 'Construction Marketing', 'Local SEO');
-            else tags.push('SEO', 'Digital Marketing', 'Business Growth');
+        if (h1Match) {
+            title = h1Match[1].replace(/<[^>]*>/g, '').trim();
+        } else if (titleMatch) {
+            title = titleMatch[1].replace(/<[^>]*>/g, '').trim();
+        } else {
+            // Generate title from filename
+            title = filename
+                .replace('.html', '')
+                .replace(/[-_]/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
         }
 
-        // Extract category from filename or content
-        let category = BLOG_CONFIG.defaultCategory;
-        if (filePath.includes('real-estate')) category = 'Real Estate Marketing';
-        else if (filePath.includes('roofing')) category = 'Roofing SEO';
-        else if (filePath.includes('construction')) category = 'Construction SEO';
-        else if (filePath.includes('law') || filePath.includes('legal')) category = 'Legal Marketing';
+        // Extract description/excerpt
+        let excerpt = '';
+        const metaDescMatch = content.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)/i);
+        const firstPMatch = content.match(/<p[^>]*>(.*?)<\/p>/i);
 
-        // Get file stats for date
-        const stats = fs.statSync(filePath);
-        const date = stats.mtime.toISOString().split('T')[0];
+        if (metaDescMatch) {
+            excerpt = metaDescMatch[1].trim();
+        } else if (firstPMatch) {
+            excerpt = firstPMatch[1].replace(/<[^>]*>/g, '').trim();
+            if (excerpt.length > 150) {
+                excerpt = excerpt.substring(0, 150) + '...';
+            }
+        } else {
+            excerpt = `Read about ${title.toLowerCase()} and discover expert insights.`;
+        }
 
-        // Estimate reading time (average 200 words per minute)
-        const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
-        const readTime = Math.max(1, Math.ceil(wordCount / 200));
+        // Determine category based on filename/content
+        let category = 'Digital Marketing';
+        if (filename.includes('roofing') || content.includes('roofing') || title.toLowerCase().includes('roofing')) {
+            category = 'Roofing SEO';
+        } else if (filename.includes('real-estate') || content.includes('real estate') || title.toLowerCase().includes('real estate')) {
+            category = 'Real Estate Marketing';
+        } else if (filename.includes('dental') || content.includes('dental') || title.toLowerCase().includes('dental')) {
+            category = 'Dental Marketing';
+        } else if (filename.includes('birmingham') || content.includes('Birmingham') || title.includes('Birmingham')) {
+            category = 'Local Services';
+        }
 
-        // Set appropriate image based on category
-        let image = BLOG_CONFIG.defaultImage;
-        if (filePath.includes('roofing')) {
+        // Generate appropriate image
+        let image = 'attached_assets/best_SEO_for_construction_industry_in_uk.png';
+        if (category === 'Roofing SEO') {
             image = 'attached_assets/Best_SEO_for_the_roofing_industry_in_the_UK.png';
+        } else if (category === 'Real Estate Marketing') {
+            image = 'attached_assets/best_SEO_for_construction_industry_in_uk.png';
         }
+
+        // Generate tags based on category and content
+        let tags = [];
+        if (category === 'Roofing SEO') {
+            tags = ['roofing company SEO', 'roofing contractor marketing', 'local SEO for roofers'];
+        } else if (category === 'Real Estate Marketing') {
+            tags = ['real estate digital marketing 2025', 'property marketing strategies', 'real estate SEO'];
+        } else if (category === 'Dental Marketing') {
+            tags = ['dental marketing', 'dental SEO', 'practice growth'];
+        } else if (category === 'Local Services') {
+            if (title.includes('Birmingham')) {
+                tags = ['Birmingham services', 'local roofers', 'West Midlands'];
+            } else {
+                tags = ['local services', 'business directory', 'service providers'];
+            }
+        }
+
+        // Estimate read time based on content length
+        const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+        const readTime = Math.max(3, Math.ceil(wordCount / 200)) + ' min read';
 
         return {
-            filename: path.basename(filePath),
-            url: `blog/${path.basename(filePath)}`,
-            title,
-            excerpt,
-            category,
-            date,
-            readTime: `${readTime} min read`,
-            image,
-            tags,
-            featured: filePath.includes('digital-marketing-real-estate-2025.html') && !filePath.includes('copy')
+            filename: filename,
+            url: `blog/${filename}`,
+            title: title,
+            excerpt: excerpt,
+            category: category,
+            date: '2025-01-28', // Default date, can be extracted from meta if available
+            readTime: readTime,
+            image: image,
+            tags: tags,
+            featured: filename === 'digital-marketing-real-estate-2025.html'
         };
+
     } catch (error) {
         console.error(`Error processing ${filePath}:`, error.message);
         return null;

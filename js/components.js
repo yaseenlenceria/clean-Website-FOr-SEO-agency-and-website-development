@@ -1,21 +1,22 @@
-// Global variables
-let navMenu = null;
-let navMenuDesktop = null;
-let navToggle = null;
-let isNavigationInitialized = false;
 
-// Global component loading with error handling
+// Enhanced Global Navigation System
+let navigationState = {
+    isInitialized: false,
+    isMobileMenuOpen: false,
+    activeDropdown: null
+};
+
+// Component loading state
 let componentsLoaded = {
     header: false,
     footer: false
 };
 
-// Load Header Component
+// Enhanced Header Loading
 function loadHeader() {
     const headerElement = document.getElementById('global-header');
     if (!headerElement) return;
 
-    // Determine if we're in a subdirectory
     const isInSubdirectory = window.location.pathname.includes('/blog/');
     const headerPath = isInSubdirectory ? '../components/header.html' : 'components/header.html';
 
@@ -27,40 +28,26 @@ function loadHeader() {
         .then(data => {
             headerElement.innerHTML = data;
             componentsLoaded.header = true;
-
-            // Initialize navigation after header is loaded
+            
+            // Initialize navigation after header loads
             setTimeout(() => {
-                if (!isNavigationInitialized) {
-                    initializeNavigation();
+                if (!navigationState.isInitialized) {
+                    initializeProfessionalNavigation();
                 }
-            }, 200);
+            }, 100);
         })
         .catch(error => {
             console.error('Error loading header:', error);
-            // Fallback for SEO - ensure basic navigation exists
-            headerElement.innerHTML = `
-                <nav class="navbar">
-                    <div class="container">
-                        <a href="/index.html" class="navbar-brand">OutsourceSU</a>
-                        <ul class="nav-menu">
-                            <li><a href="/index.html">Home</a></li>
-                            <li><a href="/services.html">Services</a></li>
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/blog.html">Blog</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            `;
+            // Fallback navigation
+            headerElement.innerHTML = createFallbackNavigation();
         });
 }
 
-// Load Footer Component
+// Enhanced Footer Loading
 function loadFooter() {
     const footerElement = document.getElementById('global-footer');
     if (!footerElement) return;
 
-    // Determine if we're in a subdirectory
     const isInSubdirectory = window.location.pathname.includes('/blog/');
     const footerPath = isInSubdirectory ? '../components/footer.html' : 'components/footer.html';
 
@@ -75,240 +62,226 @@ function loadFooter() {
         })
         .catch(error => {
             console.error('Error loading footer:', error);
-            // Fallback footer for SEO
-            footerElement.innerHTML = `
-                <footer class="footer">
-                    <div class="container">
-                        <p>&copy; 2025 OutsourceSU. All rights reserved.</p>
-                        <nav>
-                            <a href="/privacy-policy.html">Privacy Policy</a>
-                            <a href="/terms-of-service.html">Terms</a>
-                            <a href="/contact.html">Contact</a>
-                        </nav>
-                    </div>
-                </footer>
-            `;
+            footerElement.innerHTML = createFallbackFooter();
         });
 }
 
-// Initialize Navigation with proper error handling
-function initializeNavigation() {
-    if (isNavigationInitialized) {
-        console.log('Navigation already initialized, skipping...');
+// Professional Navigation Initialization
+function initializeProfessionalNavigation() {
+    if (navigationState.isInitialized) return;
+    
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('nav-menu-mobile');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileClose = document.getElementById('mobile-close');
+    
+    if (!navToggle || !mobileMenu) {
+        console.warn('Navigation elements not found');
         return;
     }
 
-    // Wait for elements to be available
-    setTimeout(() => {
-        navToggle = document.querySelector('.nav-toggle');
-        navMenu = document.querySelector('.nav-menu');
-        navMenuDesktop = document.querySelector('.nav-menu-desktop');
+    console.log('Initializing professional navigation...');
 
-        if (navToggle && navMenu) {
-            console.log('Navigation elements found, initializing...');
+    // Mobile menu toggle
+    navToggle.addEventListener('click', toggleMobileMenu);
+    
+    // Mobile close button
+    if (mobileClose) {
+        mobileClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Mobile overlay click
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
 
-            // Mobile navigation toggle
-            navToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+    // Mobile dropdown toggles
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+    mobileDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleMobileDropdown(this);
+        });
+    });
 
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-
-                // Prevent body scroll when menu is open
-                if (navMenu.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
-            });
-
-            // Handle mobile dropdown toggles
-            const mobileDropdowns = navMenu.querySelectorAll('.nav-dropdown');
-            mobileDropdowns.forEach(dropdown => {
-                const dropdownLink = dropdown.querySelector('.nav-link');
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                
-                if (dropdownLink && dropdownMenu) {
-                    dropdownLink.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        dropdown.classList.toggle('active');
-                        
-                        // Close other dropdowns
-                        mobileDropdowns.forEach(otherDropdown => {
-                            if (otherDropdown !== dropdown) {
-                                otherDropdown.classList.remove('active');
-                            }
-                        });
-                    });
-                }
-            });
-
-            // Close mobile menu when clicking on a regular link (not dropdown parent)
-            const mobileNavLinks = navMenu.querySelectorAll('a:not(.nav-dropdown > .nav-link)');
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                    
-                    // Close all dropdowns
-                    mobileDropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
-                });
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (navMenu && navToggle && 
-                    !navToggle.contains(event.target) && 
-                    !navMenu.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-
-            // Handle window resize to close mobile menu on desktop
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 968) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-
-            isNavigationInitialized = true;
-            console.log('Navigation initialized successfully');
-        } else {
-            console.log('Navigation elements not found, retrying...');
-            // Retry after another delay
-            setTimeout(initializeNavigation, 500);
+    // Desktop dropdown functionality
+    const desktopDropdowns = document.querySelectorAll('.nav-dropdown-desktop');
+    desktopDropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu-desktop');
+        
+        if (trigger && menu) {
+            dropdown.addEventListener('mouseenter', () => showDesktopDropdown(dropdown));
+            dropdown.addEventListener('mouseleave', () => hideDesktopDropdown(dropdown));
         }
-    }, 100);
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992 && navigationState.isMobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    // Escape key to close mobile menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navigationState.isMobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    navigationState.isInitialized = true;
+    console.log('Professional navigation initialized successfully');
 }
 
-// Add scroll effects to navbar
-function addNavbarScrollEffects() {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    if (navigationState.isMobileMenuOpen) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('nav-menu-mobile');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    const navToggle = document.getElementById('nav-toggle');
+    
+    if (mobileMenu && mobileOverlay && navToggle) {
+        mobileMenu.classList.add('active');
+        mobileOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.classList.add('mobile-menu-open');
+        navigationState.isMobileMenuOpen = true;
+    }
+}
+
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('nav-menu-mobile');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    const navToggle = document.getElementById('nav-toggle');
+    
+    if (mobileMenu && mobileOverlay && navToggle) {
+        mobileMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
+        navigationState.isMobileMenuOpen = false;
+        
+        // Close all mobile dropdowns
+        const openDropdowns = document.querySelectorAll('.mobile-dropdown.active');
+        openDropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
         });
     }
 }
 
-// Blog post creation and update functions
-function createBlogPostCard(post) {
-    const article = document.createElement('article');
-    article.className = 'blog-post-card';
-
-    article.innerHTML = `
-        <div class="blog-image">
-            <img src="${post.image}" alt="${post.title}" loading="lazy">
-            <div class="blog-category">${post.category}</div>
-        </div>
-        <div class="blog-content">
-            <div class="blog-meta">
-                <time datetime="${post.date}">${formatDate(post.date)}</time>
-                <span class="read-time">${post.readTime}</span>
-            </div>
-            <h3><a href="${post.url}">${post.title}</a></h3>
-            <p>${post.excerpt}</p>
-            <div class="blog-tags">
-                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-            <a href="${post.url}" class="blog-read-more">
-                Read Full Article <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    `;
-
-    return article;
-}
-
-function updateBlogPostCard(card, post) {
-    const title = card.querySelector('h2 a, h3 a');
-    const excerpt = card.querySelector('p');
-    const readMoreLinks = card.querySelectorAll('a[href]');
-    const date = card.querySelector('time');
-    const readTime = card.querySelector('.read-time');
-    const tags = card.querySelector('.blog-tags');
-    const image = card.querySelector('img');
-
-    if (title) title.textContent = post.title;
-    if (excerpt) excerpt.textContent = post.excerpt;
-    if (date) {
-        date.setAttribute('datetime', post.date);
-        date.textContent = formatDate(post.date);
-    }
-    if (readTime) readTime.textContent = post.readTime;
-    if (tags) {
-        tags.innerHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-    }
-    if (image) {
-        image.src = post.image;
-        image.alt = post.title;
-    }
-
-    readMoreLinks.forEach(link => {
-        if (link.classList.contains('blog-read-more') || link.closest('h2, h3')) {
-            link.href = post.url;
+// Mobile Dropdown Functions
+function toggleMobileDropdown(toggle) {
+    const dropdown = toggle.closest('.mobile-dropdown');
+    const isActive = dropdown.classList.contains('active');
+    
+    // Close all other mobile dropdowns
+    const allDropdowns = document.querySelectorAll('.mobile-dropdown');
+    allDropdowns.forEach(dd => {
+        if (dd !== dropdown) {
+            dd.classList.remove('active');
         }
     });
+    
+    // Toggle current dropdown
+    dropdown.classList.toggle('active', !isActive);
+}
+
+// Desktop Dropdown Functions
+function showDesktopDropdown(dropdown) {
+    if (navigationState.activeDropdown && navigationState.activeDropdown !== dropdown) {
+        hideDesktopDropdown(navigationState.activeDropdown);
+    }
+    
+    dropdown.classList.add('active');
+    navigationState.activeDropdown = dropdown;
+}
+
+function hideDesktopDropdown(dropdown) {
+    dropdown.classList.remove('active');
+    if (navigationState.activeDropdown === dropdown) {
+        navigationState.activeDropdown = null;
+    }
+}
+
+// Fallback Functions
+function createFallbackNavigation() {
+    return `
+        <nav class="navbar fallback-nav">
+            <div class="container">
+                <a href="/index.html" class="navbar-brand">OutsourceSU</a>
+                <ul class="nav-menu-fallback">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    `;
+}
+
+function createFallbackFooter() {
+    return `
+        <footer class="footer fallback-footer">
+            <div class="container">
+                <p>&copy; 2025 OutsourceSU. All rights reserved.</p>
+                <nav class="footer-nav">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms</a>
+                    <a href="/contact.html">Contact</a>
+                </nav>
+            </div>
+        </footer>
+    `;
+}
+
+// Blog Post Card Creation (existing functionality)
+function createBlogPostCard(post) {
+    return `
+        <article class="blog-post-card" data-category="${post.category || 'General'}">
+            <a href="${post.url}" class="blog-card-link">
+                <div class="blog-card-header">
+                    <span class="blog-category">${post.category || 'SEO Tips'}</span>
+                    <time class="blog-date" datetime="${post.date}">${formatDate(post.date)}</time>
+                </div>
+                <h3 class="blog-card-title">${post.title}</h3>
+                <p class="blog-card-excerpt">${post.excerpt || 'Expert SEO insights and strategies...'}</p>
+                <div class="blog-card-footer">
+                    <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    <span class="read-time">${post.readTime || '5 min read'}</span>
+                </div>
+            </a>
+        </article>
+    `;
 }
 
 function formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+    return date.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
 }
 
-// Load components when DOM is ready
+// Auto-initialization
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
     loadFooter();
-    addNavbarScrollEffects();
-
-    // Load blog posts if on blog page
-    if (window.location.pathname.includes('blog.html') || window.location.pathname.endsWith('/blog')) {
-        setTimeout(() => {
-            if (typeof window.loadDynamicBlogPosts === 'function') {
-                window.loadDynamicBlogPosts();
-            }
-        }, 500);
-    }
-
-    // Add lazy loading for images
-    const images = document.querySelectorAll('img[data-src]');
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-    }
 });
 
-// Export for global access
+// Export functions for global access
 window.loadHeader = loadHeader;
 window.loadFooter = loadFooter;
-window.initializeNavigation = initializeNavigation;
+window.initializeProfessionalNavigation = initializeProfessionalNavigation;
 window.createBlogPostCard = createBlogPostCard;
-window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;

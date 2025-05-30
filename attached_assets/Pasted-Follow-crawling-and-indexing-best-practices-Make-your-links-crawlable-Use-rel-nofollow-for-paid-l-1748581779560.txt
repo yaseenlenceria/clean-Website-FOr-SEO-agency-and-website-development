@@ -1,0 +1,39 @@
+Follow crawling and indexing best practices
+Make your links crawlable.
+Use rel=nofollow for paid links, links that require login, or untrusted content (such as user-submitted content) to avoid passing your quality signals on to them, or having their bad quality reflect on you.
+Managing your crawl budget: If your site is particularly large (hundreds of millions of pages that change periodically, or perhaps tens of millions of pages that change frequently), Google might not be able to crawl your entire site as often as you'd like, so you might need to point Google to the most important pages on your site. The best mechanism for doing so at present is to list your most recently updated or most important pages in your sitemaps, and hiding your less important pages using robots.txt rules.
+JavaScript usage: Follow Google's recommendations for JavaScript on websites.
+Multi-page articles: If you have an article broken into several pages, be sure that there are prominent next and previous links for users to click (and that these are crawlable links). That's all you need for the page set to be crawled by Google.
+Infinite scroll pages: Google can have trouble scrolling through infinite scroll pages; provide a paginated version if you want the page to be crawled. Learn more about search-friendly infinite scroll pages.
+Block access to URLs that change state, such as posting comments, creating accounts, adding items to a cart, and so on. Use robots.txt to block these URLs.
+Review the list of which file types are indexable by Google.
+In the unlikely situation that Google seems to be crawling your site too much, you can reduce the crawl rate for your site. However, this should be a rare occurrence.
+If your site is still HTTP, we recommend migrating to HTTPS, for your users' security, as well as your own.
+Help Google understand your site
+Put key information in text, not graphics, on the site. Although Google can parse and index many file types, text is still the safest bet to help us understand the content of the page. If you use non-text content, or if you want to provide additional guidance about the content of the site, add structured data to your pages to help us understand your content (and in some cases, provide special search features such as rich results).
+
+If you feel comfortable with HTML and basic coding, you can add structured data by hand following the developer guidelines. If you want a little help, you can use the WYSIWYG Structured Data Markup helper to help you generate basic structured data for you.
+
+If you don't have the ability to add structured data to your pages, you might use the Data Highlighter tool, which lets you highlight portions of a page and tell Google what each section represents (an event, a date, a price, and so on). This is simple, but it can break if you change the layout of your page.
+
+Read more about helping Google understand your site content.
+
+Follow our guidelines
+Caution: Be sure to follow our Search Essentials. Some of these are recommendations and best practices; others can lead to a site being removed from the Google index if you do not follow them.
+Content-specific guidelines
+If you have specific types of content on your site, here are some recommendations for getting them on Google in the best way:
+
+Video: Be sure to follow our video best practices to enable Google to find, crawl, and show results for videos hosted on your site.
+Images: Follow our image best practices to get your images to appear in Search. You can show additional information about your image in Google Images by providing image metadata on the image host page. To block an image from being indexed, use a robots.txt Disallow rule.
+For children: If your content is specifically for children, tag your pages or site as child-directed in order to comply with the Children's Online Privacy Protection Act (COPPA).
+Adult sites: If your site (or specific pages) contain adult-only content, you might consider tagging it as adult content, which will filter it in SafeSearch results.
+News: If you run a news site, here are some important considerations:
+If you have news content, be sure to read the Google Publisher Center help documentation.
+In addition, create a News sitemap to help Google discover content more quickly.
+Be sure to prevent abuse on your site.
+If you want to provide a limited number of views to visitors without a subscription or login, read about flexible sampling to learn some best practices about providing limited access to your content.
+See how to indicate subscription and paywalled content on your site to Google while still enabling crawling.
+See how to use meta tags to limit text or image use when generating search result snippets.
+Consider using AMP or Web Stories for fast-loading content.
+Other sites (for example, sites about businesses, books, apps, scholarly works): See other Google services where you can post your information.
+See if Google supports a Search feature specific for your content type. Google supports specialized Search features for recipes, events, job posting sites, and more.

@@ -3,6 +3,22 @@
 
 window.BLOG_POSTS = [
   {
+    "filename": "top-uk-digital-marketing-agencies-2025.html",
+    "url": "blog/top-uk-digital-marketing-agencies-2025.html",
+    "title": "Top 15 Digital Marketing Agencies in the UK (2025)",
+    "excerpt": "Comprehensive ranking of the best UK digital marketing agencies. OutsourceSU ranked #1 for performance and client results.",
+    "category": "Agency Rankings",
+    "date": "2025-01-28",
+    "readTime": "12 min read",
+    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "tags": [
+      "digital marketing agencies",
+      "UK agencies",
+      "agency rankings"
+    ],
+    "featured": true
+  },
+  {
     "filename": "best-roofers-in-birmingham.html",
     "url": "blog/best-roofers-in-birmingham.html",
     "title": "7 Best Roofing Companies in Birmingham (2025)",

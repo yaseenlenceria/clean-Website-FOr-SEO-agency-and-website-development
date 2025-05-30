@@ -1,14 +1,16 @@
-// Global variables
-let navMenu = null;
-let navMenuDesktop = null;
-let navToggle = null;
-let isNavigationInitialized = false;
+// Global variables for navigation
+if (typeof window.navMenu === 'undefined') {
+    window.navMenu = null;
+    window.navMenuDesktop = null;
+    window.navToggle = null;
+    window.isNavigationInitialized = false;
 
-// Global component loading with error handling
-let componentsLoaded = {
-    header: false,
-    footer: false
-};
+    // Global component loading with error handling
+    window.componentsLoaded = {
+        header: false,
+        footer: false
+    };
+}
 
 // Load Header Component
 function loadHeader() {
@@ -25,15 +27,19 @@ function loadHeader() {
             return response.text();
         })
         .then(data => {
-            headerElement.innerHTML = data;
-            componentsLoaded.header = true;
+            // Clean the data to ensure no stray content
+            const cleanData = data.trim();
+            // Clear any existing content first
+            headerElement.innerHTML = '';
+            headerElement.innerHTML = cleanData;
+            window.componentsLoaded.header = true;
 
             // Initialize navigation after header is loaded
             setTimeout(() => {
-                if (!isNavigationInitialized) {
+                if (!window.isNavigationInitialized) {
                     initializeNavigation();
                 }
-            }, 200);
+            }, 100);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -93,38 +99,50 @@ function loadFooter() {
 
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
-    if (isNavigationInitialized) {
+    if (window.isNavigationInitialized) {
         console.log('Navigation already initialized, skipping...');
         return;
     }
+    
+    // Mark as initializing to prevent duplicate calls
+    window.isNavigationInitialized = true;
 
     // Wait for elements to be available
     setTimeout(() => {
-        navToggle = document.querySelector('.nav-toggle');
-        navMenu = document.querySelector('.nav-menu');
-        navMenuDesktop = document.querySelector('.nav-menu-desktop');
+        window.navToggle = document.querySelector('.nav-toggle, #nav-toggle');
+        window.navMenu = document.querySelector('.nav-menu, #nav-menu');
+        window.navMenuDesktop = document.querySelector('.nav-menu-desktop, #nav-menu-desktop');
 
-        if (navToggle && navMenu) {
+        if (window.navToggle && window.navMenu) {
             console.log('Navigation elements found, initializing...');
 
+            // Remove any existing event listeners
+            const newNavToggle = window.navToggle.cloneNode(true);
+            window.navToggle.parentNode.replaceChild(newNavToggle, window.navToggle);
+            window.navToggle = newNavToggle;
+
             // Mobile navigation toggle
-            navToggle.addEventListener('click', function(e) {
+            window.navToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
+                console.log('Nav toggle clicked');
 
-                // Prevent body scroll when menu is open
-                if (navMenu.classList.contains('active')) {
+                window.navMenu.classList.toggle('active');
+                window.navToggle.classList.toggle('active');
+
+                // Add body class for mobile menu open state
+                if (window.navMenu.classList.contains('active')) {
+                    document.body.classList.add('nav-open');
                     document.body.style.overflow = 'hidden';
                 } else {
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
 
             // Handle mobile dropdown toggles
-            const mobileDropdowns = navMenu.querySelectorAll('.nav-dropdown');
+            const mobileDropdowns = window.navMenu.querySelectorAll('.nav-dropdown');
             mobileDropdowns.forEach(dropdown => {
                 const dropdownLink = dropdown.querySelector('.nav-link');
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
@@ -145,11 +163,12 @@ function initializeNavigation() {
             });
 
             // Close mobile menu when clicking on a regular link (not dropdown parent)
-            const mobileNavLinks = navMenu.querySelectorAll('a:not(.nav-dropdown > .nav-link)');
+            const mobileNavLinks = window.navMenu.querySelectorAll('a:not(.nav-dropdown > .nav-link)');
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
 
                     // Close all dropdowns
@@ -161,11 +180,12 @@ function initializeNavigation() {
 
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
-                if (navMenu && navToggle && 
-                    !navToggle.contains(event.target) && 
-                    !navMenu.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                if (window.navMenu && window.navToggle && 
+                    !window.navToggle.contains(event.target) && 
+                    !window.navMenu.contains(event.target)) {
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
@@ -173,18 +193,20 @@ function initializeNavigation() {
             // Handle window resize to close mobile menu on desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 968) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
 
-            isNavigationInitialized = true;
             console.log('Navigation initialized successfully');
         } else {
             console.log('Navigation elements not found, retrying...');
             // Retry after another delay
-            setTimeout(initializeNavigation, 500);
+            if (document.readyState === 'complete') {
+                setTimeout(initializeNavigation, 500);
+            }
         }
     }, 100);
 }
@@ -312,3 +334,24 @@ window.initializeNavigation = initializeNavigation;
 window.createBlogPostCard = createBlogPostCard;
 window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;
+// Load component function (kept for backwards compatibility)
+function loadComponent(elementId, componentPath) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        fetch(componentPath)
+            .then(response => response.text())
+            .then(html => {
+                element.innerHTML = html;
+
+                // Re-initialize navigation after header is loaded
+                if (elementId === 'global-header') {
+                    setTimeout(() => {
+                        if (!window.isNavigationInitialized) {
+                            initializeNavigation();
+                        }
+                    }, 200);
+                }
+            })
+            .catch(error => console.error('Error loading component:', error));
+    }
+}

@@ -3071,7 +3071,7 @@ button:hover {
             0 12px 40px rgba(0, 0, 0, 0.9),
             inset 0 1px 0 rgba(255, 255, 255, 0.1),
             0 0 100px rgba(255, 107, 53, 0.1);
-        padding: 20px 0 30px;
+        padding: 20px 0 40px;
         gap: 8px;
         
         height: calc(100vh - 75px);
@@ -3082,6 +3082,15 @@ button:hover {
         opacity: 0;
         box-sizing: border-box;
         display: flex;
+        
+        /* Enhanced scrolling */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
     }
 
     .nav-menu.active {
@@ -3181,19 +3190,21 @@ button:hover {
         position: static;
         background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.9));
         border: none;
-        border-radius: 0;
-        padding: 8px 0;
+        border-radius: 0 0 12px 12px;
+        padding: 0;
         margin: 0;
         opacity: 1;
         visibility: visible;
         transform: none;
-        box-shadow: none;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
         width: 100%;
         min-width: auto;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                    padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         box-sizing: border-box;
+        border-top: 1px solid rgba(255, 107, 53, 0.2);
     }
     
     .nav-dropdown:hover .dropdown-menu,
@@ -3202,17 +3213,23 @@ button:hover {
     }
     
     .dropdown-menu a {
-        padding: 16px 30px 16px 48px;
+        padding: 18px 30px 18px 48px;
         font-size: 15px;
         font-weight: 500;
-        min-height: 48px;
+        min-height: 52px;
         width: 100%;
         box-sizing: border-box;
         position: relative;
         display: flex;
         align-items: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        color: var(--text-light-gray);
+        text-decoration: none;
+        
+        /* Better touch targets */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .dropdown-menu a::before {

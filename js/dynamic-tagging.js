@@ -1,4 +1,3 @@
-
 // Dynamic Tagging and Category System for SEO Optimization
 class DynamicTaggingSystem {
     constructor() {
@@ -145,16 +144,16 @@ class DynamicTaggingSystem {
 
     addDynamicTags() {
         const head = document.head;
-        
+
         // Add category meta tag
         this.addMetaTag('category', this.currentPageData.category);
-        
+
         // Add business type
         this.addMetaTag('business-type', this.currentPageData.businessType);
-        
+
         // Add service area
         this.addMetaTag('service-area', this.currentPageData.serviceArea);
-        
+
         // Add dynamic keywords
         const allTags = [...this.currentPageData.tags, ...this.globalTags];
         const existingKeywords = document.querySelector('meta[name="keywords"]');
@@ -307,34 +306,12 @@ class DynamicTaggingSystem {
 // Initialize the dynamic tagging system
 document.addEventListener('DOMContentLoaded', function() {
     window.dynamicTagging = new DynamicTaggingSystem();
-    
-    // Add visual category indicator
-    const categoryIndicator = document.createElement('div');
-    categoryIndicator.style.cssText = `
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background: rgba(255, 107, 53, 0.9);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
-        font-weight: bold;
-        z-index: 9999;
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
-    `;
-    categoryIndicator.textContent = window.dynamicTagging.getCurrentPageData().category;
-    categoryIndicator.addEventListener('mouseenter', function() {
-        this.style.opacity = '1';
-    });
-    categoryIndicator.addEventListener('mouseleave', function() {
-        this.style.opacity = '0.7';
-    });
-    
+
+    // Category tag functionality removed to prevent stray elements
+
     // Only show in development/testing
     if (window.location.hostname === 'localhost' || window.location.hostname.includes('replit')) {
-        document.body.appendChild(categoryIndicator);
+       // document.body.appendChild(categoryIndicator);
     }
 });
 

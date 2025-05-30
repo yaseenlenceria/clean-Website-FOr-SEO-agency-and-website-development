@@ -349,12 +349,3 @@ function loadComponent(elementId, componentPath) {
             .catch(error => console.error('Error loading component:', error));
     }
 }
-    <script src="js/dynamic-tagging.js"></script>
-    <script src="js/seo-content-manager.js"></script>
-    <script src="js/category-styles.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>`;
-
-// Load footer
-fetch('components/footer.html')

@@ -34,12 +34,10 @@ function loadHeader() {
             headerElement.innerHTML = cleanData;
             window.componentsLoaded.header = true;
 
-            // Initialize navigation after header is loaded
-            setTimeout(() => {
-                if (!window.isNavigationInitialized) {
-                    initializeNavigation();
-                }
-            }, 100);
+            // Initialize navigation after header is loaded (only once)
+            if (!window.isNavigationInitialized) {
+                setTimeout(initializeNavigation, 100);
+            }
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -100,11 +98,10 @@ function loadFooter() {
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
     if (window.isNavigationInitialized) {
-        console.log('Navigation already initialized, skipping...');
         return;
     }
     
-    // Mark as initializing to prevent duplicate calls
+    // Mark as initializing to prevent duplicate calls immediately
     window.isNavigationInitialized = true;
 
     // Wait for elements to be available
@@ -114,8 +111,6 @@ function initializeNavigation() {
         window.navMenuDesktop = document.querySelector('.nav-menu-desktop, #nav-menu-desktop');
 
         if (window.navToggle && window.navMenu) {
-            console.log('Navigation elements found, initializing...');
-
             // Remove any existing event listeners
             const newNavToggle = window.navToggle.cloneNode(true);
             window.navToggle.parentNode.replaceChild(newNavToggle, window.navToggle);
@@ -200,9 +195,9 @@ function initializeNavigation() {
                 }
             });
 
-            console.log('Navigation initialized successfully');
-        } else {
-            console.log('Navigation elements not found, retrying...');
+            } else {
+            // Reset initialization flag if elements not found
+            window.isNavigationInitialized = false;
             // Retry after another delay
             if (document.readyState === 'complete') {
                 setTimeout(initializeNavigation, 500);

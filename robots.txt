@@ -13,7 +13,7 @@ Allow: /js/
 Allow: /*.css
 Allow: /*.js
 
-# Allow important file types
+# Allow important file types for mobile-first indexing
 Allow: *.png
 Allow: *.jpg
 Allow: *.jpeg
@@ -21,6 +21,18 @@ Allow: *.gif
 Allow: *.webp
 Allow: *.svg
 Allow: *.ico
+Allow: *.css
+Allow: *.js
+Allow: *.woff
+Allow: *.woff2
+Allow: *.ttf
+Allow: *.eot
+
+# Mobile-specific allowances
+Allow: /style.css
+Allow: /script.js
+Allow: /js/
+Allow: /components/
 
 # Disallow development files only
 Disallow: /.config/

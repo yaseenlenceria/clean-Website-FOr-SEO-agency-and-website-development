@@ -100,7 +100,7 @@ function initializeNavigation() {
     if (window.isNavigationInitialized) {
         return;
     }
-    
+
     // Mark as initializing to prevent duplicate calls immediately
     window.isNavigationInitialized = true;
 

@@ -28,14 +28,14 @@ function loadHeader() {
         })
         .then(data => {
             headerElement.innerHTML = data;
-            componentsLoaded.header = true;
+            window.componentsLoaded.header = true;
 
             // Initialize navigation after header is loaded
             setTimeout(() => {
-                if (!isNavigationInitialized) {
+                if (!window.isNavigationInitialized) {
                     initializeNavigation();
                 }
-            }, 200);
+            }, 300);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -102,25 +102,34 @@ function initializeNavigation() {
 
     // Wait for elements to be available
     setTimeout(() => {
-        window.navToggle = document.querySelector('.nav-toggle');
-        window.navMenu = document.querySelector('.nav-menu');
-        window.navMenuDesktop = document.querySelector('.nav-menu-desktop');
+        window.navToggle = document.querySelector('.nav-toggle, #nav-toggle');
+        window.navMenu = document.querySelector('.nav-menu, #nav-menu');
+        window.navMenuDesktop = document.querySelector('.nav-menu-desktop, #nav-menu-desktop');
 
         if (window.navToggle && window.navMenu) {
             console.log('Navigation elements found, initializing...');
+
+            // Remove any existing event listeners
+            const newNavToggle = window.navToggle.cloneNode(true);
+            window.navToggle.parentNode.replaceChild(newNavToggle, window.navToggle);
+            window.navToggle = newNavToggle;
 
             // Mobile navigation toggle
             window.navToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-
+                
+                console.log('Nav toggle clicked');
+                
                 window.navMenu.classList.toggle('active');
                 window.navToggle.classList.toggle('active');
-
-                // Prevent body scroll when menu is open
+                
+                // Add body class for mobile menu open state
                 if (window.navMenu.classList.contains('active')) {
+                    document.body.classList.add('nav-open');
                     document.body.style.overflow = 'hidden';
                 } else {
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
@@ -152,6 +161,7 @@ function initializeNavigation() {
                 link.addEventListener('click', function() {
                     window.navMenu.classList.remove('active');
                     window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
 
                     // Close all dropdowns
@@ -168,6 +178,7 @@ function initializeNavigation() {
                     !window.navMenu.contains(event.target)) {
                     window.navMenu.classList.remove('active');
                     window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
@@ -177,6 +188,7 @@ function initializeNavigation() {
                 if (window.innerWidth > 968) {
                     window.navMenu.classList.remove('active');
                     window.navToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                     document.body.style.overflow = '';
                 }
             });
@@ -186,7 +198,9 @@ function initializeNavigation() {
         } else {
             console.log('Navigation elements not found, retrying...');
             // Retry after another delay
-            setTimeout(initializeNavigation, 500);
+            if (document.readyState === 'complete') {
+                setTimeout(initializeNavigation, 500);
+            }
         }
     }, 100);
 }
@@ -314,52 +328,7 @@ window.initializeNavigation = initializeNavigation;
 window.createBlogPostCard = createBlogPostCard;
 window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;
-// Navigation functionality
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Navigation elements found, initializing...');
-
-    // Initialize navigation after components load
-    setTimeout(initializeNavigation, 100);
-
-    // Footer functionality
-    loadComponent('global-footer', 'components/footer.html');
-    loadComponent('global-header', 'components/header.html');
-});
-
-// Initialize navigation functionality
-function initializeNavigation() {
-    const navMenuElement = document.querySelector('.nav-menu');
-    const navToggleElement = document.querySelector('.nav-toggle');
-    const navLinkElements = document.querySelectorAll('.nav-link');
-
-    if (navToggleElement && navMenuElement) {
-        navToggleElement.addEventListener('click', function(e) {
-            e.preventDefault();
-            navMenuElement.classList.toggle('active');
-            navToggleElement.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        navLinkElements.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenuElement.classList.remove('active');
-                navToggleElement.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navMenuElement.contains(e.target) && !navToggleElement.contains(e.target)) {
-                navMenuElement.classList.remove('active');
-                navToggleElement.classList.remove('active');
-            }
-        });
-
-        console.log('Navigation initialized successfully');
-    }
-}
-
-// Load component function
+// Load component function (kept for backwards compatibility)
 function loadComponent(elementId, componentPath) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -370,7 +339,11 @@ function loadComponent(elementId, componentPath) {
 
                 // Re-initialize navigation after header is loaded
                 if (elementId === 'global-header') {
-                    setTimeout(initializeNavigation, 100);
+                    setTimeout(() => {
+                        if (!window.isNavigationInitialized) {
+                            initializeNavigation();
+                        }
+                    }, 200);
                 }
             })
             .catch(error => console.error('Error loading component:', error));

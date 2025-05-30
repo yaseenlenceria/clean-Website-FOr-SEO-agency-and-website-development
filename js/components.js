@@ -27,12 +27,27 @@ function loadHeader() {
             return response.text();
         })
         .then(data => {
-            // Clean the data to ensure no stray content
-            const cleanData = data.trim();
+            // Clean the data and remove any stray elements with fixed positioning
+            let cleanData = data.trim();
+            
+            // Remove any elements with "SEO Services" text and fixed positioning
+            cleanData = cleanData.replace(/<[^>]*style="[^"]*position:\s*fixed[^"]*"[^>]*>.*?SEO Services.*?<\/[^>]*>/gi, '');
+            cleanData = cleanData.replace(/SEO Services/gi, '');
+            
             // Clear any existing content first
             headerElement.innerHTML = '';
             headerElement.innerHTML = cleanData;
             window.componentsLoaded.header = true;
+
+            // Remove any stray elements that might have been added after loading
+            setTimeout(() => {
+                const strayElements = document.querySelectorAll('[style*="position: fixed"][style*="top: 10px"][style*="right: 10px"]');
+                strayElements.forEach(el => {
+                    if (el.textContent.includes('SEO Services')) {
+                        el.remove();
+                    }
+                });
+            }, 100);
 
             // Initialize navigation after header is loaded (only once)
             if (!window.isNavigationInitialized) {

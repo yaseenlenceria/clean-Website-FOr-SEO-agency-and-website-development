@@ -34,13 +34,24 @@ function optimizeMetaTags() {
             const content = fs.readFileSync(file, 'utf8');
             const $ = cheerio.load(content);
             
-            // Add missing meta tags
+            // Add missing meta tags - IDENTICAL for mobile and desktop
             if (!$('meta[name="robots"]').length) {
                 $('head').append('<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">');
             }
             
             if (!$('meta[name="googlebot"]').length) {
                 $('head').append('<meta name="googlebot" content="index, follow">');
+            }
+            
+            // Mobile-first indexing compliance
+            if (!$('meta[name="googlebot-mobile"]').length) {
+                $('head').append('<meta name="googlebot-mobile" content="index, follow">');
+            }
+            
+            // Ensure mobile viewport is properly set
+            const viewport = $('meta[name="viewport"]');
+            if (viewport.length) {
+                viewport.attr('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
             }
             
             // Add viewport if missing

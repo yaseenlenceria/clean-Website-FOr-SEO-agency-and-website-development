@@ -118,12 +118,12 @@ function initializeNavigation() {
             window.navToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 console.log('Nav toggle clicked');
-                
+
                 window.navMenu.classList.toggle('active');
                 window.navToggle.classList.toggle('active');
-                
+
                 // Add body class for mobile menu open state
                 if (window.navMenu.classList.contains('active')) {
                     document.body.classList.add('nav-open');
@@ -349,3 +349,12 @@ function loadComponent(elementId, componentPath) {
             .catch(error => console.error('Error loading component:', error));
     }
 }
+    <script src="js/dynamic-tagging.js"></script>
+    <script src="js/seo-content-manager.js"></script>
+    <script src="js/category-styles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>`;
+
+// Load footer
+fetch('components/footer.html')

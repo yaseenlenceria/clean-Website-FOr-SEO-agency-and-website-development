@@ -27,7 +27,9 @@ function loadHeader() {
             return response.text();
         })
         .then(data => {
-            headerElement.innerHTML = data;
+            // Clean the data to ensure no stray content
+            const cleanData = data.trim();
+            headerElement.innerHTML = cleanData;
             window.componentsLoaded.header = true;
 
             // Initialize navigation after header is loaded

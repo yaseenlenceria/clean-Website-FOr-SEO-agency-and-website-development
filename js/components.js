@@ -1,14 +1,16 @@
-// Global variables
-let navMenu = null;
-let navMenuDesktop = null;
-let navToggle = null;
-let isNavigationInitialized = false;
+// Global variables for navigation
+if (typeof window.navMenu === 'undefined') {
+    window.navMenu = null;
+    window.navMenuDesktop = null;
+    window.navToggle = null;
+    window.isNavigationInitialized = false;
 
-// Global component loading with error handling
-let componentsLoaded = {
-    header: false,
-    footer: false
-};
+    // Global component loading with error handling
+    window.componentsLoaded = {
+        header: false,
+        footer: false
+    };
+}
 
 // Load Header Component
 function loadHeader() {
@@ -93,30 +95,30 @@ function loadFooter() {
 
 // Initialize Navigation with proper error handling
 function initializeNavigation() {
-    if (isNavigationInitialized) {
+    if (window.isNavigationInitialized) {
         console.log('Navigation already initialized, skipping...');
         return;
     }
 
     // Wait for elements to be available
     setTimeout(() => {
-        navToggle = document.querySelector('.nav-toggle');
-        navMenu = document.querySelector('.nav-menu');
-        navMenuDesktop = document.querySelector('.nav-menu-desktop');
+        window.navToggle = document.querySelector('.nav-toggle');
+        window.navMenu = document.querySelector('.nav-menu');
+        window.navMenuDesktop = document.querySelector('.nav-menu-desktop');
 
-        if (navToggle && navMenu) {
+        if (window.navToggle && window.navMenu) {
             console.log('Navigation elements found, initializing...');
 
             // Mobile navigation toggle
-            navToggle.addEventListener('click', function(e) {
+            window.navToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
+                window.navMenu.classList.toggle('active');
+                window.navToggle.classList.toggle('active');
 
                 // Prevent body scroll when menu is open
-                if (navMenu.classList.contains('active')) {
+                if (window.navMenu.classList.contains('active')) {
                     document.body.style.overflow = 'hidden';
                 } else {
                     document.body.style.overflow = '';
@@ -124,7 +126,7 @@ function initializeNavigation() {
             });
 
             // Handle mobile dropdown toggles
-            const mobileDropdowns = navMenu.querySelectorAll('.nav-dropdown');
+            const mobileDropdowns = window.navMenu.querySelectorAll('.nav-dropdown');
             mobileDropdowns.forEach(dropdown => {
                 const dropdownLink = dropdown.querySelector('.nav-link');
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
@@ -145,11 +147,11 @@ function initializeNavigation() {
             });
 
             // Close mobile menu when clicking on a regular link (not dropdown parent)
-            const mobileNavLinks = navMenu.querySelectorAll('a:not(.nav-dropdown > .nav-link)');
+            const mobileNavLinks = window.navMenu.querySelectorAll('a:not(.nav-dropdown > .nav-link)');
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
                     document.body.style.overflow = '';
 
                     // Close all dropdowns
@@ -161,11 +163,11 @@ function initializeNavigation() {
 
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
-                if (navMenu && navToggle && 
-                    !navToggle.contains(event.target) && 
-                    !navMenu.contains(event.target)) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                if (window.navMenu && window.navToggle && 
+                    !window.navToggle.contains(event.target) && 
+                    !window.navMenu.contains(event.target)) {
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             });
@@ -173,13 +175,13 @@ function initializeNavigation() {
             // Handle window resize to close mobile menu on desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 968) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
+                    window.navMenu.classList.remove('active');
+                    window.navToggle.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             });
 
-            isNavigationInitialized = true;
+            window.isNavigationInitialized = true;
             console.log('Navigation initialized successfully');
         } else {
             console.log('Navigation elements not found, retrying...');

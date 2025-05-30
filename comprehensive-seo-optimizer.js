@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const cheerio = require('cheerio');
 
@@ -56,7 +55,7 @@ function optimizeAllPages() {
             const content = fs.readFileSync(file, 'utf8');
             const $ = cheerio.load(content);
             let pageOptimizations = 0;
-            
+
             console.log(`📄 Optimizing: ${file}`);
 
             // 1. Mobile-First Indexing Compliance
@@ -187,9 +186,10 @@ function optimizeAllPages() {
                         "reviewCount": "527"
                     },
                     "sameAs": [
-                        "https://facebook.com/outsourcesu",
-                        "https://twitter.com/outsourcesu",
-                        "https://linkedin.com/company/outsourcesu"
+                        "https://www.facebook.com/profile.php?id=61576560915041",
+                        "https://x.com/OutsourceSu",
+                        "https://www.linkedin.com/company/outsource-su",
+                        "https://www.youtube.com/@OutsourceSU"
                     ]
                 };
                 $('head').append(`<script type="application/ld+json">${JSON.stringify(organizationSchema, null, 2)}</script>`);
@@ -201,7 +201,7 @@ function optimizeAllPages() {
                 if (!$(img).attr('alt') || $(img).attr('alt') === '') {
                     const src = $(img).attr('src') || '';
                     let altText = '';
-                    
+
                     if (src.includes('logo')) {
                         altText = 'OutsourceSU - UK\'s Leading SEO Agency Logo';
                     } else if (src.includes('construction')) {
@@ -211,7 +211,7 @@ function optimizeAllPages() {
                     } else {
                         altText = 'OutsourceSU SEO Services';
                     }
-                    
+
                     $(img).attr('alt', altText);
                     pageOptimizations++;
                 }
@@ -272,7 +272,7 @@ function optimizeAllPages() {
 
             // Save optimized file
             fs.writeFileSync(file, $.html());
-            
+
             console.log(`  ✅ Applied ${pageOptimizations} optimizations to ${file}`);
             totalOptimizations += pageOptimizations;
 
@@ -287,7 +287,7 @@ function optimizeAllPages() {
 // Generate enhanced sitemap
 function generateSitemap() {
     console.log('🗺️  Generating enhanced sitemap...');
-    
+
     const htmlFiles = fs.readdirSync('.')
         .filter(file => file.endsWith('.html'))
         .filter(file => !file.startsWith('google-') && !file.startsWith('template'))
@@ -336,7 +336,7 @@ function generateSitemap() {
 // Update robots.txt for better crawling
 function updateRobotsTxt() {
     console.log('🤖 Updating robots.txt...');
-    
+
     const robotsContent = `User-agent: *
 Allow: /
 

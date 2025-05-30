@@ -128,12 +128,12 @@ function initializeNavigation() {
             mobileDropdowns.forEach(dropdown => {
                 const dropdownLink = dropdown.querySelector('.nav-link');
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                
+
                 if (dropdownLink && dropdownMenu) {
                     dropdownLink.addEventListener('click', function(e) {
                         e.preventDefault();
                         dropdown.classList.toggle('active');
-                        
+
                         // Close other dropdowns
                         mobileDropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
@@ -151,7 +151,7 @@ function initializeNavigation() {
                     navMenu.classList.remove('active');
                     navToggle.classList.remove('active');
                     document.body.style.overflow = '';
-                    
+
                     // Close all dropdowns
                     mobileDropdowns.forEach(dropdown => {
                         dropdown.classList.remove('active');

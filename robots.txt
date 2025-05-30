@@ -4,6 +4,9 @@ Allow: /
 # Primary sitemap location
 Sitemap: https://outsourcesu.com/sitemap.xml
 
+
+Allow: /blog/
+
 # Allow important directories
 Allow: /attached_assets/
 Allow: /js/

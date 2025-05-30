@@ -29,6 +29,8 @@ function loadHeader() {
         .then(data => {
             // Clean the data to ensure no stray content
             const cleanData = data.trim();
+            // Clear any existing content first
+            headerElement.innerHTML = '';
             headerElement.innerHTML = cleanData;
             window.componentsLoaded.header = true;
 
@@ -37,7 +39,7 @@ function loadHeader() {
                 if (!window.isNavigationInitialized) {
                     initializeNavigation();
                 }
-            }, 300);
+            }, 100);
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -101,6 +103,9 @@ function initializeNavigation() {
         console.log('Navigation already initialized, skipping...');
         return;
     }
+    
+    // Mark as initializing to prevent duplicate calls
+    window.isNavigationInitialized = true;
 
     // Wait for elements to be available
     setTimeout(() => {
@@ -195,7 +200,6 @@ function initializeNavigation() {
                 }
             });
 
-            window.isNavigationInitialized = true;
             console.log('Navigation initialized successfully');
         } else {
             console.log('Navigation elements not found, retrying...');

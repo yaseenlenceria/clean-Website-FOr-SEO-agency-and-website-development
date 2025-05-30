@@ -312,3 +312,65 @@ window.initializeNavigation = initializeNavigation;
 window.createBlogPostCard = createBlogPostCard;
 window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;
+// Navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Navigation elements found, initializing...');
+
+    // Initialize navigation after components load
+    setTimeout(initializeNavigation, 100);
+
+    // Footer functionality
+    loadComponent('global-footer', 'components/footer.html');
+    loadComponent('global-header', 'components/header.html');
+});
+
+// Initialize navigation functionality
+function initializeNavigation() {
+    const navMenuElement = document.querySelector('.nav-menu');
+    const navToggleElement = document.querySelector('.nav-toggle');
+    const navLinkElements = document.querySelectorAll('.nav-link');
+
+    if (navToggleElement && navMenuElement) {
+        navToggleElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            navMenuElement.classList.toggle('active');
+            navToggleElement.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinkElements.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenuElement.classList.remove('active');
+                navToggleElement.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenuElement.contains(e.target) && !navToggleElement.contains(e.target)) {
+                navMenuElement.classList.remove('active');
+                navToggleElement.classList.remove('active');
+            }
+        });
+
+        console.log('Navigation initialized successfully');
+    }
+}
+
+// Load component function
+function loadComponent(elementId, componentPath) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        fetch(componentPath)
+            .then(response => response.text())
+            .then(html => {
+                element.innerHTML = html;
+
+                // Re-initialize navigation after header is loaded
+                if (elementId === 'global-header') {
+                    setTimeout(initializeNavigation, 100);
+                }
+            })
+            .catch(error => console.error('Error loading component:', error));
+    }
+}

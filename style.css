@@ -639,6 +639,60 @@ body {
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hero-buttons .btn,
+.hero-buttons .btn-primary-modern,
+.hero-buttons .btn-secondary-modern {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--text-white) !important;
+    text-decoration: none !important;
+    font-weight: var(--font-weight-bold);
+    font-size: clamp(14px, 3vw, 16px);
+    padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 28px);
+    border-radius: 30px;
+    min-height: 50px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+}
+
+.hero-buttons .btn-primary-modern {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
+    border: none;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.hero-buttons .btn-secondary-modern {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+    backdrop-filter: blur(10px);
+}
+
+.hero-buttons .btn i {
+    font-size: 16px;
+    color: inherit !important;
+    opacity: 0.9;
+}
+
+.hero-buttons .btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.hero-buttons .btn:hover,
+.hero-buttons .btn:focus,
+.hero-buttons .btn:active {
+    color: var(--text-white) !important;
+    text-decoration: none !important;
 }
 
 .trust-indicators {
@@ -896,15 +950,15 @@ body {
 
 /* Modern Buttons - Enhanced with Gradients and Responsive Design */
 .btn-primary-modern {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
-    color: var(--text-white);
+    color: var(--text-white) !important;
     padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
     border-radius: 30px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: var(--font-weight-bold);
     font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -917,6 +971,12 @@ body {
     white-space: nowrap;
     width: 100%;
     max-width: 280px;
+}
+
+.btn-primary-modern span,
+.btn-primary-modern i {
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 .btn-primary-modern::before {
@@ -963,17 +1023,17 @@ body {
 }
 
 .btn-secondary-modern {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
-    color: var(--text-white);
+    color: var(--text-white) !important;
     padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
     border: 2px solid;
     border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
     border-radius: 30px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: var(--font-weight-bold);
     font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -984,6 +1044,12 @@ body {
     white-space: nowrap;
     width: 100%;
     max-width: 280px;
+}
+
+.btn-secondary-modern span,
+.btn-secondary-modern i {
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 .btn-secondary-modern::before {
@@ -3876,6 +3942,33 @@ button:hover {
         margin-bottom: var(--spacing-xl);
         padding: 0 16px;
         box-sizing: border-box;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons .btn-primary-modern,
+    .hero-buttons .btn-secondary-modern {
+        width: 100%;
+        max-width: 300px;
+        color: var(--text-white) !important;
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-sm);
+        font-size: clamp(15px, 4vw, 18px);
+        padding: clamp(16px, 4vw, 20px) clamp(20px, 5vw, 28px);
+        min-height: 52px;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.4;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-buttons .btn i {
+        color: inherit !important;
+        font-size: clamp(14px, 3.5vw, 16px);
+        opacity: 0.9;
     }
 
     /* Proper mobile trust indicators with natural spacing */

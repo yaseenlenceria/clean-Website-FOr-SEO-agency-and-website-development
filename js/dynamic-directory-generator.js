@@ -35,7 +35,11 @@ class DynamicDirectoryGenerator {
             'Heating Engineer SEO',
             'Contractors SEO',
             'Medical SEO',
-            'Financial Services SEO'
+            'Financial Services SEO',
+            'Construction SEO',
+            'Professional Services',
+            'Real Estate SEO',
+            'Roofing SEO'
         ];
 
         this.companyName = 'OutsourceSU';
@@ -113,7 +117,11 @@ class DynamicDirectoryGenerator {
             'heating-engineer': 'Heating Engineer SEO',
             'contractors': 'Contractors SEO',
             'medical': 'Medical SEO',
-            'financial-services': 'Financial Services SEO'
+            'financial-services': 'Financial Services SEO',
+            'construction': 'Construction SEO',
+            'professional-services': 'Professional Services',
+            'real-estate': 'Real Estate SEO',
+            'roofing': 'Roofing SEO'
         };
         
         return serviceMap[serviceSlug] || serviceSlug.replace(/-/g, ' ') + ' SEO';
@@ -137,17 +145,61 @@ class DynamicDirectoryGenerator {
     }
 
     generateDirectoryPage() {
-        const container = document.querySelector('.directory-content, .container, main, .content-area');
+        const container = document.querySelector('.directory-main, .container, main, .content-area');
         if (!container) return;
 
         const directoryContent = `
-            <section class="directory-hero">
+            <!-- Hero Section - Matching Homepage Style -->
+            <section class="hero-modern">
+                <div class="floating-particles"></div>
                 <div class="container">
-                    <h1>UK SEO Services Directory</h1>
-                    <p>Professional SEO services across the United Kingdom. Find expert digital marketing solutions in your city.</p>
+                    <div class="hero-content-grid">
+                        <div class="hero-left">
+                            <div class="award-badge">
+                                <i class="fas fa-trophy"></i>
+                                <span>Trusted SEO Services Across the UK</span>
+                            </div>
+                            <h1>UK SEO Services Directory</h1>
+                            <p>Find professional SEO services across the United Kingdom. We help businesses in every major UK city achieve top Google rankings and drive more customers. Discover expert digital marketing solutions tailored to your location and industry.</p>
+                            <div class="hero-buttons">
+                                <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
+                                    <i class="fas fa-search"></i>
+                                    Get Your Free Audit
+                                </a>
+                                <a href="tel:+447411575188" class="btn btn-secondary-modern">
+                                    <i class="fas fa-phone"></i>
+                                    Call: 07411575188
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hero-right">
+                            <div class="audit-card">
+                                <div class="audit-header">
+                                    <span class="audit-label">Valuable Insights - Completely FREE</span>
+                                    <h3>FREE UK SEO AUDIT</h3>
+                                </div>
+                                <div class="audit-cta">
+                                    <a href="${this.baseUrl}/contact.html" class="btn-audit">
+                                        <i class="fas fa-search"></i>
+                                        Claim Your FREE Audit
+                                    </a>
+                                </div>
+                                <div class="audit-features">
+                                    <ul>
+                                        <li>✓ 47-point website analysis</li>
+                                        <li>✓ UK competitor research</li>
+                                        <li>✓ Custom SEO action plan</li>
+                                        <li>✓ No obligations • Takes 2 minutes</li>
+                                        <li>✓ Insights from 500+ UK businesses</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
+            <!-- Search and Filter Section -->
             <section class="directory-search">
                 <div class="container">
                     <div class="search-controls">
@@ -168,16 +220,7 @@ class DynamicDirectoryGenerator {
                             </select>
                             <select id="service-filter">
                                 <option value="">All Services</option>
-                                <option value="Law Firm SEO">Law Firm SEO</option>
-                                <option value="Dentist SEO">Dentist SEO</option>
-                                <option value="Accountant SEO">Accountant SEO</option>
-                                <option value="Architect SEO">Architect SEO</option>
-                                <option value="Plumber SEO">Plumber SEO</option>
-                                <option value="Electrician SEO">Electrician SEO</option>
-                                <option value="Heating Engineer SEO">Heating Engineer SEO</option>
-                                <option value="Contractors SEO">Contractors SEO</option>
-                                <option value="Medical SEO">Medical SEO</option>
-                                <option value="Financial Services SEO">Financial Services SEO</option>
+                                ${this.services.map(service => `<option value="${service}">${service}</option>`).join('')}
                             </select>
                             <button type="button" id="reset-filters" class="btn btn-outline-modern">
                                 <i class="fas fa-undo"></i>
@@ -191,9 +234,13 @@ class DynamicDirectoryGenerator {
                 </div>
             </section>
 
+            <!-- Cities Directory Section -->
             <section class="cities-directory">
                 <div class="container">
-                    <h2>SEO Services by City</h2>
+                    <div class="section-header-modern">
+                        <h2>Best SEO Services by City</h2>
+                        <p>Find expert SEO services in your UK city. We help local businesses dominate search results.</p>
+                    </div>
                     <div id="cities-container">
                         ${this.generateCitiesGrid()}
                     </div>
@@ -205,9 +252,13 @@ class DynamicDirectoryGenerator {
                 </div>
             </section>
 
+            <!-- Services Directory Section -->
             <section class="services-directory">
                 <div class="container">
-                    <h2>SEO Services by Industry</h2>
+                    <div class="section-header-modern">
+                        <h2>SEO Services by Industry</h2>
+                        <p>Specialized SEO solutions for different industries across the UK.</p>
+                    </div>
                     <div id="services-container">
                         ${this.generateServicesGrid()}
                     </div>
@@ -219,12 +270,22 @@ class DynamicDirectoryGenerator {
                 </div>
             </section>
 
-            <section class="contact-cta">
+            <!-- CTA Section - Matching Homepage -->
+            <section class="cta-section-modern">
                 <div class="container">
-                    <div class="cta-card">
-                        <h3>Ready to Dominate Your Local Market?</h3>
-                        <p>Get a free SEO audit and discover how we can help your business rank #1 in search results.</p>
-                        <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">Get Free SEO Audit</a>
+                    <div class="cta-content-modern">
+                        <h2>Ready to Dominate Your Local Market?</h2>
+                        <p>Get a free SEO audit and discover how we can help your business rank #1 in search results across the UK.</p>
+                        <div class="cta-buttons-modern">
+                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
+                                <i class="fas fa-rocket"></i>
+                                Get Free SEO Audit
+                            </a>
+                            <a href="tel:07411575188" class="btn btn-outline-modern">
+                                <i class="fas fa-phone"></i>
+                                Call: 07411575188
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -244,12 +305,22 @@ class DynamicDirectoryGenerator {
             citiesHtml += `
                 <div class="region-section">
                     <h3>${region}</h3>
-                    <div class="cities-grid">
+                    <div class="cities-grid-modern">
                         ${this.cities[region].map(city => `
-                            <div class="city-card">
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">${city} SEO Company</a></h4>
-                                <p>Professional SEO services in ${city}</p>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="learn-more">View Services →</a>
+                            <div class="city-card-modern" data-city="${city}" data-region="${region}">
+                                <div class="service-icon-modern">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Services in ${city}</a></h4>
+                                <p>Professional SEO services to help ${city} businesses dominate search results and drive more customers.</p>
+                                <div class="service-highlights">
+                                    <span class="highlight-tag">Local SEO</span>
+                                    <span class="highlight-tag">Google Rankings</span>
+                                    <span class="highlight-tag">Lead Generation</span>
+                                </div>
+                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="service-link">
+                                    View Services <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         `).join('')}
                     </div>
@@ -262,16 +333,47 @@ class DynamicDirectoryGenerator {
 
     generateServicesGrid() {
         return `
-            <div class="services-grid">
+            <div class="services-grid-modern">
                 ${this.services.map(service => `
-                    <div class="service-card">
-                        <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo">${service}</a></h4>
-                        <p>Specialized SEO for ${service.replace(' SEO', '').toLowerCase()} businesses</p>
-                        <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo" class="learn-more">Learn More →</a>
+                    <div class="service-card-modern" data-service="${service}">
+                        <div class="service-icon-modern">
+                            <i class="fas ${this.getServiceIcon(service)}"></i>
+                        </div>
+                        <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html">${service}</a></h4>
+                        <p>Specialized SEO strategies for ${service.replace(' SEO', '').toLowerCase()} businesses across the UK.</p>
+                        <div class="service-highlights">
+                            <span class="highlight-tag">Industry Expertise</span>
+                            <span class="highlight-tag">Proven Results</span>
+                            <span class="highlight-tag">UK-wide Coverage</span>
+                        </div>
+                        <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html" class="service-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 `).join('')}
             </div>
         `;
+    }
+
+    getServiceIcon(service) {
+        const iconMap = {
+            'Law Firm SEO': 'fa-balance-scale',
+            'Dentist SEO': 'fa-tooth',
+            'Accountant SEO': 'fa-calculator',
+            'Architect SEO': 'fa-drafting-compass',
+            'Plumber SEO': 'fa-wrench',
+            'Electrician SEO': 'fa-bolt',
+            'Heating Engineer SEO': 'fa-fire',
+            'Contractors SEO': 'fa-hammer',
+            'Medical SEO': 'fa-stethoscope',
+            'Financial Services SEO': 'fa-chart-line',
+            'Construction SEO': 'fa-hard-hat',
+            'Professional Services': 'fa-briefcase',
+            'Real Estate SEO': 'fa-home',
+            'Roofing SEO': 'fa-home'
+        };
+        
+        return iconMap[service] || 'fa-cog';
     }
 
     generateCityPage() {
@@ -283,7 +385,7 @@ class DynamicDirectoryGenerator {
                 <div class="container">
                     <h1>Best SEO Services in ${this.currentCity} | ${this.companyName}</h1>
                     <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${this.currentCity} SEO solutions. We leverage our extensive industry experience and acquired expertise to help businesses across industries get discovered online.</p>
-                    <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">Get Free ${this.currentCity} SEO Audit</a>
+                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${this.currentCity} SEO Audit</a>
                 </div>
             </section>
 
@@ -314,7 +416,7 @@ class DynamicDirectoryGenerator {
                 <div class="container">
                     <h1>${this.currentService} Services UK | ${this.companyName}</h1>
                     <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${serviceType} SEO solutions. We leverage our extensive industry experience and acquired expertise to help ${serviceType.toLowerCase()} businesses across industries get discovered online.</p>
-                    <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">Get Free ${serviceType} SEO Audit</a>
+                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${serviceType} SEO Audit</a>
                 </div>
             </section>
 
@@ -345,7 +447,7 @@ class DynamicDirectoryGenerator {
                 <div class="container">
                     <h1>${this.currentService} in ${this.currentCity} | ${this.companyName}</h1>
                     <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${this.currentCity} ${serviceType} SEO solutions. We leverage our extensive industry experience and acquired expertise to help ${serviceType.toLowerCase()} businesses in ${this.currentCity} get discovered online.</p>
-                    <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">Get Free ${this.currentCity} ${serviceType} SEO Audit</a>
+                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${this.currentCity} ${serviceType} SEO Audit</a>
                 </div>
             </section>
 
@@ -479,14 +581,14 @@ class DynamicDirectoryGenerator {
                         <div class="contact-details">
                             <div class="contact-item">
                                 <i class="fas fa-phone"></i>
-                                <span>Call: 0800 123 4567</span>
+                                <span>Call: 07411575188</span>
                             </div>
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <span>Email: hello@outsourcesu.com</span>
                             </div>
                         </div>
-                        <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">Get Free SEO Audit</a>
+                        <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free SEO Audit</a>
                     </div>
                 </div>
             </section>
@@ -501,9 +603,9 @@ class DynamicDirectoryGenerator {
                     <div class="services-grid">
                         ${this.services.map(service => `
                             <div class="service-card">
-                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}">${service} in ${city}</a></h4>
+                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html">${service} in ${city}</a></h4>
                                 <p>Specialized ${service.toLowerCase()} for ${city} businesses</p>
-                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}" class="learn-more">Learn More →</a>
+                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html" class="learn-more">Learn More →</a>
                             </div>
                         `).join('')}
                     </div>
@@ -521,9 +623,9 @@ class DynamicDirectoryGenerator {
                     <div class="cities-grid">
                         ${allCities.slice(0, 12).map(city => `
                             <div class="city-card">
-                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}">${service} in ${city}</a></h4>
+                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html">${service} in ${city}</a></h4>
                                 <p>Expert ${service.toLowerCase()} services in ${city}</p>
-                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}" class="learn-more">Get Quote →</a>
+                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html" class="learn-more">Get Quote →</a>
                             </div>
                         `).join('')}
                     </div>
@@ -585,7 +687,7 @@ class DynamicDirectoryGenerator {
             clearBtn.style.display = searchTerm ? 'block' : 'none';
 
             // Filter cities
-            this.filterCities(searchTerm, selectedRegion);
+            this.filterCities(searchTerm, selectedRegion, selectedService);
             
             // Filter services
             this.filterServices(searchTerm, selectedService);
@@ -629,7 +731,7 @@ class DynamicDirectoryGenerator {
         });
     }
 
-    filterCities(searchTerm, selectedRegion) {
+    filterCities(searchTerm, selectedRegion, selectedService) {
         const citiesContainer = document.getElementById('cities-container');
         const noResultsDiv = document.getElementById('no-cities-results');
         const regionSections = citiesContainer.querySelectorAll('.region-section');
@@ -637,7 +739,7 @@ class DynamicDirectoryGenerator {
 
         regionSections.forEach(section => {
             const regionName = section.querySelector('h3').textContent;
-            const cityCards = section.querySelectorAll('.city-card');
+            const cityCards = section.querySelectorAll('.city-card-modern');
             let visibleCitiesInRegion = 0;
 
             // Check if region matches filter
@@ -651,7 +753,9 @@ class DynamicDirectoryGenerator {
                     cityName.includes(searchTerm) || 
                     cityText.includes(searchTerm);
 
-                if (regionMatches && matchesSearch) {
+                const matchesService = !selectedService || cityText.includes(selectedService.toLowerCase());
+
+                if (regionMatches && matchesSearch && matchesService) {
                     card.style.display = 'block';
                     visibleCitiesInRegion++;
                     visibleCitiesCount++;
@@ -681,7 +785,7 @@ class DynamicDirectoryGenerator {
     filterServices(searchTerm, selectedService) {
         const servicesContainer = document.getElementById('services-container');
         const noResultsDiv = document.getElementById('no-services-results');
-        const serviceCards = servicesContainer.querySelectorAll('.service-card');
+        const serviceCards = servicesContainer.querySelectorAll('.service-card-modern');
         let visibleServicesCount = 0;
 
         serviceCards.forEach(card => {
@@ -706,10 +810,10 @@ class DynamicDirectoryGenerator {
         // Show/hide no results message
         if (visibleServicesCount === 0) {
             noResultsDiv.style.display = 'block';
-            servicesContainer.querySelector('.services-grid').style.display = 'none';
+            servicesContainer.querySelector('.services-grid-modern').style.display = 'none';
         } else {
             noResultsDiv.style.display = 'none';
-            servicesContainer.querySelector('.services-grid').style.display = 'grid';
+            servicesContainer.querySelector('.services-grid-modern').style.display = 'grid';
         }
     }
 
@@ -717,8 +821,8 @@ class DynamicDirectoryGenerator {
         const resultsCount = document.getElementById('results-count');
         if (!resultsCount) return;
 
-        const visibleCities = document.querySelectorAll('.city-card[style*="display: block"], .city-card:not([style*="display: none"])').length;
-        const visibleServices = document.querySelectorAll('.service-card[style*="display: block"], .service-card:not([style*="display: none"])').length;
+        const visibleCities = document.querySelectorAll('.city-card-modern[style*="display: block"], .city-card-modern:not([style*="display: none"])').length;
+        const visibleServices = document.querySelectorAll('.service-card-modern[style*="display: block"], .service-card-modern:not([style*="display: none"])').length;
         
         const totalVisible = visibleCities + visibleServices;
         

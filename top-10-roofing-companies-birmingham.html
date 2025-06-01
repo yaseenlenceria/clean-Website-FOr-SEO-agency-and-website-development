@@ -244,7 +244,7 @@
         }
         
         .services-section-modern {
-            background: background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             padding: 80px 0;
             margin: 60px 0;
         }
@@ -265,12 +265,36 @@
         }
         
         .service-card-modern {
-            background: background: linear-gradient(45deg, #1a1a1a, #333);
+            background: linear-gradient(45deg, #1a1a1a, #333);
             padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .service-card-modern h3 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        
+        .service-card-modern ul {
+            color: #e9ecef;
+        }
+        
+        .service-card-modern li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .service-card-modern li:before {
+            content: "✓";
+            color: #FFD700;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
         
         .service-card-modern:hover {
@@ -310,11 +334,20 @@
         }
         
         .faq-item-modern {
-            background: #f8f9fa;
+            background: rgba(255,255,255,0.1);
             border-radius: 15px;
             margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .faq-answer-modern {
+            padding: 25px 30px;
+            color: #e9ecef;
+            line-height: 1.6;
+            display: none;
+            background: rgba(255,255,255,0.05);
         }
         
         .faq-question-modern {
@@ -338,13 +371,6 @@
             font-weight: 600;
         }
         
-        .faq-answer-modern {
-            padding: 25px 30px;
-            color: #555;
-            line-height: 1.6;
-            display: none;
-        }
-        
         .faq-answer-modern.active {
             display: block;
         }
@@ -359,14 +385,56 @@
                 font-size: 2rem;
             }
             
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
             .company-header {
                 flex-direction: column;
                 text-align: center;
+                gap: 15px;
             }
             
             .services-grid-modern {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+            
+            .modern-company-card {
+                padding: 20px;
+            }
+            
+            .ranking-badge-modern {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+            
+            .faq-question-modern {
+                padding: 20px;
+            }
+            
+            .faq-answer-modern {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 15px;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.75rem;
+            }
+            
+            .services-tags {
+                justify-content: center;
+            }
+            
+            .service-tag {
+                font-size: 0.8rem;
+                padding: 6px 12px;
             }
         }
     </style>
@@ -933,13 +1001,18 @@
     <script>
         function toggleFaq(element) {
             const answer = element.nextElementSibling;
-            const icon = element.querySelector('i');
+            const icon = element.querySelector('i.fas');
+            
+            if (!answer || !icon) return;
             
             // Close all other FAQs
             document.querySelectorAll('.faq-answer-modern').forEach(otherAnswer => {
-                if (otherAnswer !== answer) {
+                if (otherAnswer !== answer && otherAnswer.classList.contains('active')) {
                     otherAnswer.classList.remove('active');
-                    otherAnswer.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                    const otherIcon = otherAnswer.previousElementSibling.querySelector('i.fas');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
                 }
             });
             

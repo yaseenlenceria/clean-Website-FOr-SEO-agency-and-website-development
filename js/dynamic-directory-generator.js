@@ -311,8 +311,8 @@ class DynamicDirectoryGenerator {
                                 <div class="service-icon-modern">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Services in ${city}</a></h4>
-                                <p>Professional SEO services to help ${city} businesses dominate search results and drive more customers.</p>
+                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Company in ${city}</a></h4>
+                                <p>Leading SEO company helping ${city} businesses dominate search results and drive more customers.</p>
                                 <div class="service-highlights">
                                     <span class="highlight-tag">Local SEO</span>
                                     <span class="highlight-tag">Google Rankings</span>

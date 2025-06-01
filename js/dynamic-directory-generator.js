@@ -148,52 +148,6 @@ class DynamicDirectoryGenerator {
         const container = document.querySelector('.directory-main, .container, main, .content-area');
         if (!container) return;
 
-        const content = `
-            <!-- Directory Search Section -->
-            <section class="directory-search">
-                <div class="container">
-                    <div class="search-controls">
-                        <div class="search-group">
-                            <input type="text" id="city-search" placeholder="Search cities..." class="search-input">
-                            <select id="region-filter" class="search-select">
-                                <option value="">All Regions</option>
-                                <option value="England">England</option>
-                                <option value="Scotland">Scotland</option>
-                                <option value="Wales">Wales</option>
-                                <option value="Northern Ireland">Northern Ireland</option>
-                            </select>
-                            <select id="service-filter" class="search-select">
-                                <option value="">All Services</option>
-                                ${this.services.map(service => `<option value="${service}">${service}</option>`).join('')}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Cities Directory Section -->
-            <section class="cities-directory">
-                <div class="container">
-                    <div class="section-header-modern">
-                        <h2>Best SEO Services by City</h2>
-                        <p>Find expert SEO services in your UK city. We help local businesses dominate search results.</p>
-                    </div>
-                    <div id="cities-container">
-                        ${this.generateCitiesGrid()}
-                    </div>
-                    <div id="no-cities-results" class="no-results" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <h3>No cities found</h3>
-                        <p>Try adjusting your search terms or filters.</p>
-                    </div>
-                </div>
-            </section>
-        `;
-
-        container.innerHTML = content;
-        this.initializeSearch();
-    }
-
         const directoryContent = `
             <!-- Hero Section - Matching Homepage Style -->
             <section class="hero-modern">
@@ -357,14 +311,14 @@ class DynamicDirectoryGenerator {
                                 <div class="service-icon-modern">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                                <h4><a href="best-seo-company-${this.slugify(city)}.html">Best SEO Company in ${city}</a></h4>
-                                <p>Leading SEO company helping ${city} businesses dominate search results and drive more customers.</p>
+                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Services in ${city}</a></h4>
+                                <p>Professional SEO services to help ${city} businesses dominate search results and drive more customers.</p>
                                 <div class="service-highlights">
                                     <span class="highlight-tag">Local SEO</span>
                                     <span class="highlight-tag">Google Rankings</span>
                                     <span class="highlight-tag">Lead Generation</span>
                                 </div>
-                                <a href="best-seo-company-${this.slugify(city)}.html" class="service-link">
+                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="service-link">
                                     View Services <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -385,14 +339,14 @@ class DynamicDirectoryGenerator {
                         <div class="service-icon-modern">
                             <i class="fas ${this.getServiceIcon(service)}"></i>
                         </div>
-                        <h4><a href="best-${this.slugify(service.replace(' SEO', ''))}-seo-services-uk.html">${service}</a></h4>
+                        <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html">${service}</a></h4>
                         <p>Specialized SEO strategies for ${service.replace(' SEO', '').toLowerCase()} businesses across the UK.</p>
                         <div class="service-highlights">
                             <span class="highlight-tag">Industry Expertise</span>
                             <span class="highlight-tag">Proven Results</span>
                             <span class="highlight-tag">UK-wide Coverage</span>
                         </div>
-                        <a href="best-${this.slugify(service.replace(' SEO', ''))}-seo-services-uk.html" class="service-link">
+                        <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html" class="service-link">
                             Learn More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -424,7 +378,7 @@ class DynamicDirectoryGenerator {
 
     generateCityPage() {
         const container = document.querySelector('.page-header, .hero-modern, main');
-        if (!container) return;ner) return;
+        if (!container) return;
 
         const cityContent = `
             <section class="city-hero">
@@ -452,101 +406,9 @@ class DynamicDirectoryGenerator {
         );
     }
 
-    generateCitiesGrid() {
-        let html = '';
-        Object.keys(this.cities).forEach(region => {
-            this.cities[region].forEach(city => {
-                html += `
-                    <div class="city-card-modern" data-region="${region}" data-city="${city}">
-                        <div class="service-icon-modern">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h4><a href="best-seo-company-${this.slugify(city)}.html">Best SEO Company in ${city}</a></h4>
-                        <p>Leading SEO company helping ${city} businesses dominate search results and drive more customers.</p>
-                        <div class="service-highlights">
-                            <span class="highlight-tag">Local SEO</span>
-                            <span class="highlight-tag">Google Rankings</span>
-                            <span class="highlight-tag">Lead Generation</span>
-                        </div>
-                        <div class="service-cta">
-                            <a href="best-seo-company-${this.slugify(city)}.html" class="btn-service-cta">
-                                <i class="fas fa-arrow-right"></i>
-                                View Services
-                            </a>
-                        </div>
-                    </div>
-                `;
-            });
-        });
-        return html;
-    }
-
-    initializeSearch() {
-        const citySearch = document.getElementById('city-search');
-        const regionFilter = document.getElementById('region-filter');
-        const serviceFilter = document.getElementById('service-filter');
-        const citiesContainer = document.getElementById('cities-container');
-        const noResults = document.getElementById('no-cities-results');
-
-        function filterCities() {
-            const searchTerm = citySearch?.value.toLowerCase() || '';
-            const selectedRegion = regionFilter?.value || '';
-            const selectedService = serviceFilter?.value || '';
-            
-            const cityCards = document.querySelectorAll('.city-card-modern');
-            let visibleCount = 0;
-
-            cityCards.forEach(card => {
-                const cityName = card.dataset.city.toLowerCase();
-                const region = card.dataset.region;
-                
-                const matchesSearch = cityName.includes(searchTerm);
-                const matchesRegion = !selectedRegion || region === selectedRegion;
-                const matchesService = !selectedService; // For now, all cities show all services
-                
-                if (matchesSearch && matchesRegion && matchesService) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (citiesContainer && noResults) {
-                if (visibleCount === 0) {
-                    citiesContainer.style.display = 'none';
-                    noResults.style.display = 'block';
-                } else {
-                    citiesContainer.style.display = 'grid';
-                    noResults.style.display = 'none';
-                }
-            }
-        }
-
-        if (citySearch) citySearch.addEventListener('input', filterCities);
-        if (regionFilter) regionFilter.addEventListener('change', filterCities);
-        if (serviceFilter) serviceFilter.addEventListener('change', filterCities);
-    }
-
-    slugify(text) {
-        return text.toLowerCase()
-            .replace(/[^a-z0-9 -]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .trim();
-    }
-
-    updatePageMeta(title, description) {
-        document.title = title;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-            metaDesc.setAttribute('content', description);
-        }
-    }
-
     generateServicePage() {
         const container = document.querySelector('.page-header, .hero-modern, main');
-        if (!container) return;ner) return;
+        if (!container) return;
 
         const serviceType = this.currentService.replace(' SEO', '');
         const serviceContent = `

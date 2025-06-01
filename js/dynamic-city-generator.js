@@ -218,35 +218,50 @@ class DynamicCityGenerator {
 
         const content = `
             <!-- Hero Section -->
-            <section class="city-hero">
+            <section class="hero-modern">
+                <div class="floating-particles"></div>
                 <div class="container">
-                    <div class="hero-content">
-                        <h1>Best ${this.service} in ${this.city} | ${this.companyName}</h1>
-                        <p>${this.companyName} is a professional ${serviceInfo.description} agency offering tried-and-tested ${this.city} solutions tailored according to your unique needs. We leverage our extensive industry experience and expertise to help businesses across ${cityInfo.region} get discovered online and achieve maximum ROI.</p>
-                        <div class="hero-cta">
-                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${this.city} SEO Audit</a>
-                            <a href="tel:+448001234567" class="btn btn-outline-modern">
-                                <i class="fas fa-phone"></i>
-                                Call Now: 0800 123 4567
-                            </a>
+                    <div class="hero-content-grid">
+                        <div class="hero-left">
+                            <div class="award-badge">
+                                <i class="fas fa-trophy"></i>
+                                <span>Trusted ${this.service} in ${this.city}</span>
+                            </div>
+                            <h1>Best ${this.service} in ${this.city} | ${this.companyName}</h1>
+                            <p>${this.companyName} is a professional ${serviceInfo.description} agency offering tried-and-tested ${this.city} solutions tailored according to your unique needs. We leverage our extensive industry experience and expertise to help businesses across ${cityInfo.region} get discovered online and achieve maximum ROI.</p>
+                            <div class="hero-buttons">
+                                <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
+                                    <i class="fas fa-search"></i>
+                                    Get Free ${this.city} SEO Audit
+                                </a>
+                                <a href="tel:+447411575188" class="btn btn-secondary-modern">
+                                    <i class="fas fa-phone"></i>
+                                    Call: 07411575188
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <strong>500+</strong>
-                            <span>Local Clients</span>
-                        </div>
-                        <div class="stat-item">
-                            <strong>300%</strong>
-                            <span>Average Traffic Increase</span>
-                        </div>
-                        <div class="stat-item">
-                            <strong>98%</strong>
-                            <span>Client Satisfaction</span>
-                        </div>
-                        <div class="stat-item">
-                            <strong>15+</strong>
-                            <span>Years Experience</span>
+                        <div class="hero-right">
+                            <div class="audit-card">
+                                <div class="audit-header">
+                                    <span class="audit-label">Valuable Insights - Completely FREE</span>
+                                    <h3>FREE ${this.city.toUpperCase()} SEO AUDIT</h3>
+                                </div>
+                                <div class="audit-cta">
+                                    <a href="${this.baseUrl}/contact.html" class="btn-audit">
+                                        <i class="fas fa-search"></i>
+                                        Claim Your FREE Audit
+                                    </a>
+                                </div>
+                                <div class="audit-features">
+                                    <ul>
+                                        <li>✓ 47-point website analysis</li>
+                                        <li>✓ ${this.city} competitor research</li>
+                                        <li>✓ Custom SEO action plan</li>
+                                        <li>✓ No obligations • Takes 2 minutes</li>
+                                        <li>✓ Insights from 500+ UK businesses</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -541,14 +556,14 @@ class DynamicCityGenerator {
                                 <i class="fas fa-phone"></i>
                                 <div>
                                     <strong>Call Us</strong>
-                                    <span>0800 123 4567</span>
+                                    <span>07411575188</span>
                                 </div>
                             </div>
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
                                     <strong>Email Us</strong>
-                                    <span>hello@outsourcesu.com</span>
+                                    <span>info@outsourcesu.com</span>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -567,8 +582,14 @@ class DynamicCityGenerator {
                             </div>
                         </div>
                         <div class="cta-buttons">
-                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free Consultation</a>
-                            <a href="tel:+448001234567" class="btn btn-outline-modern">Call Now</a>
+                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
+                                <i class="fas fa-rocket"></i>
+                                Get Free Consultation
+                            </a>
+                            <a href="tel:+447411575188" class="btn btn-outline-modern">
+                                <i class="fas fa-phone"></i>
+                                Call: 07411575188
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -638,8 +659,8 @@ class DynamicCityGenerator {
                 "@type": "Organization",
                 "name": this.companyName,
                 "url": this.baseUrl,
-                "telephone": "+44-800-123-4567",
-                "email": "hello@outsourcesu.com"
+                "telephone": "+447411575188",
+                "email": "info@outsourcesu.com"
             },
             "priceRange": "£500-£5000",
             "aggregateRating": {

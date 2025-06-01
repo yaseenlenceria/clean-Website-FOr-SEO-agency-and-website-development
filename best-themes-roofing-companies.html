@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Themes for Roofing Companies UK | Professional Website Templates</title>
+    <meta name="description" content="Premium website themes designed specifically for roofing companies in the UK. Professional, responsive templates that convert visitors into customers.">
+    <meta name="keywords" content="roofing website themes, roofing company templates, website design for roofers, professional roofing themes UK">
+    <meta name="author" content="OutsourceSU">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://outsourcesu.com/best-themes-roofing-companies">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Best Themes for Roofing Companies UK | Professional Website Templates">
+    <meta property="og:description" content="Premium website themes designed specifically for roofing companies in the UK. Professional, responsive templates that convert visitors into customers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://outsourcesu.com/best-themes-roofing-companies">
+    <meta property="og:image" content="https://outsourcesu.com/attached_assets/logo1.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Best Themes for Roofing Companies UK">
+    <meta name="twitter:description" content="Premium website themes designed specifically for roofing companies in the UK.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .theme-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid var(--border-dark);
+        }
+
+        .theme-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(255, 107, 53, 0.2);
+        }
+
+        .theme-preview {
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .theme-info {
+            padding: 24px;
+        }
+
+        .theme-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 8px;
+        }
+
+        .theme-description {
+            color: var(--text-light-gray);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .theme-features {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        .theme-features li {
+            color: var(--text-light-gray);
+            font-size: 13px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-features li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .theme-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .price-tag {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--text-light-gray);
+        }
+
+        .theme-cta {
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .bestseller-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .themes-hero {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .themes-hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 16px;
+        }
+
+        .themes-hero p {
+            font-size: 18px;
+            color: var(--text-light-gray);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            color: var(--text-light-gray);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <script src="js/components.js"></script>
+    <div id="global-header"></div>
+
+    <!-- Hero Section -->
+    <section class="themes-hero">
+        <div class="container">
+            <h1>Best Themes for Roofing Companies</h1>
+            <p>Professional, conversion-optimized website themes designed specifically for roofing contractors and companies in the UK</p>
+            
+            <div class="filter-tabs">
+                <a href="#" class="filter-tab active">All Themes</a>
+                <a href="#" class="filter-tab">Commercial</a>
+                <a href="#" class="filter-tab">Residential</a>
+                <a href="#" class="filter-tab">Modern</a>
+                <a href="#" class="filter-tab">Classic</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes Grid -->
+    <section class="themes-section">
+        <div class="container">
+            <div class="themes-grid">
+                <!-- Theme 1 - Premium Roofing Pro -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <div class="bestseller-badge">Best Seller</div>
+                        <img src="attached_assets/best_SEO_for_construction_industry_in_uk.png" alt="Premium Roofing Pro Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Premium Roofing Pro</h3>
+                        <p class="theme-description">Modern, professional theme perfect for established roofing companies. Features lead capture forms, service galleries, and customer testimonials.</p>
+                        <ul class="theme-features">
+                            <li>Mobile-responsive design</li>
+                            <li>Lead capture forms</li>
+                            <li>Service gallery showcase</li>
+                            <li>Customer testimonials</li>
+                            <li>Emergency contact button</li>
+                            <li>SEO optimized</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£299</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 2 - Commercial Roofing Elite -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <img src="attached_assets/best_SEO_for_construction_industry_in_uk1.png" alt="Commercial Roofing Elite Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Commercial Roofing Elite</h3>
+                        <p class="theme-description">Designed for commercial roofing contractors. Features project portfolios, industry certifications, and business-focused layouts.</p>
+                        <ul class="theme-features">
+                            <li>Commercial project showcase</li>
+                            <li>Certification displays</li>
+                            <li>Quote request system</li>
+                            <li>Insurance information</li>
+                            <li>Team member profiles</li>
+                            <li>Contact forms</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£349</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 3 - Local Roofer -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <img src="attached_assets/Screenshot_52-removebg-preview.png" alt="Local Roofer Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Local Roofer</h3>
+                        <p class="theme-description">Perfect for local roofing contractors. Features local SEO optimization, service area maps, and community-focused design.</p>
+                        <ul class="theme-features">
+                            <li>Local SEO optimized</li>
+                            <li>Service area mapping</li>
+                            <li>Before/after galleries</li>
+                            <li>Emergency service callouts</li>
+                            <li>Customer review sections</li>
+                            <li>Social media integration</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£199</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 4 - Roof Repair Specialist -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <img src="attached_assets/Screenshot_56-removebg-preview.png" alt="Roof Repair Specialist Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Roof Repair Specialist</h3>
+                        <p class="theme-description">Focused on roof repair services. Features emergency contact options, service descriptions, and trust-building elements.</p>
+                        <ul class="theme-features">
+                            <li>Emergency repair focus</li>
+                            <li>Service pricing guides</li>
+                            <li>Trust badges & certifications</li>
+                            <li>Video testimonials</li>
+                            <li>Online booking system</li>
+                            <li>Insurance claim support</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£249</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 5 - Modern Roofing Solutions -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <img src="attached_assets/new-logo.png" alt="Modern Roofing Solutions Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Modern Roofing Solutions</h3>
+                        <p class="theme-description">Contemporary design for forward-thinking roofing companies. Features modern layouts, video backgrounds, and interactive elements.</p>
+                        <ul class="theme-features">
+                            <li>Modern, sleek design</li>
+                            <li>Video background support</li>
+                            <li>Interactive service selector</li>
+                            <li>Material showcase</li>
+                            <li>Warranty information</li>
+                            <li>Live chat integration</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£399</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 6 - Budget Roofing Starter -->
+                <div class="theme-card">
+                    <div class="theme-preview">
+                        <img src="attached_assets/Screenshot_54.jpg" alt="Budget Roofing Starter Theme Preview">
+                    </div>
+                    <div class="theme-info">
+                        <h3 class="theme-title">Budget Roofing Starter</h3>
+                        <p class="theme-description">Affordable option for new roofing businesses. Clean, simple design with essential features to get started online.</p>
+                        <ul class="theme-features">
+                            <li>Clean, simple design</li>
+                            <li>Essential contact forms</li>
+                            <li>Service listings</li>
+                            <li>Basic gallery</li>
+                            <li>Mobile optimized</li>
+                            <li>Easy customization</li>
+                        </ul>
+                        <div class="theme-price">
+                            <div>
+                                <span class="price-tag">£99</span>
+                                <span class="price-period">one-time</span>
+                            </div>
+                            <a href="contact.html" class="theme-cta">
+                                <i class="fas fa-shopping-cart"></i>
+                                Purchase Theme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header-modern">
+                <h2>Why Choose Our Roofing Themes?</h2>
+                <p>Professional themes designed specifically for the roofing industry</p>
+            </div>
+            <div class="services-grid-modern">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Responsive</h3>
+                    <p>All themes are fully responsive and optimized for mobile devices, ensuring your website looks perfect on all screen sizes.</p>
+                </div>
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimized</h3>
+                    <p>Built with SEO best practices to help your roofing website rank higher in Google search results.</p>
+                </div>
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized code and lightweight design ensure fast loading times for better user experience and SEO.</p>
+                </div>
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Easy Customization</h3>
+                    <p>Simple to customize with your company colors, logo, and content. No coding knowledge required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-modern">
+        <div class="container">
+            <div class="cta-content-modern">
+                <h2>Ready to Launch Your Professional Roofing Website?</h2>
+                <p>Get a premium theme designed specifically for roofing companies and start attracting more customers online.</p>
+                <div class="cta-buttons-modern">
+                    <a href="contact.html" class="btn btn-primary-modern">
+                        <i class="fas fa-shopping-cart"></i>
+                        Browse All Themes
+                    </a>
+                    <a href="contact.html" class="btn btn-outline-modern">
+                        <i class="fas fa-question-circle"></i>
+                        Custom Theme Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <div id="global-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

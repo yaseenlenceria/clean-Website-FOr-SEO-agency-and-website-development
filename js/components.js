@@ -1,3 +1,4 @@
+
 // Global variables for navigation
 if (typeof window.navMenu === 'undefined') {
     window.navMenu = null;
@@ -92,7 +93,7 @@ function loadFooter() {
         })
         .then(data => {
             footerElement.innerHTML = data;
-            componentsLoaded.footer = true;
+            window.componentsLoaded.footer = true;
         })
         .catch(error => {
             console.error('Error loading footer:', error);
@@ -290,7 +291,7 @@ function initializeNavigation() {
                 }
             }, { passive: false });
 
-            } else {
+        } else {
             // Reset initialization flag if elements not found
             window.isNavigationInitialized = false;
             // Retry after another delay
@@ -384,6 +385,28 @@ function formatDate(dateString) {
     });
 }
 
+// Load component function (kept for backwards compatibility)
+function loadComponent(elementId, componentPath) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        fetch(componentPath)
+            .then(response => response.text())
+            .then(html => {
+                element.innerHTML = html;
+
+                // Re-initialize navigation after header is loaded
+                if (elementId === 'global-header') {
+                    setTimeout(() => {
+                        if (!window.isNavigationInitialized) {
+                            initializeNavigation();
+                        }
+                    }, 200);
+                }
+            })
+            .catch(error => console.error('Error loading component:', error));
+    }
+}
+
 // Load components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
@@ -424,28 +447,4 @@ window.initializeNavigation = initializeNavigation;
 window.createBlogPostCard = createBlogPostCard;
 window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;
-// Load component function (kept for backwards compatibility)
-function loadComponent(elementId, componentPath) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        fetch(componentPath)
-            .then(response => response.text())
-            .then(html => {
-                element.innerHTML = html;
-
-                // Re-initialize navigation after header is loaded
-                if (elementId === 'global-header') {
-                    setTimeout(() => {
-                        if (!window.isNavigationInitialized) {
-                            initializeNavigation();
-                        }
-                    }, 200);
-                }
-            })
-            .catch(error => console.error('Error loading component:', error));
-    }
-}
-
-// Export functions for global access
 window.loadComponent = loadComponent;
-```

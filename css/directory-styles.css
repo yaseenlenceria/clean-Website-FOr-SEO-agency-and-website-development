@@ -7,6 +7,123 @@
     text-align: center;
 }
 
+/* Search and Filter Styles */
+.directory-search {
+    padding: 40px 0;
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.search-controls {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 18px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 15px 20px 15px 55px;
+    border: 2px solid #e9ecef;
+    border-radius: 50px;
+    font-size: 16px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #ff6b35;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.clear-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.filter-options {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-options select {
+    padding: 10px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    background: #f8f9fa;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.filter-options select:focus {
+    outline: none;
+    border-color: #ff6b35;
+    background: white;
+}
+
+.search-results-info {
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* No Results Styles */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.no-results i {
+    font-size: 4rem;
+    color: #e9ecef;
+    margin-bottom: 20px;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    font-size: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .directory-hero h1, .city-hero h1, .service-hero h1, .combined-hero h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -326,5 +443,51 @@
     
     .process-steps {
         grid-template-columns: 1fr;
+    }
+
+    /* Mobile search styles */
+    .filter-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-options select {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .search-bar input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .directory-search {
+        padding: 20px 0;
+    }
+
+    .search-controls {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar input {
+        padding: 12px 15px 12px 45px;
+    }
+
+    .search-bar i {
+        left: 15px;
+        font-size: 16px;
+    }
+
+    .clear-btn {
+        right: 10px;
+    }
+
+    .no-results i {
+        font-size: 3rem;
+    }
+
+    .no-results {
+        padding: 40px 15px;
     }
 }

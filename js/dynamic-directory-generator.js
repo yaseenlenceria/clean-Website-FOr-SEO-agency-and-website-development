@@ -148,17 +148,74 @@ class DynamicDirectoryGenerator {
                 </div>
             </section>
 
+            <section class="directory-search">
+                <div class="container">
+                    <div class="search-controls">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="directory-search" placeholder="Search cities, regions, or services..." />
+                            <button type="button" id="clear-search" class="clear-btn" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="filter-options">
+                            <select id="region-filter">
+                                <option value="">All Regions</option>
+                                <option value="England">England</option>
+                                <option value="Scotland">Scotland</option>
+                                <option value="Wales">Wales</option>
+                                <option value="Northern Ireland">Northern Ireland</option>
+                            </select>
+                            <select id="service-filter">
+                                <option value="">All Services</option>
+                                <option value="Law Firm SEO">Law Firm SEO</option>
+                                <option value="Dentist SEO">Dentist SEO</option>
+                                <option value="Accountant SEO">Accountant SEO</option>
+                                <option value="Architect SEO">Architect SEO</option>
+                                <option value="Plumber SEO">Plumber SEO</option>
+                                <option value="Electrician SEO">Electrician SEO</option>
+                                <option value="Heating Engineer SEO">Heating Engineer SEO</option>
+                                <option value="Contractors SEO">Contractors SEO</option>
+                                <option value="Medical SEO">Medical SEO</option>
+                                <option value="Financial Services SEO">Financial Services SEO</option>
+                            </select>
+                            <button type="button" id="reset-filters" class="btn btn-outline-modern">
+                                <i class="fas fa-undo"></i>
+                                Reset Filters
+                            </button>
+                        </div>
+                    </div>
+                    <div class="search-results-info">
+                        <span id="results-count"></span>
+                    </div>
+                </div>
+            </section>
+
             <section class="cities-directory">
                 <div class="container">
                     <h2>SEO Services by City</h2>
-                    ${this.generateCitiesGrid()}
+                    <div id="cities-container">
+                        ${this.generateCitiesGrid()}
+                    </div>
+                    <div id="no-cities-results" class="no-results" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No cities found</h3>
+                        <p>Try adjusting your search terms or filters.</p>
+                    </div>
                 </div>
             </section>
 
             <section class="services-directory">
                 <div class="container">
                     <h2>SEO Services by Industry</h2>
-                    ${this.generateServicesGrid()}
+                    <div id="services-container">
+                        ${this.generateServicesGrid()}
+                    </div>
+                    <div id="no-services-results" class="no-results" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No services found</h3>
+                        <p>Try adjusting your search terms or filters.</p>
+                    </div>
                 </div>
             </section>
 
@@ -175,6 +232,9 @@ class DynamicDirectoryGenerator {
 
         container.innerHTML = directoryContent;
         this.updatePageMeta('SEO Services Directory UK', 'Find professional SEO services across the UK. Expert digital marketing solutions for all industries and cities.');
+        
+        // Initialize search functionality
+        this.initializeDirectorySearch();
     }
 
     generateCitiesGrid() {
@@ -503,6 +563,170 @@ class DynamicDirectoryGenerator {
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
             .trim();
+    }
+
+    initializeDirectorySearch() {
+        const searchInput = document.getElementById('directory-search');
+        const clearBtn = document.getElementById('clear-search');
+        const regionFilter = document.getElementById('region-filter');
+        const serviceFilter = document.getElementById('service-filter');
+        const resetBtn = document.getElementById('reset-filters');
+        const resultsCount = document.getElementById('results-count');
+
+        if (!searchInput) return;
+
+        // Search functionality
+        const performSearch = () => {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const selectedRegion = regionFilter.value;
+            const selectedService = serviceFilter.value;
+
+            // Show/hide clear button
+            clearBtn.style.display = searchTerm ? 'block' : 'none';
+
+            // Filter cities
+            this.filterCities(searchTerm, selectedRegion);
+            
+            // Filter services
+            this.filterServices(searchTerm, selectedService);
+
+            // Update results count
+            this.updateResultsCount();
+        };
+
+        // Event listeners
+        searchInput.addEventListener('input', performSearch);
+        regionFilter.addEventListener('change', performSearch);
+        serviceFilter.addEventListener('change', performSearch);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            performSearch();
+            searchInput.focus();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            regionFilter.value = '';
+            serviceFilter.value = '';
+            clearBtn.style.display = 'none';
+            performSearch();
+        });
+
+        // Initial count
+        this.updateResultsCount();
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+        });
+    }
+
+    filterCities(searchTerm, selectedRegion) {
+        const citiesContainer = document.getElementById('cities-container');
+        const noResultsDiv = document.getElementById('no-cities-results');
+        const regionSections = citiesContainer.querySelectorAll('.region-section');
+        let visibleCitiesCount = 0;
+
+        regionSections.forEach(section => {
+            const regionName = section.querySelector('h3').textContent;
+            const cityCards = section.querySelectorAll('.city-card');
+            let visibleCitiesInRegion = 0;
+
+            // Check if region matches filter
+            const regionMatches = !selectedRegion || regionName === selectedRegion;
+
+            cityCards.forEach(card => {
+                const cityName = card.querySelector('h4 a').textContent.toLowerCase();
+                const cityText = card.textContent.toLowerCase();
+
+                const matchesSearch = !searchTerm || 
+                    cityName.includes(searchTerm) || 
+                    cityText.includes(searchTerm);
+
+                if (regionMatches && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCitiesInRegion++;
+                    visibleCitiesCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide region section
+            if (visibleCitiesInRegion > 0) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // Show/hide no results message
+        if (visibleCitiesCount === 0) {
+            noResultsDiv.style.display = 'block';
+            citiesContainer.style.display = 'none';
+        } else {
+            noResultsDiv.style.display = 'none';
+            citiesContainer.style.display = 'block';
+        }
+    }
+
+    filterServices(searchTerm, selectedService) {
+        const servicesContainer = document.getElementById('services-container');
+        const noResultsDiv = document.getElementById('no-services-results');
+        const serviceCards = servicesContainer.querySelectorAll('.service-card');
+        let visibleServicesCount = 0;
+
+        serviceCards.forEach(card => {
+            const serviceName = card.querySelector('h4 a').textContent.toLowerCase();
+            const serviceText = card.textContent.toLowerCase();
+
+            const matchesSearch = !searchTerm || 
+                serviceName.includes(searchTerm) || 
+                serviceText.includes(searchTerm);
+
+            const matchesFilter = !selectedService || 
+                card.querySelector('h4 a').textContent.includes(selectedService);
+
+            if (matchesSearch && matchesFilter) {
+                card.style.display = 'block';
+                visibleServicesCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/hide no results message
+        if (visibleServicesCount === 0) {
+            noResultsDiv.style.display = 'block';
+            servicesContainer.querySelector('.services-grid').style.display = 'none';
+        } else {
+            noResultsDiv.style.display = 'none';
+            servicesContainer.querySelector('.services-grid').style.display = 'grid';
+        }
+    }
+
+    updateResultsCount() {
+        const resultsCount = document.getElementById('results-count');
+        if (!resultsCount) return;
+
+        const visibleCities = document.querySelectorAll('.city-card[style*="display: block"], .city-card:not([style*="display: none"])').length;
+        const visibleServices = document.querySelectorAll('.service-card[style*="display: block"], .service-card:not([style*="display: none"])').length;
+        
+        const totalVisible = visibleCities + visibleServices;
+        
+        if (totalVisible === 0) {
+            resultsCount.textContent = 'No results found';
+        } else {
+            resultsCount.textContent = `Showing ${totalVisible} result${totalVisible !== 1 ? 's' : ''} (${visibleCities} cities, ${visibleServices} services)`;
+        }
     }
 }
 

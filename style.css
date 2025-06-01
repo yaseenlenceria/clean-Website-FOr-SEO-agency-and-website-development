@@ -654,14 +654,21 @@ body {
     text-decoration: none !important;
     font-weight: var(--font-weight-bold);
     font-size: clamp(14px, 3vw, 16px);
-    padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 28px);
+    padding: clamp(16px, 3.5vw, 20px) clamp(20px, 4vw, 28px);
     border-radius: 30px;
-    min-height: 50px;
-    white-space: nowrap;
+    min-height: 54px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.4;
     transition: all 0.3s ease;
     position: relative;
     overflow: visible;
     z-index: 2;
+    width: auto;
+    min-width: 180px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-buttons .btn-primary-modern {
@@ -956,7 +963,7 @@ body {
     gap: var(--spacing-xs);
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 25%, var(--primary-light) 50%, #f7931e 100%);
     color: var(--text-white) !important;
-    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 28px);
     border-radius: 30px;
     text-decoration: none !important;
     font-weight: var(--font-weight-bold);
@@ -965,12 +972,18 @@ body {
     border: none;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-    min-height: 48px;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 280px;
+    min-height: 52px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.4;
+    width: auto;
+    min-width: 160px;
+    max-width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .btn-primary-modern span,
@@ -1029,7 +1042,7 @@ body {
     gap: var(--spacing-xs);
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
     color: var(--text-white) !important;
-    padding: clamp(12px, 2.5vw, 16px) clamp(20px, 4vw, 28px);
+    padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 28px);
     border: 2px solid;
     border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
     border-radius: 30px;
@@ -1038,12 +1051,18 @@ body {
     font-size: clamp(14px, 2.8vw, 16px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     backdrop-filter: blur(10px);
-    min-height: 48px;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 280px;
+    min-height: 52px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.4;
+    width: auto;
+    min-width: 160px;
+    max-width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .btn-secondary-modern span,
@@ -3803,6 +3822,36 @@ button:hover {
         width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
+    }
+
+    /* Mobile button fixes */
+    .btn-primary-modern,
+    .btn-secondary-modern {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px 20px;
+        font-size: clamp(14px, 3.5vw, 16px);
+        min-height: 52px;
+        white-space: normal;
+        word-wrap: break-word;
+        text-align: center;
+        line-height: 1.4;
+        overflow: visible;
+        text-overflow: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-sizing: border-box;
+    }
+
+    .hero-buttons .btn-primary-modern,
+    .hero-buttons .btn-secondary-modern {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        flex-shrink: 0;
+        min-width: auto;
     }
 
     /* Ensure no horizontal overflow on mobile */

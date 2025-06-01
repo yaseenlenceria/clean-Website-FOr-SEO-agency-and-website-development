@@ -1,12 +1,28 @@
-
-// Dynamic City Page Generator
+// Dynamic City Generator for SEO Services Pages
 class DynamicCityGenerator {
     constructor(city, service) {
         this.city = city || 'Birmingham';
         this.service = service || 'SEO Company';
         this.companyName = 'OutsourceSU';
         this.baseUrl = 'https://outsourcesu.com';
-        
+
+        this.services = [
+            'Law Firm SEO',
+            'Dentist SEO', 
+            'Accountant SEO',
+            'Architect SEO',
+            'Plumber SEO',
+            'Electrician SEO',
+            'Heating Engineer SEO',
+            'Contractors SEO',
+            'Medical SEO',
+            'Financial Services SEO',
+            'Construction SEO',
+            'Professional Services SEO',
+            'Real Estate SEO',
+            'Roofing SEO'
+        ];
+
         this.cityData = {
             'Birmingham': {
                 population: '1.1 million',
@@ -176,31 +192,418 @@ class DynamicCityGenerator {
     }
 
     init() {
+        this.generateDynamicPage();
         this.updatePageMeta();
-        this.generatePageContent();
-        this.updateStructuredData();
+        this.initializeAnimations();
+    }
+
+    generateDynamicPage() {
+        const container = document.getElementById('dynamic-content-container');
+        if (!container) return;
+
+        const content = `
+            <!-- Hero Section -->
+            <section class="hero-modern">
+                <div class="hero-background-modern">
+                    <div class="hero-overlay-modern"></div>
+                </div>
+                <div class="container">
+                    <div class="hero-content-modern">
+                        <h1 class="hero-title-modern">
+                            ${this.city} ${this.service} Services
+                            <span class="highlight-modern">Driving Results</span>
+                        </h1>
+                        <p class="hero-subtitle-modern">
+                            Professional SEO services in ${this.city}. We help businesses dominate local search results 
+                            and drive qualified traffic that converts into customers.
+                        </p>
+                        <div class="hero-stats-modern">
+                            <div class="stat-modern">
+                                <span class="stat-number-modern">500+</span>
+                                <span class="stat-label-modern">Clients Served</span>
+                            </div>
+                            <div class="stat-modern">
+                                <span class="stat-number-modern">300%</span>
+                                <span class="stat-label-modern">Avg Traffic Increase</span>
+                            </div>
+                            <div class="stat-modern">
+                                <span class="stat-number-modern">90 Days</span>
+                                <span class="stat-label-modern">To See Results</span>
+                            </div>
+                        </div>
+                        <div class="hero-cta-modern">
+                            <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">
+                                <i class="fas fa-rocket"></i>
+                                Get Free ${this.city} SEO Audit
+                            </a>
+                            <a href="${this.baseUrl}/our-work" class="btn btn-outline-modern">
+                                <i class="fas fa-chart-line"></i>
+                                View Case Studies
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services-section-modern">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2>Our ${this.city} SEO Services</h2>
+                        <p>Comprehensive digital marketing solutions designed to help your ${this.city} business thrive online</p>
+                    </div>
+                    <div class="services-grid-modern">
+                        <div class="service-card-modern">
+                            <div class="service-icon-modern">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Local SEO ${this.city}</h3>
+                            <p>Dominate local search results in ${this.city} with our proven local SEO strategies. Get found by customers when they need your services most.</p>
+                            <ul class="service-features-modern">
+                                <li><i class="fas fa-check"></i>Google My Business optimization</li>
+                                <li><i class="fas fa-check"></i>Local citation building</li>
+                                <li><i class="fas fa-check"></i>Review management</li>
+                                <li><i class="fas fa-check"></i>Local keyword targeting</li>
+                            </ul>
+                        </div>
+                        <div class="service-card-modern">
+                            <div class="service-icon-modern">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Technical SEO</h3>
+                            <p>Optimize your website's technical foundation for better search engine crawling and indexing in ${this.city} markets.</p>
+                            <ul class="service-features-modern">
+                                <li><i class="fas fa-check"></i>Site speed optimization</li>
+                                <li><i class="fas fa-check"></i>Mobile optimization</li>
+                                <li><i class="fas fa-check"></i>Schema markup</li>
+                                <li><i class="fas fa-check"></i>Technical audits</li>
+                            </ul>
+                        </div>
+                        <div class="service-card-modern">
+                            <div class="service-icon-modern">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h3>Content Marketing</h3>
+                            <p>Engaging, SEO-optimized content that resonates with your ${this.city} audience and drives organic traffic.</p>
+                            <ul class="service-features-modern">
+                                <li><i class="fas fa-check"></i>Keyword research</li>
+                                <li><i class="fas fa-check"></i>Content strategy</li>
+                                <li><i class="fas fa-check"></i>Blog writing</li>
+                                <li><i class="fas fa-check"></i>On-page optimization</li>
+                            </ul>
+                        </div>
+                        <div class="service-card-modern">
+                            <div class="service-icon-modern">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h3>Link Building</h3>
+                            <p>High-quality backlinks from authoritative ${this.city} and industry-relevant websites to boost your search rankings.</p>
+                            <ul class="service-features-modern">
+                                <li><i class="fas fa-check"></i>Local link building</li>
+                                <li><i class="fas fa-check"></i>Industry partnerships</li>
+                                <li><i class="fas fa-check"></i>Content outreach</li>
+                                <li><i class="fas fa-check"></i>Competitor analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="why-choose-section-modern">
+                <div class="container">
+                    <div class="why-choose-content-modern">
+                        <div class="why-choose-text-modern">
+                            <h2>Why Choose ${this.companyName} for ${this.city} SEO?</h2>
+                            <p>We're not just another SEO agency. We're your dedicated partners in digital growth, with deep expertise in the ${this.city} market.</p>
+                            <div class="benefits-list-modern">
+                                <div class="benefit-item-modern">
+                                    <i class="fas fa-trophy"></i>
+                                    <div>
+                                        <h4>Proven Results</h4>
+                                        <p>500+ successful ${this.city} businesses trust us with their SEO</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item-modern">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <h4>Local Expertise</h4>
+                                        <p>Deep understanding of ${this.city} market dynamics</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item-modern">
+                                    <i class="fas fa-chart-line"></i>
+                                    <div>
+                                        <h4>Transparent Reporting</h4>
+                                        <p>Monthly detailed reports showing your progress</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item-modern">
+                                    <i class="fas fa-headset"></i>
+                                    <div>
+                                        <h4>Dedicated Support</h4>
+                                        <p>Direct access to your SEO specialist team</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="why-choose-image-modern">
+                            <img src="attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png" alt="${this.city} SEO Services" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Section -->
+            <section class="process-section-modern">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2>Our ${this.city} SEO Process</h2>
+                        <p>A proven methodology that delivers consistent results for ${this.city} businesses</p>
+                    </div>
+                    <div class="process-steps-modern">
+                        <div class="process-step-modern">
+                            <div class="step-number-modern">01</div>
+                            <div class="step-content-modern">
+                                <h3>Discovery & Audit</h3>
+                                <p>Comprehensive analysis of your current online presence and ${this.city} market opportunities</p>
+                            </div>
+                        </div>
+                        <div class="process-step-modern">
+                            <div class="step-number-modern">02</div>
+                            <div class="step-content-modern">
+                                <h3>Strategy Development</h3>
+                                <p>Custom SEO strategy tailored to your business goals and ${this.city} market requirements</p>
+                            </div>
+                        </div>
+                        <div class="process-step-modern">
+                            <div class="step-number-modern">03</div>
+                            <div class="step-content-modern">
+                                <h3>Implementation</h3>
+                                <p>Expert execution of on-page, off-page, and technical SEO optimizations</p>
+                            </div>
+                        </div>
+                        <div class="process-step-modern">
+                            <div class="step-number-modern">04</div>
+                            <div class="step-content-modern">
+                                <h3>Monitoring & Optimization</h3>
+                                <p>Continuous monitoring with detailed monthly reports and ongoing optimizations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Industries Section -->
+            <section class="industries-section-modern">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2>Industries We Serve in ${this.city}</h2>
+                        <p>Specialized SEO strategies for different business sectors in ${this.city}</p>
+                    </div>
+                    <div class="industries-grid-modern">
+                        ${this.services.map(service => `
+                            <div class="industry-card-modern">
+                                <div class="industry-icon-modern">
+                                    <i class="fas fa-${this.getServiceIcon(service)}"></i>
+                                </div>
+                                <h3>${service}</h3>
+                                <p>Specialized SEO for ${service.replace(' SEO', '').toLowerCase()} businesses in ${this.city}</p>
+                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo" class="industry-link-modern">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials-section-modern">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2>What Our ${this.city} Clients Say</h2>
+                        <p>Real results from real businesses in ${this.city}</p>
+                    </div>
+                    <div class="testimonials-grid-modern">
+                        <div class="testimonial-card-modern">
+                            <div class="testimonial-rating-modern">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"${this.companyName} transformed our online presence. We're now ranking #1 for our main keywords in ${this.city} and our leads have increased by 400%."</p>
+                            <div class="testimonial-author-modern">
+                                <strong>Sarah Johnson</strong>
+                                <span>${this.city} Business Owner</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card-modern">
+                            <div class="testimonial-rating-modern">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Professional service and outstanding results. Our website traffic has increased by 300% since working with ${this.companyName}. Highly recommended!"</p>
+                            <div class="testimonial-author-modern">
+                                <strong>Michael Davis</strong>
+                                <span>${this.city} Company Director</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card-modern">
+                            <div class="testimonial-rating-modern">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"The team at ${this.companyName} really understands the ${this.city} market. Our ROI has been incredible since partnering with them."</p>
+                            <div class="testimonial-author-modern">
+                                <strong>Emma Thompson</strong>
+                                <span>${this.city} Marketing Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section-modern">
+                <div class="container">
+                    <div class="cta-content-modern">
+                        <h2>Ready to Dominate ${this.city} Search Results?</h2>
+                        <p>Get a free SEO audit and discover how we can help your ${this.city} business achieve #1 rankings and drive more qualified leads.</p>
+                        <div class="cta-buttons-modern">
+                            <a href="${this.baseUrl}/contact" class="btn btn-primary-modern">
+                                <i class="fas fa-rocket"></i>
+                                Get Free SEO Audit
+                            </a>
+                            <a href="tel:+448001234567" class="btn btn-outline-modern">
+                                <i class="fas fa-phone"></i>
+                                Call Now: 0800 123 4567
+                            </a>
+                        </div>
+                        <div class="cta-features-modern">
+                            <div class="cta-feature-modern">
+                                <i class="fas fa-check-circle"></i>
+                                <span>No Long-term Contracts</span>
+                            </div>
+                            <div class="cta-feature-modern">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Transparent Pricing</span>
+                            </div>
+                            <div class="cta-feature-modern">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Proven Results</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section-modern">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Common questions about SEO services in ${this.city}</p>
+                    </div>
+                    <div class="faq-grid-modern">
+                        <div class="faq-item-modern">
+                            <h3>How long does SEO take to work in ${this.city}?</h3>
+                            <p>Typically, you'll start seeing improvements in 3-6 months, with significant results in 6-12 months. The ${this.city} market competitiveness affects timelines.</p>
+                        </div>
+                        <div class="faq-item-modern">
+                            <h3>Do you guarantee #1 rankings in ${this.city}?</h3>
+                            <p>While we can't guarantee specific rankings, we guarantee improved visibility, traffic, and leads. Our ${this.city} clients see an average 300% increase in organic traffic.</p>
+                        </div>
+                        <div class="faq-item-modern">
+                            <h3>What makes your ${this.city} SEO services different?</h3>
+                            <p>We combine deep local market knowledge with proven SEO strategies. Our team understands ${this.city} consumer behavior and competition.</p>
+                        </div>
+                        <div class="faq-item-modern">
+                            <h3>Do you work with small businesses in ${this.city}?</h3>
+                            <p>Yes! We work with businesses of all sizes in ${this.city}, from startups to established enterprises. Our strategies are scalable to fit any budget.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Related Cities Section -->
+             <section class="related-cities">
+             <div class="container">
+                 <h2>We Also Serve These UK Locations</h2>
+                 <p class="section-intro">Discover our professional SEO services in other major UK cities and regions.</p>
+                 <div class="cities-grid">
+                     ${Object.keys(this.cityData).filter(city => city !== this.city).slice(0, 8).map(city => `
+                         <div class="city-card">
+                             <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}">${this.service} ${city}</a></h4>
+                             <p>Professional ${this.serviceData[this.service]?.description || 'SEO'} services in ${city}</p>
+                             <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}" class="learn-more">Learn More →</a>
+                         </div>
+                     `).join('')}
+                 </div>
+                 <div class="view-all-cities">
+                     <a href="${this.baseUrl}/uk-directory.html" class="btn btn-outline-modern">View All UK Locations</a>
+                 </div>
+             </div>
+         </section>
+        `;
+
+        container.innerHTML = content;
+    }
+
+    getServiceIcon(service) {
+        const iconMap = {
+            'Law Firm SEO': 'gavel',
+            'Dentist SEO': 'tooth',
+            'Accountant SEO': 'calculator',
+            'Architect SEO': 'drafting-compass',
+            'Plumber SEO': 'wrench',
+            'Electrician SEO': 'bolt',
+            'Heating Engineer SEO': 'fire',
+            'Contractors SEO': 'hard-hat',
+            'Medical SEO': 'stethoscope',
+            'Financial Services SEO': 'chart-line',
+            'Construction SEO': 'hammer',
+            'Professional Services SEO': 'briefcase',
+            'Real Estate SEO': 'home',
+            'Roofing SEO': 'home'
+        };
+        return iconMap[service] || 'cog';
     }
 
     updatePageMeta() {
-        const title = `Best ${this.service} in ${this.city} | ${this.companyName}`;
-        const description = `Leading ${this.service.toLowerCase()} in ${this.city}. Professional ${this.serviceData[this.service]?.description || 'digital marketing'} services to help your business grow online. Get your free consultation today!`;
-        
-        // Update title
-        document.title = title;
-        const titleElement = document.getElementById('dynamic-title');
-        if (titleElement) titleElement.textContent = title;
-        
-        // Update meta description
-        const descElement = document.getElementById('dynamic-description');
-        if (descElement) descElement.setAttribute('content', description);
-        
+        document.title = `${this.city} ${this.service} Services | ${this.companyName} - Expert Local SEO`;
+
+        const description = `Professional ${this.service.toLowerCase()} services in ${this.city}. Help your business dominate local search results with proven SEO strategies. Get a free audit today!`;
+
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute('content', description);
+        } else {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            metaDesc.setAttribute('content', description);
+            document.head.appendChild(metaDesc);
+        }
+
         // Update Open Graph tags
-        const ogTitleElement = document.getElementById('dynamic-og-title');
-        if (ogTitleElement) ogTitleElement.setAttribute('content', title);
-        
-        const ogDescElement = document.getElementById('dynamic-og-description');
-        if (ogDescElement) ogDescElement.setAttribute('content', description);
-        
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) {
+            ogTitle.setAttribute('content', `${this.city} ${this.service} Services | ${this.companyName}`);
+        }
+
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) {
+            ogDesc.setAttribute('content', description);
+        }
+
         const ogUrlElement = document.getElementById('dynamic-og-url');
         if (ogUrlElement) ogUrlElement.setAttribute('content', `${this.baseUrl}/dynamic-city-page.html?city=${encodeURIComponent(this.city)}&service=${encodeURIComponent(this.service)}`);
         
@@ -209,456 +612,40 @@ class DynamicCityGenerator {
         if (canonicalElement) canonicalElement.setAttribute('href', `${this.baseUrl}/dynamic-city-page.html?city=${encodeURIComponent(this.city)}&service=${encodeURIComponent(this.service)}`);
     }
 
-    generatePageContent() {
-        const container = document.getElementById('dynamic-content-container');
-        if (!container) return;
-
-        const cityInfo = this.cityData[this.city] || this.cityData['Birmingham'];
-        const serviceInfo = this.serviceData[this.service] || this.serviceData['SEO Company'];
-
-        const content = `
-            <!-- Hero Section - Matching Homepage Style -->
-            <section class="hero-modern">
-                <div class="floating-particles"></div>
-                <div class="container">
-                    <div class="hero-content-grid">
-                        <div class="hero-left">
-                            <div class="award-badge">
-                                <i class="fas fa-trophy"></i>
-                                <span>Trusted ${this.service} in ${this.city}</span>
-                            </div>
-                            <h1>Best ${this.service} in ${this.city} | ${this.companyName}</h1>
-                            <p>We're passionate about helping ${this.city} businesses reach their full potential online. Our friendly team specializes in supporting construction companies, law firms, dental practices, and local businesses. Through our collaborative approach, we work together to achieve meaningful growth and lasting online success in ${cityInfo.region}.</p>
-                            <div class="hero-buttons">
-                                <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
-                                    <i class="fas fa-search"></i>
-                                    Get Your Free Audit
-                                </a>
-                                <a href="tel:+447411575188" class="btn btn-secondary-modern">
-                                    <i class="fas fa-phone"></i>
-                                    Call: 07411575188
-                                </a>
-                            </div>
-                        </div>
-                        <div class="hero-right">
-                            <div class="audit-card">
-                                <div class="audit-header">
-                                    <span class="audit-label">Valuable Insights - Completely FREE</span>
-                                    <h3>FREE ${this.city.toUpperCase()} SEO AUDIT</h3>
-                                </div>
-                                <div class="audit-cta">
-                                    <a href="${this.baseUrl}/contact.html" class="btn-audit">
-                                        <i class="fas fa-search"></i>
-                                        Claim Your FREE Audit
-                                    </a>
-                                </div>
-                                <div class="audit-features">
-                                    <ul>
-                                        <li>✓ 47-point website analysis</li>
-                                        <li>✓ ${this.city} competitor research</li>
-                                        <li>✓ Custom SEO action plan</li>
-                                        <li>✓ No obligations • Takes 2 minutes</li>
-                                        <li>✓ Insights from 500+ UK businesses</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Image Showcase Section - Matching Homepage -->
-            <section class="image-showcase">
-                <div class="container">
-                    <div class="showcase-content">
-                        <div class="showcase-text-left">
-                            <h3>${this.city} Specialists</h3>
-                            <p>We focus on helping ${this.city} businesses in high-value industries where we've consistently delivered exceptional results and understand their unique local challenges.</p>
-                            <ul class="showcase-features">
-                                <li>Construction & Trade Companies in ${this.city}</li>
-                                <li>Law Firms & Legal Services in ${cityInfo.region}</li>
-                                <li>Dental & Medical Practices</li>
-                                <li>Local ${this.city} Service Businesses</li>
-                            </ul>
-                        </div>
-                        <div class="showcase-image">
-                            <img src="attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png" alt="OutsourceSU - Best ${this.service} in ${this.city} - 500+ Clients Ranked #1" class="featured-image">
-                        </div>
-                        <div class="showcase-text-right">
-                            <h3>Proven ${this.city} Results</h3>
-                            <p>Our data-driven SEO strategies have consistently helped ${this.city} businesses achieve top Google rankings and significantly increase their leads. We focus on long-term, sustainable growth in ${cityInfo.region}.</p>
-                            <ul class="showcase-features">
-                                <li>Top Google Rankings in ${this.city}</li>
-                                <li>Substantial Increase in Website Traffic</li>
-                                <li>Higher Quality Lead Generation</li>
-                                <li>${this.city}-Specific Strategies</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SEO Process Section - Matching Homepage -->
-            <section class="seo-process-section">
-                <div class="container">
-                    <div class="section-header-modern">
-                        <h2>How Our ${this.city} SEO Process Works</h2>
-                        <p>Simple, transparent steps to boost your search rankings and drive more relevant traffic in ${this.city}</p>
-                    </div>
-                    <div class="process-timeline">
-                        <div class="process-step-card">
-                            <div class="step-number">1</div>
-                            <div class="step-badge free-badge">FREE</div>
-                            <div class="step-icon">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                            <h3>Complete ${this.city} Website Review</h3>
-                            <p>We conduct a comprehensive analysis of your website to identify technical considerations, content opportunities, and areas for improvement specific to the ${this.city} market.</p>
-                            <ul class="step-features">
-                                <li>Technical SEO audit</li>
-                                <li>${this.city} content analysis</li>
-                                <li>Speed & performance check</li>
-                                <li>Mobile optimization review</li>
-                            </ul>
-                        </div>
-
-                        <div class="process-step-card">
-                            <div class="step-number">2</div>
-                            <div class="step-badge free-badge">FREE</div>
-                            <div class="step-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>${this.city} Competitor Research</h3>
-                            <p>We'll analyze your ${this.city} competitors' strategies to understand what's working in your local market and identify opportunities for you to stand out.</p>
-                            <ul class="step-features">
-                                <li>${this.city} competitor keyword analysis</li>
-                                <li>Local backlink gap analysis</li>
-                                <li>Content strategy review</li>
-                                <li>${cityInfo.region} market opportunity mapping</li>
-                            </ul>
-                        </div>
-
-                        <div class="process-step-card">
-                            <div class="step-number">3</div>
-                            <div class="step-badge free-badge">FREE</div>
-                            <div class="step-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <h3>Detailed ${this.city} SEO Report</h3>
-                            <p>You'll receive a comprehensive report with actionable insights and a clear plan to improve your search rankings in ${this.city} and ${cityInfo.region}.</p>
-                            <ul class="step-features">
-                                <li>Priority action items for ${this.city}</li>
-                                <li>Local keyword opportunities</li>
-                                <li>Technical recommendations</li>
-                                <li>ROI projections</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="phase-separator">
-                        <div class="phase-text">Ready to Explore the Next Steps in ${this.city}?</div>
-                    </div>
-
-                    <div class="process-timeline">
-                        <div class="process-step-card">
-                            <div class="step-number">4</div>
-                            <div class="step-badge paid-badge">PAID</div>
-                            <div class="step-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>${this.city} Strategy Implementation</h3>
-                            <p>Our expert team implements the SEO strategy specifically for ${this.city}, addressing technical aspects and optimizing your website for improved local visibility.</p>
-                            <ul class="step-features">
-                                <li>Technical fixes implementation</li>
-                                <li>On-page optimization for ${this.city}</li>
-                                <li>Local content creation & optimization</li>
-                                <li>${this.city} local SEO setup</li>
-                            </ul>
-                        </div>
-
-                        <div class="process-step-card">
-                            <div class="step-number">5</div>
-                            <div class="step-badge paid-badge">ONGOING</div>
-                            <div class="step-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3>Monitor & Optimize for ${this.city}</h3>
-                            <p>We continuously monitor and optimize your SEO performance to ensure sustained growth and improved search rankings in ${this.city} and surrounding areas.</p>
-                            <ul class="step-features">
-                                <li>Monthly ${this.city} performance reports</li>
-                                <li>Local ranking tracking</li>
-                                <li>Content updates</li>
-                                <li>Strategy refinements</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="process-cta">
-                        <h3>Get Your Free ${this.city} SEO Analysis Today</h3>
-                        <p>Discover how we can help your ${this.city} business thrive. Get your comprehensive website review, competitor analysis, and custom SEO strategy - completely free and without obligation.</p>
-                        <div class="process-cta-buttons">
-                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
-                                <i class="fas fa-search"></i>
-                                Get Free SEO Analysis
-                            </a>
-                            <a href="tel:07411575188" class="btn btn-outline-modern">
-                                <i class="fas fa-phone"></i>
-                                Call: 07411575188
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Our Approach Section - Matching Homepage -->
-            <section class="process-section-modern">
-                <div class="container">
-                    <div class="section-header-modern">
-                        <h2>Our ${this.city} Approach</h2>
-                        <p>A collaborative, 4-step process to achieve lasting SEO success in ${this.city}</p>
-                    </div>
-                    <div class="process-grid-modern">
-                        <div class="process-card-modern">
-                            <div class="process-number">01</div>
-                            <div class="process-icon-modern">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h3>Comprehensive ${this.city} SEO Audit</h3>
-                            <p>We begin with a deep dive into your website, ${this.city} competitors, and local market dynamics to uncover growth opportunities.</p>
-                        </div>
-                        <div class="process-card-modern">
-                            <div class="process-number">02</div>
-                            <div class="process-icon-modern">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <h3>${this.city} Strategic Planning</h3>
-                            <p>We'll develop a custom SEO strategy tailored to your industry, ${this.city} target audience, and specific business objectives.</p>
-                        </div>
-                        <div class="process-card-modern">
-                            <div class="process-number">03</div>
-                            <div class="process-icon-modern">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <h3>Expert ${this.city} Implementation</h3>
-                            <p>Our team will implement on-page, off-page, and technical SEO improvements using proven, effective methods for the ${this.city} market.</p>
-                        </div>
-                        <div class="process-card-modern">
-                            <div class="process-number">04</div>
-                            <div class="process-icon-modern">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <h3>Monitor & Optimize</h3>
-                            <p>We provide continuous monitoring, detailed ${this.city} reporting, and data-driven optimization to ensure sustained improvement.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Services Showcase - Matching Homepage -->
-            <section class="services-showcase">
-                <div class="container">
-                    <div class="section-header-modern">
-                        <h2>How We Can Help ${this.city} Businesses</h2>
-                        <p>Specialized SEO solutions designed to drive growth for your ${this.city} business</p>
-                    </div>
-                    <div class="services-grid-modern">
-                        <div class="service-card-modern" data-industry="construction">
-                            <div class="service-icon-modern">
-                                <i class="fas fa-hammer"></i>
-                            </div>
-                            <h3>Construction & Trade SEO in ${this.city}</h3>
-                            <p>Improve your online visibility for contractors, roofers, plumbers, and construction companies in ${this.city} with our specialized SEO strategies.</p>
-                            <ul class="service-highlights">
-                                <li>Roofing SEO Specialists in ${this.city}</li>
-                                <li>Plumber SEO Services</li>
-                                <li>Construction Company SEO</li>
-                                <li>Architect SEO</li>
-                            </ul>
-                            <a href="${this.baseUrl}/construction-seo.html" class="service-link">
-                                Explore Services <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-
-                        <div class="service-card-modern" data-industry="professional">
-                            <div class="service-icon-modern">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h3>Professional Services SEO in ${this.city}</h3>
-                            <p>Attract more clients for law firms, dentists, accountants, and financial services in ${this.city} with our expert SEO solutions.</p>
-                            <ul class="service-highlights">
-                                <li>Law Firm SEO in ${this.city}</li>
-                                <li>Dentist SEO</li>
-                                <li>Accountant SEO</li>
-                                <li>Financial Services SEO</li>
-                            </ul>
-                            <a href="${this.baseUrl}/professional-services-seo.html" class="service-link">
-                                Explore Services <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-
-                        <div class="service-card-modern" data-industry="realestate">
-                            <div class="service-icon-modern">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <h3>Real Estate & Property SEO in ${this.city}</h3>
-                            <p>Generate quality leads for real estate agents and property companies in ${this.city} with our comprehensive SEO strategies.</p>
-                            <ul class="service-highlights">
-                                <li>Estate Agent SEO in ${this.city}</li>
-                                <li>Property Management SEO</li>
-                                <li>Commercial Property SEO</li>
-                                <li>Lettings Agent SEO</li>
-                            </ul>
-                            <a href="${this.baseUrl}/real-estate-seo.html" class="service-link">
-                                Explore Services <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-
-                        <div class="service-card-modern" data-industry="agency">
-                            <div class="service-icon-modern">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <h3>Agency Partnership Services</h3>
-                            <p>Enhance your service offerings with white-label SEO and partnership opportunities for ${this.city} agencies.</p>
-                            <ul class="service-highlights">
-                                <li>White Label SEO</li>
-                                <li>Agency Partnerships</li>
-                                <li>Reseller Programs</li>
-                                <li>Custom Solutions</li>
-                            </ul>
-                            <a href="${this.baseUrl}/services.html" class="service-link">
-                                Explore Services <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section - Matching Homepage -->
-            <section class="testimonials-section">
-                <div class="container">
-                    <div class="section-header-modern">
-                        <h2>${this.city} Client Success Stories</h2>
-                        <p>Hear from ${this.city} businesses achieving real results</p>
-                    </div>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
-                            <blockquote>"OutsourceSU helped our construction company in ${this.city} go from page 3 to #1 on Google in just 4 months, resulting in a 400% increase in quality leads!"</blockquote>
-                            <cite>— John Thompson, Managing Director, Thompson Construction Ltd (${this.city})</cite>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
-                            <blockquote>"As a law firm in ${this.city}, we needed expert SEO, and OutsourceSU delivered. We now rank #1 for 'solicitors ${this.city},' and our revenue has doubled."</blockquote>
-                            <cite>— Sarah Williams, Partner, Williams & Associates Law (${this.city})</cite>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
-                            <blockquote>"The best investment we've made. Our dental practice in ${this.city} now gets 50+ new patient inquiries per month thanks to OutsourceSU's dental SEO expertise."</blockquote>
-                            <cite>— Dr. Michael Brown, Brown Dental Practice (${this.city})</cite>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section - Matching Homepage -->
-            <section class="cta-section-modern">
-                <div class="container">
-                    <div class="cta-content-modern">
-                        <h2>Ready to Elevate Your ${this.city} Digital Presence?</h2>
-                        <p>Partner with OutsourceSU and discover how we can help you achieve sustainable growth and establish market leadership in ${this.city}. Schedule a free consultation to get started.</p>
-                        <div class="cta-buttons-modern">
-                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
-                                <i class="fas fa-rocket"></i>
-                                Get Free Consultation
-                            </a>
-                            <a href="tel:07411575188" class="btn btn-outline-modern">
-                                <i class="fas fa-phone"></i>
-                                Call: 07411575188
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Related Cities Section -->
-            <section class="related-cities">
-                <div class="container">
-                    <h2>We Also Serve These UK Locations</h2>
-                    <p class="section-intro">Discover our professional SEO services in other major UK cities and regions.</p>
-                    <div class="cities-grid">
-                        ${Object.keys(this.cityData).filter(city => city !== this.city).slice(0, 8).map(city => `
-                            <div class="city-card">
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}">${this.service} ${city}</a></h4>
-                                <p>Professional ${this.serviceData[this.service]?.description || 'SEO'} services in ${city}</p>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}" class="learn-more">Learn More →</a>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="view-all-cities">
-                        <a href="${this.baseUrl}/uk-directory.html" class="btn btn-outline-modern">View All UK Locations</a>
-                    </div>
-                </div>
-            </section>
-        `;
-
-        container.innerHTML = content;
-    }
-
-    getBenefitIcon(index) {
-        const icons = ['chart-line', 'users', 'bullseye', 'eye', 'star', 'trophy'];
-        return icons[index] || 'star';
-    }
-
-    updateStructuredData() {
-        const cityInfo = this.cityData[this.city] || this.cityData['Birmingham'];
-        const serviceInfo = this.serviceData[this.service] || this.serviceData['SEO Company'];
-        
-        const structuredData = {
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": `${this.companyName} - ${this.service} ${this.city}`,
-            "description": `Best ${this.service} in ${this.city}. Professional ${serviceInfo.description} services to help your business grow online.`,
-            "url": `${this.baseUrl}/dynamic-city-page.html?city=${encodeURIComponent(this.city)}&service=${encodeURIComponent(this.service)}`,
-            "logo": {
-                "@type": "ImageObject",
-                "url": `${this.baseUrl}/attached_assets/logo1.png`
-            },
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": this.city,
-                "addressRegion": cityInfo.region,
-                "addressCountry": "UK"
-            },
-            "areaServed": [
-                {
-                    "@type": "Place",
-                    "name": `${this.city}, ${cityInfo.region}`
-                },
-                {
-                    "@type": "Place", 
-                    "name": cityInfo.region
-                }
-            ],
-            "serviceType": this.service,
-            "provider": {
-                "@type": "Organization",
-                "name": this.companyName,
-                "url": this.baseUrl,
-                "telephone": "+447411575188",
-                "email": "info@outsourcesu.com"
-            },
-            "priceRange": "£500-£5000",
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "reviewCount": "247"
-            }
+    initializeAnimations() {
+        // Add scroll animations and interactive elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        const structuredDataElement = document.getElementById('dynamic-structured-data');
-        if (structuredDataElement) {
-            structuredDataElement.textContent = JSON.stringify(structuredData, null, 2);
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        setTimeout(() => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        }, 100);
+    }
+
+    slugify(text) {
+        return text.toLowerCase()
+            .replace(/[^a-z0-9 -]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim();
     }
 }
 

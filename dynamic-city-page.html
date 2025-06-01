@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="dynamic-title">SEO Company | OutsourceSU</title>
+    <meta name="description" id="dynamic-description" content="Professional SEO services">
+    <meta name="keywords" content="SEO services, digital marketing, search engine optimization">
+    <meta name="author" content="OutsourceSU">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" id="dynamic-canonical" href="https://outsourcesu.com/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" id="dynamic-og-title" content="SEO Company | OutsourceSU">
+    <meta property="og:description" id="dynamic-og-description" content="Professional SEO services">
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="dynamic-og-url" content="https://outsourcesu.com/">
+    <meta property="og:image" content="https://outsourcesu.com/attached_assets/logo1.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="css/directory-styles.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" id="dynamic-structured-data">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OutsourceSU",
+        "description": "Professional SEO services",
+        "url": "https://outsourcesu.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://outsourcesu.com/attached_assets/logo1.png"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Global Header -->
+    <div id="global-header"></div>
+
+    <!-- Dynamic Content Container -->
+    <div id="dynamic-content-container">
+        <!-- Content will be dynamically generated here -->
+    </div>
+
+    <!-- Global Footer -->
+    <div id="global-footer"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/dynamic-directory-generator.js"></script>
+    <script src="js/dynamic-city-generator.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Initialize dynamic content based on URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const city = urlParams.get('city') || 'Birmingham';
+            const service = urlParams.get('service') || 'SEO Company';
+            
+            if (typeof window.DynamicCityGenerator !== 'undefined') {
+                window.dynamicCityPage = new window.DynamicCityGenerator(city, service);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 // Global variables for navigation
 if (typeof window.navMenu === 'undefined') {
     window.navMenu = null;
@@ -29,11 +30,11 @@ function loadHeader() {
         .then(data => {
             // Clean the data and remove any stray elements with fixed positioning
             let cleanData = data.trim();
-            
+
             // Remove any elements with "SEO Services" text and fixed positioning
             cleanData = cleanData.replace(/<[^>]*style="[^"]*position:\s*fixed[^"]*"[^>]*>.*?SEO Services.*?<\/[^>]*>/gi, '');
             cleanData = cleanData.replace(/SEO Services/gi, '');
-            
+
             // Clear any existing content first
             headerElement.innerHTML = '';
             headerElement.innerHTML = cleanData;
@@ -64,8 +65,10 @@ function loadHeader() {
                         <ul class="nav-menu">
                             <li><a href="/index.html">Home</a></li>
                             <li><a href="/services.html">Services</a></li>
-                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/uk-directory.html">Directory</a></li>
+                            <li><a href="/our-work.html">Our Work</a></li>
                             <li><a href="/blog.html">Blog</a></li>
+                            <li><a href="/about.html">About</a></li>
                             <li><a href="/contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -90,7 +93,7 @@ function loadFooter() {
         })
         .then(data => {
             footerElement.innerHTML = data;
-            componentsLoaded.footer = true;
+            window.componentsLoaded.footer = true;
         })
         .catch(error => {
             console.error('Error loading footer:', error);
@@ -148,7 +151,7 @@ function initializeNavigation() {
                     document.body.style.position = 'fixed';
                     document.body.style.width = '100%';
                     document.body.style.top = `-${window.scrollY}px`;
-                    
+
                     // Store scroll position
                     window.navScrollPosition = window.scrollY;
                 } else {
@@ -157,7 +160,7 @@ function initializeNavigation() {
                     document.body.style.position = '';
                     document.body.style.width = '';
                     document.body.style.top = '';
-                    
+
                     // Restore scroll position
                     if (window.navScrollPosition !== undefined) {
                         window.scrollTo(0, window.navScrollPosition);
@@ -288,7 +291,7 @@ function initializeNavigation() {
                 }
             }, { passive: false });
 
-            } else {
+        } else {
             // Reset initialization flag if elements not found
             window.isNavigationInitialized = false;
             // Retry after another delay
@@ -382,6 +385,28 @@ function formatDate(dateString) {
     });
 }
 
+// Load component function (kept for backwards compatibility)
+function loadComponent(elementId, componentPath) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        fetch(componentPath)
+            .then(response => response.text())
+            .then(html => {
+                element.innerHTML = html;
+
+                // Re-initialize navigation after header is loaded
+                if (elementId === 'global-header') {
+                    setTimeout(() => {
+                        if (!window.isNavigationInitialized) {
+                            initializeNavigation();
+                        }
+                    }, 200);
+                }
+            })
+            .catch(error => console.error('Error loading component:', error));
+    }
+}
+
 // Load components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
@@ -422,24 +447,4 @@ window.initializeNavigation = initializeNavigation;
 window.createBlogPostCard = createBlogPostCard;
 window.updateBlogPostCard = updateBlogPostCard;
 window.formatDate = formatDate;
-// Load component function (kept for backwards compatibility)
-function loadComponent(elementId, componentPath) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        fetch(componentPath)
-            .then(response => response.text())
-            .then(html => {
-                element.innerHTML = html;
-
-                // Re-initialize navigation after header is loaded
-                if (elementId === 'global-header') {
-                    setTimeout(() => {
-                        if (!window.isNavigationInitialized) {
-                            initializeNavigation();
-                        }
-                    }, 200);
-                }
-            })
-            .catch(error => console.error('Error loading component:', error));
-    }
-}
+window.loadComponent = loadComponent;

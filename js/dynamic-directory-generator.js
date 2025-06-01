@@ -137,7 +137,7 @@ class DynamicDirectoryGenerator {
     }
 
     generateDirectoryPage() {
-        const container = document.querySelector('.container, main, .content-area');
+        const container = document.querySelector('.directory-content, .container, main, .content-area');
         if (!container) return;
 
         const directoryContent = `
@@ -247,9 +247,9 @@ class DynamicDirectoryGenerator {
                     <div class="cities-grid">
                         ${this.cities[region].map(city => `
                             <div class="city-card">
-                                <h4><a href="${this.baseUrl}/best-seo-services-${this.slugify(city)}">${city} SEO Company</a></h4>
+                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">${city} SEO Company</a></h4>
                                 <p>Professional SEO services in ${city}</p>
-                                <a href="${this.baseUrl}/best-seo-services-${this.slugify(city)}" class="learn-more">View Services →</a>
+                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="learn-more">View Services →</a>
                             </div>
                         `).join('')}
                     </div>

@@ -583,14 +583,27 @@ class DynamicCityGenerator {
             <!-- Related Cities Section -->
             <section class="related-cities">
                 <div class="container">
-                    <h2>We Also Serve These UK Locations</h2>
-                    <p class="section-intro">Discover our professional SEO services in other major UK cities and regions.</p>
-                    <div class="cities-grid">
+                    <div class="section-header-modern">
+                        <h2>We Also Serve These UK Locations</h2>
+                        <p>Discover our professional SEO services in other major UK cities and regions.</p>
+                    </div>
+                    <div class="cities-grid-modern">
                         ${Object.keys(this.cityData).filter(city => city !== this.city).slice(0, 8).map(city => `
-                            <div class="city-card">
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}">${this.service} ${city}</a></h4>
-                                <p>Professional ${this.serviceData[this.service]?.description || 'SEO'} services in ${city}</p>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}" class="learn-more">Learn More →</a>
+                            <div class="service-card-modern">
+                                <div class="service-icon-modern">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h3><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}">${this.service} ${city}</a></h3>
+                                <p>Professional ${this.serviceData[this.service]?.description || 'SEO'} services in ${city}. Local expertise for ${this.cityData[city]?.region || 'the region'} businesses.</p>
+                                <ul class="service-highlights">
+                                    <li>Local ${city} SEO specialists</li>
+                                    <li>Proven ${this.cityData[city]?.region || 'regional'} results</li>
+                                    <li>Industry-specific strategies</li>
+                                    <li>Free consultation available</li>
+                                </ul>
+                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}" class="service-link">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         `).join('')}
                     </div>

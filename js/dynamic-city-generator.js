@@ -589,7 +589,7 @@ class DynamicCityGenerator {
                     </div>
                     <div class="cities-grid-modern">
                         ${Object.keys(this.cityData).filter(city => city !== this.city).slice(0, 8).map(city => `
-                            <div class="service-card-modern">
+                            <div class="service-card-modern related-city-card">
                                 <div class="service-icon-modern">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>

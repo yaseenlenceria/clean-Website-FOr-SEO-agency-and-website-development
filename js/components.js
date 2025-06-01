@@ -445,4 +445,7 @@ function loadComponent(elementId, componentPath) {
             .catch(error => console.error('Error loading component:', error));
     }
 }
+
+// Export functions for global access
+window.loadComponent = loadComponent;
 ```

@@ -1,166 +1,171 @@
-
 // Dynamic Directory Generator for UK Cities and Services
 class DynamicDirectoryGenerator {
     constructor() {
-        this.cities = {
-            'England': [
-                'Bath', 'Birmingham', 'Bradford', 'Brighton & Hove', 'Bristol', 'Cambridge', 
-                'Canterbury', 'Carlisle', 'Chelmsford', 'Chester', 'Chichester', 'Colchester', 
-                'Coventry', 'Derby', 'Doncaster', 'Durham', 'Ely', 'Exeter', 'Gloucester', 
-                'Hereford', 'Kingston-upon-Hull', 'Lancaster', 'Leeds', 'Leicester', 'Lichfield', 
-                'Lincoln', 'Liverpool', 'London', 'Manchester', 'Milton Keynes', 'Newcastle-upon-Tyne', 
-                'Norwich', 'Nottingham', 'Oxford', 'Peterborough', 'Plymouth', 'Portsmouth', 
-                'Preston', 'Ripon', 'Salford', 'Salisbury', 'Sheffield', 'Southampton', 
-                'Southend-on-Sea', 'St Albans', 'Stoke on Trent', 'Sunderland', 'Truro', 
-                'Wakefield', 'Wells', 'Westminster', 'Winchester', 'Wolverhampton', 'Worcester', 'York'
-            ],
-            'Northern Ireland': [
-                'Armagh', 'Bangor', 'Belfast', 'Lisburn', 'Londonderry', 'Newry'
-            ],
-            'Scotland': [
-                'Aberdeen', 'Dundee', 'Dunfermline', 'Edinburgh', 'Glasgow', 'Inverness', 'Perth', 'Stirling'
-            ],
-            'Wales': [
-                'Bangor', 'Cardiff', 'Newport', 'St Asaph', 'St Davids', 'Swansea', 'Wrexham'
-            ]
+        this.baseUrl = 'https://outsourcesu.com';
+        this.currentType = 'directory'; // Can be 'directory', 'city', 'service', or 'combined'
+
+        // UK Cities Data
+        this.ukCities = {
+            'London': {
+                region: 'Greater London',
+                population: '9 million',
+                industries: ['Finance', 'Technology', 'Creative Industries', 'Tourism'],
+                description: 'The UK\'s capital and largest city, a global financial and technology hub'
+            },
+            'Manchester': {
+                region: 'Greater Manchester', 
+                population: '547,000',
+                industries: ['Technology', 'Media', 'Finance', 'Education'],
+                description: 'A major northern English city known for its industrial heritage and modern innovation'
+            },
+            'Birmingham': {
+                region: 'West Midlands',
+                population: '1.1 million', 
+                industries: ['Manufacturing', 'Finance', 'Professional Services', 'Retail'],
+                description: 'The UK\'s second-largest city and a major commercial and cultural center'
+            },
+            'Leeds': {
+                region: 'West Yorkshire',
+                population: '793,000',
+                industries: ['Finance', 'Legal Services', 'Healthcare', 'Manufacturing'],
+                description: 'A major city in Northern England with a strong financial and legal sector'
+            },
+            'Bristol': {
+                region: 'South West England',
+                population: '463,000',
+                industries: ['Aerospace', 'Creative Industries', 'Technology', 'Education'],
+                description: 'A vibrant city known for its aerospace industry and creative scene'
+            },
+            'Liverpool': {
+                region: 'Merseyside',
+                population: '498,000',
+                industries: ['Shipping', 'Tourism', 'Creative Industries', 'Education'], 
+                description: 'A historic port city with a rich cultural heritage'
+            },
+            'Newcastle': {
+                region: 'Tyne and Wear',
+                population: '300,000',
+                industries: ['Technology', 'Education', 'Healthcare', 'Culture'],
+                description: 'A major city in North East England known for its nightlife and culture'
+            },
+            'Sheffield': {
+                region: 'South Yorkshire',
+                population: '584,000',
+                industries: ['Steel', 'Engineering', 'Healthcare', 'Education'],
+                description: 'Known as the Steel City, now a center for advanced manufacturing'
+            },
+            'Cardiff': {
+                region: 'Wales',
+                population: '362,000',
+                industries: ['Government', 'Media', 'Finance', 'Tourism'],
+                description: 'The capital of Wales and a major administrative center'
+            },
+            'Edinburgh': {
+                region: 'Scotland',
+                population: '518,000',
+                industries: ['Finance', 'Tourism', 'Education', 'Government'],
+                description: 'Scotland\'s capital and a UNESCO World Heritage site'
+            },
+            'Glasgow': {
+                region: 'Scotland',
+                population: '635,000',
+                industries: ['Manufacturing', 'Creative Industries', 'Education', 'Healthcare'],
+                description: 'Scotland\'s largest city and a major cultural center'
+            },
+            'Belfast': {
+                region: 'Northern Ireland',
+                population: '343,000',
+                industries: ['Aerospace', 'Technology', 'Tourism', 'Education'],
+                description: 'Northern Ireland\'s capital with a growing technology sector'
+            },
+            'Nottingham': {
+                region: 'East Midlands',
+                population: '321,000',
+                industries: ['Healthcare', 'Education', 'Finance', 'Manufacturing'],
+                description: 'A historic city known for its connections to Robin Hood'
+            },
+            'Leicester': {
+                region: 'East Midlands',
+                population: '329,000',
+                industries: ['Manufacturing', 'Textiles', 'Food Processing', 'Education'],
+                description: 'A diverse city with a rich multicultural heritage'
+            },
+            'Coventry': {
+                region: 'West Midlands',
+                population: '345,000',
+                industries: ['Automotive', 'Aerospace', 'Education', 'Technology'],
+                description: 'Known for its automotive industry and modern cathedral'
+            }
         };
 
-        this.services = [
-            'Law Firm SEO',
-            'Dentist SEO', 
-            'Accountant SEO',
-            'Architect SEO',
-            'Plumber SEO',
-            'Electrician SEO',
-            'Heating Engineer SEO',
-            'Contractors SEO',
-            'Medical SEO',
-            'Financial Services SEO',
-            'Construction SEO',
-            'Professional Services',
-            'Real Estate SEO',
-            'Roofing SEO'
-        ];
+        // SEO Services Data
+        this.seoServices = {
+            'Construction SEO': {
+                icon: 'fas fa-hammer',
+                description: 'Specialized SEO for construction companies, contractors, and building trades',
+                benefits: ['Attract high-value projects', 'Build industry authority', 'Generate quality leads', 'Showcase completed work'],
+                industries: ['General Contractors', 'Roofing Companies', 'Plumbers', 'Electricians', 'Architects']
+            },
+            'Law Firm SEO': {
+                icon: 'fas fa-balance-scale',
+                description: 'Expert SEO services for law firms and legal professionals', 
+                benefits: ['Attract high-value clients', 'Build legal authority', 'Increase case inquiries', 'Dominate local searches'],
+                industries: ['Personal Injury Law', 'Family Law', 'Criminal Law', 'Corporate Law', 'Immigration Law']
+            },
+            'Medical SEO': {
+                icon: 'fas fa-stethoscope',
+                description: 'Healthcare SEO for medical practices and healthcare providers',
+                benefits: ['Attract new patients', 'Build medical authority', 'Increase appointments', 'Grow practice revenue'],
+                industries: ['General Practice', 'Dental Practices', 'Specialist Clinics', 'Private Healthcare', 'Mental Health']
+            },
+            'Real Estate SEO': {
+                icon: 'fas fa-home',
+                description: 'Property and real estate SEO for agents and developers',
+                benefits: ['Generate property leads', 'Build market authority', 'Increase listings', 'Attract buyers and sellers'],
+                industries: ['Estate Agents', 'Property Developers', 'Lettings Agents', 'Commercial Property', 'Property Management']
+            },
+            'Financial Services SEO': {
+                icon: 'fas fa-chart-line',
+                description: 'SEO for financial advisors and financial service providers',
+                benefits: ['Attract high-net-worth clients', 'Build financial authority', 'Increase consultations', 'Generate quality leads'],
+                industries: ['Financial Advisors', 'Accountants', 'Insurance Brokers', 'Mortgage Brokers', 'Investment Firms']
+            },
+            'Roofing SEO': {
+                icon: 'fas fa-home',
+                description: 'Specialized SEO for roofing contractors and companies',
+                benefits: ['Emergency repair calls', 'Installation projects', 'Insurance work leads', 'Local area dominance'],
+                industries: ['Roof Repairs', 'New Installations', 'Commercial Roofing', 'Emergency Services', 'Roof Maintenance']
+            }
+        };
 
-        this.companyName = 'OutsourceSU';
-        this.baseUrl = 'https://outsourcesu.com';
         this.init();
     }
 
     init() {
-        this.detectDirectoryPage();
-        this.generateDynamicContent();
-    }
-
-    detectDirectoryPage() {
-        const path = window.location.pathname;
-        const params = new URLSearchParams(window.location.search);
-        
-        // Check if this is a city page
-        const cityMatch = path.match(/seo-services-(.+)\.html/) || path.match(/best-seo-(.+)\.html/);
-        if (cityMatch) {
-            this.currentType = 'city';
-            this.currentCity = this.decodeCity(cityMatch[1]);
+        // Only initialize if we're on the directory page
+        if (window.location.pathname.includes('uk-directory') || 
+            window.location.pathname.includes('directory')) {
+            this.generateDynamicContent();
         }
-        
-        // Check if this is a service page  
-        const serviceMatch = path.match(/(.+)-seo\.html/);
-        if (serviceMatch && !cityMatch) {
-            this.currentType = 'service';
-            this.currentService = this.decodeService(serviceMatch[1]);
-        }
-
-        // Check if this is a combined city + service page
-        const combinedMatch = path.match(/(.+)-seo-(.+)\.html/);
-        if (combinedMatch) {
-            this.currentType = 'combined';
-            this.currentService = this.decodeService(combinedMatch[1]);
-            this.currentCity = this.decodeCity(combinedMatch[2]);
-        }
-
-        // Check if this is the main directory page
-        if (path.includes('directory') || path.includes('locations')) {
-            this.currentType = 'directory';
-        }
-    }
-
-    decodeCity(citySlug) {
-        const cityMap = {
-            'london': 'London',
-            'manchester': 'Manchester', 
-            'birmingham': 'Birmingham',
-            'cardiff': 'Cardiff',
-            'edinburgh': 'Edinburgh',
-            'glasgow': 'Glasgow',
-            'belfast': 'Belfast',
-            'leeds': 'Leeds',
-            'liverpool': 'Liverpool',
-            'bristol': 'Bristol',
-            'newcastle-upon-tyne': 'Newcastle-upon-Tyne',
-            'sheffield': 'Sheffield',
-            'nottingham': 'Nottingham',
-            'brighton-hove': 'Brighton & Hove',
-            'stoke-on-trent': 'Stoke on Trent'
-        };
-        
-        return cityMap[citySlug] || citySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    }
-
-    decodeService(serviceSlug) {
-        const serviceMap = {
-            'law-firm': 'Law Firm SEO',
-            'dentist': 'Dentist SEO',
-            'accountant': 'Accountant SEO', 
-            'architect': 'Architect SEO',
-            'plumber': 'Plumber SEO',
-            'electrician': 'Electrician SEO',
-            'heating-engineer': 'Heating Engineer SEO',
-            'contractors': 'Contractors SEO',
-            'medical': 'Medical SEO',
-            'financial-services': 'Financial Services SEO',
-            'construction': 'Construction SEO',
-            'professional-services': 'Professional Services',
-            'real-estate': 'Real Estate SEO',
-            'roofing': 'Roofing SEO'
-        };
-        
-        return serviceMap[serviceSlug] || serviceSlug.replace(/-/g, ' ') + ' SEO';
     }
 
     generateDynamicContent() {
-        switch (this.currentType) {
-            case 'directory':
-                this.generateDirectoryPage();
-                break;
-            case 'city':
-                this.generateCityPage();
-                break;
-            case 'service':
-                this.generateServicePage();
-                break;
-            case 'combined':
-                this.generateCombinedPage();
-                break;
-        }
-    }
-
-    generateDirectoryPage() {
-        const container = document.querySelector('.directory-main, .container, main, .content-area');
+        const container = document.querySelector('.directory-main') || document.querySelector('main');
         if (!container) return;
 
         const directoryContent = `
-            <!-- Hero Section - Matching Homepage Style -->
-            <section class="hero-modern">
+            <!-- Hero Section - Dark background with white audit card -->
+            <section class="hero-modern" style="background: var(--dark-bg);">
                 <div class="floating-particles"></div>
                 <div class="container">
                     <div class="hero-content-grid">
                         <div class="hero-left">
-                            <div class="award-badge">
+                            <div class="award-badge" style="background: var(--card-bg); border: 1px solid var(--border-dark); color: var(--accent-green);">
                                 <i class="fas fa-trophy"></i>
                                 <span>Trusted SEO Services Across the UK</span>
                             </div>
-                            <h1>UK SEO Services Directory</h1>
-                            <p>Find professional SEO services across the United Kingdom. We help businesses in every major UK city achieve top Google rankings and drive more customers. Discover expert digital marketing solutions tailored to your location and industry.</p>
+                            <h1 style="color: var(--text-white);">UK SEO Services Directory</h1>
+                            <p style="color: var(--text-gray);">Find professional SEO services across the United Kingdom. We help businesses in every major UK city achieve top Google rankings and drive more customers. Discover expert digital marketing solutions tailored to your location and industry.</p>
                             <div class="hero-buttons">
                                 <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
                                     <i class="fas fa-search"></i>
@@ -173,10 +178,10 @@ class DynamicDirectoryGenerator {
                             </div>
                         </div>
                         <div class="hero-right">
-                            <div class="audit-card">
+                            <div class="audit-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
                                 <div class="audit-header">
-                                    <span class="audit-label">Valuable Insights - Completely FREE</span>
-                                    <h3>FREE UK SEO AUDIT</h3>
+                                    <span class="audit-label" style="background: var(--accent-green); color: white;">Valuable Insights - Completely FREE</span>
+                                    <h3 style="color: #333; background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-green) 50%, var(--secondary-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FREE UK SEO AUDIT</h3>
                                 </div>
                                 <div class="audit-cta">
                                     <a href="${this.baseUrl}/contact.html" class="btn-audit">
@@ -186,11 +191,11 @@ class DynamicDirectoryGenerator {
                                 </div>
                                 <div class="audit-features">
                                     <ul>
-                                        <li>✓ 47-point website analysis</li>
-                                        <li>✓ UK competitor research</li>
-                                        <li>✓ Custom SEO action plan</li>
-                                        <li>✓ No obligations • Takes 2 minutes</li>
-                                        <li>✓ Insights from 500+ UK businesses</li>
+                                        <li style="color: #333;">✓ 47-point website analysis</li>
+                                        <li style="color: #333;">✓ UK competitor research</li>
+                                        <li style="color: #333;">✓ Custom SEO action plan</li>
+                                        <li style="color: #333;">✓ No obligations • Takes 2 minutes</li>
+                                        <li style="color: #333;">✓ Insights from 500+ UK businesses</li>
                                     </ul>
                                 </div>
                             </div>
@@ -199,89 +204,327 @@ class DynamicDirectoryGenerator {
                 </div>
             </section>
 
-            <!-- Search and Filter Section -->
-            <section class="directory-search">
+            <!-- Image Showcase Section - Dark background with proper text colors -->
+            <section class="image-showcase" style="background: var(--darker-bg);">
                 <div class="container">
-                    <div class="search-controls">
-                        <div class="search-bar">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="directory-search" placeholder="Search cities, regions, or services..." />
-                            <button type="button" id="clear-search" class="clear-btn" style="display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
+                    <div class="showcase-content">
+                        <div class="showcase-text-left">
+                            <h3 style="color: var(--primary-color);">UK-Wide Expertise</h3>
+                            <p style="color: var(--text-gray);">We specialize in helping businesses across all major UK cities achieve online success through proven SEO strategies.</p>
+                            <ul class="showcase-features">
+                                <li style="color: var(--text-light-gray);">Local SEO for every UK region</li>
+                                <li style="color: var(--text-light-gray);">Industry-specific strategies</li>
+                                <li style="color: var(--text-light-gray);">Proven track record across the UK</li>
+                                <li style="color: var(--text-light-gray);">Dedicated account management</li>
+                            </ul>
                         </div>
-                        <div class="filter-options">
-                            <select id="region-filter">
-                                <option value="">All Regions</option>
-                                <option value="England">England</option>
-                                <option value="Scotland">Scotland</option>
-                                <option value="Wales">Wales</option>
-                                <option value="Northern Ireland">Northern Ireland</option>
-                            </select>
-                            <select id="service-filter">
-                                <option value="">All Services</option>
-                                ${this.services.map(service => `<option value="${service}">${service}</option>`).join('')}
-                            </select>
-                            <button type="button" id="reset-filters" class="btn btn-outline-modern">
-                                <i class="fas fa-undo"></i>
-                                Reset Filters
-                            </button>
+                        <div class="showcase-image">
+                            <img src="attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png" alt="UK SEO Services Directory - Professional SEO Across All UK Cities" class="featured-image">
                         </div>
-                    </div>
-                    <div class="search-results-info">
-                        <span id="results-count"></span>
+                        <div class="showcase-text-right">
+                            <h3 style="color: var(--primary-color);">Nationwide Results</h3>
+                            <p style="color: var(--text-gray);">From London to Edinburgh, Manchester to Cardiff - we've helped businesses across the UK achieve top Google rankings and drive sustainable growth.</p>
+                            <ul class="showcase-features">
+                                <li style="color: var(--text-light-gray);">500+ successful UK businesses</li>
+                                <li style="color: var(--text-light-gray);">Average 300% increase in leads</li>
+                                <li style="color: var(--text-light-gray);">Top 3 Google rankings guaranteed</li>
+                                <li style="color: var(--text-light-gray);">24/7 UK-based support</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Cities Directory Section -->
-            <section class="cities-directory">
+            <!-- SEO Process Section - Dark background with white cards -->
+            <section class="seo-process-section" style="background: var(--dark-bg);">
                 <div class="container">
                     <div class="section-header-modern">
-                        <h2>Best SEO Services by City</h2>
-                        <p>Find expert SEO services in your UK city. We help local businesses dominate search results.</p>
+                        <h2 style="color: var(--text-white);">How Our UK SEO Process Works</h2>
+                        <p style="color: var(--text-gray);">Simple, transparent steps to boost your search rankings across any UK location</p>
                     </div>
-                    <div id="cities-container">
-                        ${this.generateCitiesGrid()}
+                    <div class="process-timeline">
+                        <div class="process-step-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="step-number" style="background: var(--primary-color); color: white;">1</div>
+                            <div class="step-badge free-badge">FREE</div>
+                            <div class="step-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                            <h3 style="color: #333;">Complete UK Website Review</h3>
+                            <p style="color: #555;">We conduct a comprehensive analysis of your website to identify opportunities specific to your UK market and location.</p>
+                            <ul class="step-features">
+                                <li style="color: #333;">Technical SEO audit</li>
+                                <li style="color: #333;">UK market analysis</li>
+                                <li style="color: #333;">Local competitor research</li>
+                                <li style="color: #333;">Mobile optimization review</li>
+                            </ul>
+                        </div>
+
+                        <div class="process-step-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="step-number" style="background: var(--primary-color); color: white;">2</div>
+                            <div class="step-badge free-badge">FREE</div>
+                            <div class="step-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 style="color: #333;">UK Competitor Research</h3>
+                            <p style="color: #555;">We analyze your competitors across your target UK locations to identify opportunities and develop winning strategies.</p>
+                            <ul class="step-features">
+                                <li style="color: #333;">Competitor keyword analysis</li>
+                                <li style="color: #333;">UK market gap analysis</li>
+                                <li style="color: #333;">Content strategy review</li>
+                                <li style="color: #333;">Local authority building opportunities</li>
+                            </ul>
+                        </div>
+
+                        <div class="process-step-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="step-number" style="background: var(--primary-color); color: white;">3</div>
+                            <div class="step-badge free-badge">FREE</div>
+                            <div class="step-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 style="color: #333;">Detailed UK SEO Report</h3>
+                            <p style="color: #555;">You'll receive a comprehensive report with actionable insights and a clear plan to improve your search rankings across the UK.</p>
+                            <ul class="step-features">
+                                <li style="color: #333;">Priority action items</li>
+                                <li style="color: #333;">UK keyword opportunities</li>
+                                <li style="color: #333;">Technical recommendations</li>
+                                <li style="color: #333;">ROI projections</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="no-cities-results" class="no-results" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <h3>No cities found</h3>
-                        <p>Try adjusting your search terms or filters.</p>
+
+                    <div class="phase-separator">
+                        <div class="phase-text" style="color: var(--text-white);">Ready to Explore the Next Steps?</div>
+                    </div>
+
+                    <div class="process-timeline">
+                        <div class="process-step-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="step-number" style="background: var(--primary-color); color: white;">4</div>
+                            <div class="step-badge paid-badge">PAID</div>
+                            <div class="step-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 style="color: #333;">UK Strategy Implementation</h3>
+                            <p style="color: #555;">Our expert team implements the SEO strategy across your target UK locations, addressing technical aspects and optimizing for local visibility.</p>
+                            <ul class="step-features">
+                                <li style="color: #333;">Technical fixes implementation</li>
+                                <li style="color: #333;">UK-focused on-page optimization</li>
+                                <li style="color: #333;">Local content creation</li>
+                                <li style="color: #333;">Multi-location SEO setup</li>
+                            </ul>
+                        </div>
+
+                        <div class="process-step-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="step-number" style="background: var(--primary-color); color: white;">5</div>
+                            <div class="step-badge paid-badge">ONGOING</div>
+                            <div class="step-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 style="color: #333;">Monitor & Optimize Across UK</h3>
+                            <p style="color: #555;">We continuously monitor and optimize your SEO performance to ensure sustained growth across all your target UK locations.</p>
+                            <ul class="step-features">
+                                <li style="color: #333;">Monthly UK performance reports</li>
+                                <li style="color: #333;">Multi-location ranking tracking</li>
+                                <li style="color: #333;">Content updates</li>
+                                <li style="color: #333;">Strategy refinements</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-cta" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                        <h3 style="color: #333;">Get Your Free UK SEO Analysis Today</h3>
+                        <p style="color: #555;">Discover how we can help your business thrive across the UK. Get your comprehensive website review, competitor analysis, and custom SEO strategy - completely free.</p>
+                        <div class="process-cta-buttons">
+                            <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
+                                <i class="fas fa-search"></i>
+                                Get Free SEO Analysis
+                            </a>
+                            <a href="tel:07411575188" class="btn btn-outline-modern" style="border: 2px solid var(--primary-color); color: var(--primary-color);">
+                                <i class="fas fa-phone"></i>
+                                Call: 07411575188
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Services Directory Section -->
-            <section class="services-directory">
+            <!-- Our Approach Section - Dark background with white cards -->
+            <section class="process-section-modern" style="background: var(--darker-bg);">
                 <div class="container">
                     <div class="section-header-modern">
-                        <h2>SEO Services by Industry</h2>
-                        <p>Specialized SEO solutions for different industries across the UK.</p>
+                        <h2 style="color: var(--text-white);">Our UK-Wide Approach</h2>
+                        <p style="color: var(--text-gray);">A collaborative, 4-step process to achieve lasting SEO success across the United Kingdom</p>
                     </div>
-                    <div id="services-container">
-                        ${this.generateServicesGrid()}
-                    </div>
-                    <div id="no-services-results" class="no-results" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <h3>No services found</h3>
-                        <p>Try adjusting your search terms or filters.</p>
+                    <div class="process-grid-modern">
+                        <div class="process-card-modern" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="process-number" style="color: var(--primary-color);">01</div>
+                            <div class="process-icon-modern">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 style="color: #333;">Comprehensive UK SEO Audit</h3>
+                            <p style="color: #555;">We begin with a deep dive into your website, UK competitors, and local market dynamics to uncover growth opportunities.</p>
+                        </div>
+                        <div class="process-card-modern" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="process-number" style="color: var(--primary-color);">02</div>
+                            <div class="process-icon-modern">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 style="color: #333;">UK Strategic Planning</h3>
+                            <p style="color: #555;">We develop a custom SEO strategy tailored to your industry, UK target locations, and specific business objectives.</p>
+                        </div>
+                        <div class="process-card-modern" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="process-number" style="color: var(--primary-color);">03</div>
+                            <div class="process-icon-modern">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 style="color: #333;">Expert UK Implementation</h3>
+                            <p style="color: #555;">Our team implements on-page, off-page, and technical SEO improvements using proven methods for UK markets.</p>
+                        </div>
+                        <div class="process-card-modern" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="process-number" style="color: var(--primary-color);">04</div>
+                            <div class="process-icon-modern">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 style="color: #333;">Monitor & Optimize</h3>
+                            <p style="color: #555;">We provide continuous monitoring, detailed UK reporting, and data-driven optimization to ensure sustained improvement.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- CTA Section - Matching Homepage -->
-            <section class="cta-section-modern">
+            <!-- Services Showcase - Dark background with white service cards -->
+            <section class="services-showcase" style="background: var(--dark-bg);">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2 style="color: var(--text-white);">SEO Services Across the UK</h2>
+                        <p style="color: var(--text-gray);">Specialized SEO solutions for every industry and location across the United Kingdom</p>
+                    </div>
+                    <div class="services-grid-modern">
+                        ${Object.entries(this.seoServices).map(([service, data]) => `
+                            <div class="service-card-modern" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                                <div class="service-icon-modern">
+                                    <i class="${data.icon}"></i>
+                                </div>
+                                <h3 style="color: #333;">${service} Across UK</h3>
+                                <p style="color: #555;">${data.description} - available in all major UK cities and regions.</p>
+                                <ul class="service-highlights">
+                                    ${data.benefits.slice(0, 4).map(benefit => `<li style="color: #333;">${benefit}</li>`).join('')}
+                                </ul>
+                                <a href="${this.getServiceUrl(service)}" class="service-link" style="color: var(--primary-color);">
+                                    Explore ${service} <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </section>
+
+            <!-- UK Cities Directory -->
+            <section class="cities-directory" style="background: var(--darker-bg);">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2 style="color: var(--text-white);">Find SEO Services in Your UK City</h2>
+                        <p style="color: var(--text-gray);">Professional SEO services available across all major UK cities and regions</p>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="directory-search" style="background: var(--card-bg);">
+                        <div class="search-controls">
+                            <div class="search-bar">
+                                <i class="fas fa-search" style="color: var(--text-gray);"></i>
+                                <input type="text" id="city-search" placeholder="Search for your city or region..." style="background: var(--darker-bg); color: var(--text-white); border: 1px solid var(--border-dark);">
+                                <button class="clear-btn" id="clear-search" style="display: none; color: var(--text-gray);">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="filter-options">
+                                <select id="region-filter" style="background: var(--darker-bg); color: var(--text-white); border: 1px solid var(--border-dark);">
+                                    <option value="">All Regions</option>
+                                    <option value="England">England</option>
+                                    <option value="Scotland">Scotland</option>
+                                    <option value="Wales">Wales</option>
+                                    <option value="Northern Ireland">Northern Ireland</option>
+                                </select>
+                                <select id="population-filter" style="background: var(--darker-bg); color: var(--text-white); border: 1px solid var(--border-dark);">
+                                    <option value="">All Sizes</option>
+                                    <option value="large">Large Cities (500k+)</option>
+                                    <option value="medium">Medium Cities (200k-500k)</option>
+                                    <option value="small">Smaller Cities (<200k)</option>
+                                </select>
+                            </div>
+                            <div class="search-results-info" id="search-results" style="color: var(--text-gray);">
+                                Showing all ${Object.keys(this.ukCities).length} UK locations
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cities-grid-modern" id="cities-grid">
+                        ${Object.entries(this.ukCities).map(([city, data]) => `
+                            <div class="city-card-modern" data-city="${city}" data-region="${data.region}" data-population="${this.getCitySize(data.population)}" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                                <div class="service-icon-modern">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO%20Company" style="color: #333; text-decoration: none;">SEO Services ${city}</a></h4>
+                                <p style="color: #555;">Professional SEO services in ${city}, ${data.region}. Local expertise for ${city} businesses with proven results.</p>
+                                <div class="service-highlights">
+                                    <span class="highlight-tag" style="background: rgba(255, 107, 53, 0.1); color: var(--primary-color);">Population: ${data.population}</span>
+                                    <span class="highlight-tag" style="background: rgba(255, 107, 53, 0.1); color: var(--primary-color);">${data.region}</span>
+                                    <span class="highlight-tag" style="background: rgba(255, 107, 53, 0.1); color: var(--primary-color);">Local Experts</span>
+                                </div>
+                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO%20Company" class="service-link" style="color: var(--primary-color);">
+                                    View ${city} SEO <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <!-- No Results -->
+                    <div class="no-results" id="no-results" style="display: none; color: var(--text-gray);">
+                        <i class="fas fa-search" style="color: var(--text-gray);"></i>
+                        <h3 style="color: var(--text-white);">No cities found</h3>
+                        <p style="color: var(--text-gray);">Try adjusting your search criteria or browse all available locations above.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section - Card background with white testimonial cards -->
+            <section class="testimonials-section" style="background: var(--card-bg);">
+                <div class="container">
+                    <div class="section-header-modern">
+                        <h2 style="color: var(--text-white);">Success Stories Across the UK</h2>
+                        <p style="color: var(--text-gray);">Real results from businesses we've helped across the United Kingdom</p>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="stars" style="color: #ffc107;">★★★★★</div>
+                            <blockquote style="color: #333;">"OutsourceSU helped our London law firm achieve #1 rankings for 'solicitors London' and increased our client inquiries by 400% in just 6 months."</blockquote>
+                            <cite style="color: var(--primary-color);">— James Mitchell, Senior Partner, Mitchell & Associates Law (London)</cite>
+                        </div>
+                        <div class="testimonial-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="stars" style="color: #ffc107;">★★★★★</div>
+                            <blockquote style="color: #333;">"As a construction company in Manchester, we struggled with online visibility. OutsourceSU's targeted SEO strategy doubled our project inquiries within 4 months."</blockquote>
+                            <cite style="color: var(--primary-color);">— Sarah Thompson, MD, Thompson Construction Ltd (Manchester)</cite>
+                        </div>
+                        <div class="testimonial-card" style="background: white; color: #333; border: 1px solid #e0e0e0;">
+                            <div class="stars" style="color: #ffc107;">★★★★★</div>
+                            <blockquote style="color: #333;">"Our Birmingham dental practice now gets 50+ new patient inquiries per month thanks to OutsourceSU's expert dental SEO strategies."</blockquote>
+                            <cite style="color: var(--primary-color);">— Dr. Michael Brown, Brown Dental Practice (Birmingham)</cite>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section - Dark gradient background with proper button styling -->
+            <section class="cta-section-modern" style="background: var(--gradient-dark);">
                 <div class="container">
                     <div class="cta-content-modern">
-                        <h2>Ready to Dominate Your Local Market?</h2>
-                        <p>Get a free SEO audit and discover how we can help your business rank #1 in search results across the UK.</p>
+                        <h2 style="color: var(--text-white);">Ready to Dominate Your Local Market?</h2>
+                        <p style="color: var(--text-gray);">Get a free SEO audit and discover how we can help your business rank #1 in search results across the UK.</p>
                         <div class="cta-buttons-modern">
                             <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">
                                 <i class="fas fa-rocket"></i>
                                 Get Free SEO Audit
                             </a>
-                            <a href="tel:07411575188" class="btn btn-outline-modern">
+                            <a href="tel:07411575188" class="btn btn-outline-modern" style="border: 2px solid var(--primary-color); color: var(--text-white);">
                                 <i class="fas fa-phone"></i>
                                 Call: 07411575188
                             </a>
@@ -292,370 +535,20 @@ class DynamicDirectoryGenerator {
         `;
 
         container.innerHTML = directoryContent;
-        this.updatePageMeta('SEO Services Directory UK', 'Find professional SEO services across the UK. Expert digital marketing solutions for all industries and cities.');
-        
-        // Initialize search functionality
-        this.initializeDirectorySearch();
     }
 
-    generateCitiesGrid() {
-        let citiesHtml = '';
-        
-        Object.keys(this.cities).forEach(region => {
-            citiesHtml += `
-                <div class="region-section">
-                    <h3>${region}</h3>
-                    <div class="cities-grid-modern">
-                        ${this.cities[region].map(city => `
-                            <div class="city-card-modern" data-city="${city}" data-region="${region}">
-                                <div class="service-icon-modern">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Services in ${city}</a></h4>
-                                <p>Professional SEO services to help ${city} businesses dominate search results and drive more customers.</p>
-                                <div class="service-highlights">
-                                    <span class="highlight-tag">Local SEO</span>
-                                    <span class="highlight-tag">Google Rankings</span>
-                                    <span class="highlight-tag">Lead Generation</span>
-                                </div>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="service-link">
-                                    View Services <i class="fas fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        });
-
-        return citiesHtml;
+    getServiceUrl(service) {
+        return `/${this.slugify(service.replace(' SEO', ''))}-seo.html`;
     }
 
-    generateServicesGrid() {
-        return `
-            <div class="services-grid-modern">
-                ${this.services.map(service => `
-                    <div class="service-card-modern" data-service="${service}">
-                        <div class="service-icon-modern">
-                            <i class="fas ${this.getServiceIcon(service)}"></i>
-                        </div>
-                        <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html">${service}</a></h4>
-                        <p>Specialized SEO strategies for ${service.replace(' SEO', '').toLowerCase()} businesses across the UK.</p>
-                        <div class="service-highlights">
-                            <span class="highlight-tag">Industry Expertise</span>
-                            <span class="highlight-tag">Proven Results</span>
-                            <span class="highlight-tag">UK-wide Coverage</span>
-                        </div>
-                        <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html" class="service-link">
-                            Learn More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-    }
-
-    getServiceIcon(service) {
-        const iconMap = {
-            'Law Firm SEO': 'fa-balance-scale',
-            'Dentist SEO': 'fa-tooth',
-            'Accountant SEO': 'fa-calculator',
-            'Architect SEO': 'fa-drafting-compass',
-            'Plumber SEO': 'fa-wrench',
-            'Electrician SEO': 'fa-bolt',
-            'Heating Engineer SEO': 'fa-fire',
-            'Contractors SEO': 'fa-hammer',
-            'Medical SEO': 'fa-stethoscope',
-            'Financial Services SEO': 'fa-chart-line',
-            'Construction SEO': 'fa-hard-hat',
-            'Professional Services': 'fa-briefcase',
-            'Real Estate SEO': 'fa-home',
-            'Roofing SEO': 'fa-home'
-        };
-        
-        return iconMap[service] || 'fa-cog';
-    }
-
-    generateCityPage() {
-        const container = document.querySelector('.page-header, .hero-modern, main');
-        if (!container) return;
-
-        const cityContent = `
-            <section class="city-hero">
-                <div class="container">
-                    <h1>Best SEO Services in ${this.currentCity} | ${this.companyName}</h1>
-                    <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${this.currentCity} SEO solutions. We leverage our extensive industry experience and acquired expertise to help businesses across industries get discovered online.</p>
-                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${this.currentCity} SEO Audit</a>
-                </div>
-            </section>
-
-            ${this.generateFourSections(this.currentCity)}
-            ${this.generateContactCard()}
-            ${this.generateServicesForCity(this.currentCity)}
-        `;
-
-        if (container.tagName === 'MAIN') {
-            container.innerHTML = cityContent;
+    getCitySize(population) {
+        const numPopulation = parseInt(population.replace(/[^\d]/g, ''));
+        if (numPopulation >= 500000) {
+            return 'large';
+        } else if (numPopulation >= 200000) {
+            return 'medium';
         } else {
-            container.insertAdjacentHTML('afterend', cityContent);
-        }
-
-        this.updatePageMeta(
-            `Best SEO Services in ${this.currentCity} | ${this.companyName}`,
-            `Leading SEO agency in ${this.currentCity}. We help local businesses dominate search results and drive more customers. Professional ${this.currentCity} SEO services.`
-        );
-    }
-
-    generateServicePage() {
-        const container = document.querySelector('.page-header, .hero-modern, main');
-        if (!container) return;
-
-        const serviceType = this.currentService.replace(' SEO', '');
-        const serviceContent = `
-            <section class="service-hero">
-                <div class="container">
-                    <h1>${this.currentService} Services UK | ${this.companyName}</h1>
-                    <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${serviceType} SEO solutions. We leverage our extensive industry experience and acquired expertise to help ${serviceType.toLowerCase()} businesses across industries get discovered online.</p>
-                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${serviceType} SEO Audit</a>
-                </div>
-            </section>
-
-            ${this.generateFourSections(serviceType, 'service')}
-            ${this.generateContactCard()}
-            ${this.generateCitiesForService(this.currentService)}
-        `;
-
-        if (container.tagName === 'MAIN') {
-            container.innerHTML = serviceContent;
-        } else {
-            container.insertAdjacentHTML('afterend', serviceContent);
-        }
-
-        this.updatePageMeta(
-            `${this.currentService} Services UK | ${this.companyName}`,
-            `Specialized ${this.currentService.toLowerCase()} services across the UK. Expert SEO strategies to help ${serviceType.toLowerCase()} businesses dominate search results.`
-        );
-    }
-
-    generateCombinedPage() {
-        const container = document.querySelector('.page-header, .hero-modern, main');
-        if (!container) return;
-
-        const serviceType = this.currentService.replace(' SEO', '');
-        const combinedContent = `
-            <section class="combined-hero">
-                <div class="container">
-                    <h1>${this.currentService} in ${this.currentCity} | ${this.companyName}</h1>
-                    <p>${this.companyName} is a professional search engine optimisation (SEO) agency offering innovative ${this.currentCity} ${serviceType} SEO solutions. We leverage our extensive industry experience and acquired expertise to help ${serviceType.toLowerCase()} businesses in ${this.currentCity} get discovered online.</p>
-                    <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free ${this.currentCity} ${serviceType} SEO Audit</a>
-                </div>
-            </section>
-
-            ${this.generateFourSections(`${this.currentCity} ${serviceType}`, 'combined')}
-            ${this.generateContactCard()}
-        `;
-
-        if (container.tagName === 'MAIN') {
-            container.innerHTML = combinedContent;
-        } else {
-            container.insertAdjacentHTML('afterend', combinedContent);
-        }
-
-        this.updatePageMeta(
-            `${this.currentService} in ${this.currentCity} | ${this.companyName}`,
-            `Expert ${this.currentService.toLowerCase()} services in ${this.currentCity}. Help your ${serviceType.toLowerCase()} business dominate local search results.`
-        );
-    }
-
-    generateFourSections(location, type = 'city') {
-        const sectionContext = type === 'service' ? `${location} businesses` : 
-                             type === 'combined' ? `${location} businesses` : 
-                             `businesses in ${location}`;
-
-        return `
-            <section class="seo-benefits">
-                <div class="container">
-                    <h2>Why Choose ${this.companyName} for ${location} SEO?</h2>
-                    <div class="benefits-grid">
-                        <div class="benefit-card">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Proven Results</h3>
-                            <p>We've helped 500+ ${sectionContext} achieve #1 rankings on Google with our proven SEO strategies.</p>
-                        </div>
-                        <div class="benefit-card">
-                            <i class="fas fa-users"></i>
-                            <h3>Expert Team</h3>
-                            <p>Our certified SEO specialists have deep expertise in ${location} market dynamics and search behavior.</p>
-                        </div>
-                        <div class="benefit-card">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <h3>Local Expertise</h3>
-                            <p>Deep understanding of ${location} market trends and customer behavior patterns.</p>
-                        </div>
-                        <div class="benefit-card">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Fast Results</h3>
-                            <p>See improvements in search rankings within 90 days with our accelerated SEO methodology.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="seo-process">
-                <div class="container">
-                    <h2>Our ${location} SEO Process</h2>
-                    <div class="process-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h3>SEO Audit & Analysis</h3>
-                            <p>Comprehensive analysis of your current online presence and ${location} market opportunities.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h3>Strategy Development</h3>
-                            <p>Custom SEO strategy tailored to your business goals and ${location} market requirements.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h3>Implementation</h3>
-                            <p>Expert execution of on-page, off-page, and technical SEO optimizations.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h3>Monitoring & Reporting</h3>
-                            <p>Continuous monitoring with detailed monthly reports showing your progress and ROI.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="seo-services">
-                <div class="container">
-                    <h2>${location} SEO Services We Offer</h2>
-                    <div class="services-grid">
-                        <div class="service-item">
-                            <h4>Local SEO</h4>
-                            <p>Dominate local search results and Google My Business listings in ${location}.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>Technical SEO</h4>
-                            <p>Optimize your website's technical foundation for better search performance.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>Content Marketing</h4>
-                            <p>Engaging, SEO-optimized content that resonates with your ${location} audience.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>Link Building</h4>
-                            <p>High-authority backlinks from relevant ${location} and industry sources.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="testimonials">
-                <div class="container">
-                    <h2>What Our ${location} Clients Say</h2>
-                    <div class="testimonials-grid">
-                        <div class="testimonial">
-                            <p>"${this.companyName} transformed our online presence. We're now ranking #1 for our main keywords in ${location}."</p>
-                            <cite>- Local Business Owner</cite>
-                        </div>
-                        <div class="testimonial">
-                            <p>"Professional service and outstanding results. Our website traffic has increased by 300% since working with ${this.companyName}."</p>
-                            <cite>- ${location} Business</cite>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        `;
-    }
-
-    generateContactCard() {
-        return `
-            <section class="contact-card-section">
-                <div class="container">
-                    <div class="contact-card">
-                        <h3>Ready to Dominate Search Results?</h3>
-                        <p>Get a free SEO audit and discover how we can help your business achieve #1 rankings.</p>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <span>Call: 07411575188</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>Email: hello@outsourcesu.com</span>
-                            </div>
-                        </div>
-                        <a href="${this.baseUrl}/contact.html" class="btn btn-primary-modern">Get Free SEO Audit</a>
-                    </div>
-                </div>
-            </section>
-        `;
-    }
-
-    generateServicesForCity(city) {
-        return `
-            <section class="city-services">
-                <div class="container">
-                    <h2>SEO Services Available in ${city}</h2>
-                    <div class="services-grid">
-                        ${this.services.map(service => `
-                            <div class="service-card">
-                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html">${service} in ${city}</a></h4>
-                                <p>Specialized ${service.toLowerCase()} for ${city} businesses</p>
-                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html" class="learn-more">Learn More →</a>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            </section>
-        `;
-    }
-
-    generateCitiesForService(service) {
-        const allCities = Object.values(this.cities).flat();
-        return `
-            <section class="service-cities">
-                <div class="container">
-                    <h2>${service} Services Across the UK</h2>
-                    <div class="cities-grid">
-                        ${allCities.slice(0, 12).map(city => `
-                            <div class="city-card">
-                                <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html">${service} in ${city}</a></h4>
-                                <p>Expert ${service.toLowerCase()} services in ${city}</p>
-                                <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo-${this.slugify(city)}.html" class="learn-more">Get Quote →</a>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            </section>
-        `;
-    }
-
-    updatePageMeta(title, description) {
-        document.title = title;
-        
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-            metaDesc.setAttribute('content', description);
-        } else {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            metaDesc.setAttribute('content', description);
-            document.head.appendChild(metaDesc);
-        }
-
-        // Update Open Graph tags
-        let ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) {
-            ogTitle.setAttribute('content', title);
-        }
-
-        let ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) {
-            ogDesc.setAttribute('content', description);
+            return 'small';
         }
     }
 
@@ -666,180 +559,85 @@ class DynamicDirectoryGenerator {
             .replace(/-+/g, '-')
             .trim();
     }
+}
 
-    initializeDirectorySearch() {
-        const searchInput = document.getElementById('directory-search');
-        const clearBtn = document.getElementById('clear-search');
-        const regionFilter = document.getElementById('region-filter');
-        const serviceFilter = document.getElementById('service-filter');
-        const resetBtn = document.getElementById('reset-filters');
-        const resultsCount = document.getElementById('results-count');
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the element with class 'directory-main' exists before initializing
+    const directoryMainElement = document.querySelector('.directory-main') || document.querySelector('main');
+    if (directoryMainElement) {
+        // Add CSS variables to the root element
+        document.documentElement.style.setProperty('--dark-bg', '#121212');
+        document.documentElement.style.setProperty('--darker-bg', '#181818');
+        document.documentElement.style.setProperty('--card-bg', '#242424');
+        document.documentElement.style.setProperty('--border-dark', '#333');
+        document.documentElement.style.setProperty('--text-white', '#fff');
+        document.documentElement.style.setProperty('--text-gray', '#999');
+        document.documentElement.style.setProperty('--text-light-gray', '#ccc');
+        document.documentElement.style.setProperty('--primary-color', '#ff6b35');        document.documentElement.style.setProperty('--secondary-color', '#f7c59f');
+        document.documentElement.style.setProperty('--accent-green', '#4caf50');
+        document.documentElement.style.setProperty('--gradient-dark', 'linear-gradient(to right, #1e3c72, #2a5298)');
+        document.documentElement.style.setProperty('--gradient-secondary', 'linear-gradient(135deg, #f0f2f0 0%, #000c40 100%)');
 
-        if (!searchInput) return;
+        window.dynamicDirectory = new DynamicDirectoryGenerator();
 
-        // Search functionality
-        const performSearch = () => {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const selectedRegion = regionFilter.value;
-            const selectedService = serviceFilter.value;
+        // City Search Functionality
+        const citySearchInput = document.getElementById('city-search');
+        const regionFilterSelect = document.getElementById('region-filter');
+        const populationFilterSelect = document.getElementById('population-filter');
+        const clearSearchButton = document.getElementById('clear-search');
+        const citiesGrid = document.getElementById('cities-grid');
+        const noResultsDiv = document.getElementById('no-results');
+        const searchResultsInfo = document.getElementById('search-results');
 
-            // Show/hide clear button
-            clearBtn.style.display = searchTerm ? 'block' : 'none';
+        // Initialize display
+        updateDisplay();
 
-            // Filter cities
-            this.filterCities(searchTerm, selectedRegion, selectedService);
-            
-            // Filter services
-            this.filterServices(searchTerm, selectedService);
+        // Event Listeners
+        citySearchInput.addEventListener('input', updateDisplay);
+        regionFilterSelect.addEventListener('change', updateDisplay);
+        populationFilterSelect.addEventListener('change', updateDisplay);
 
-            // Update results count
-            this.updateResultsCount();
-        };
-
-        // Event listeners
-        searchInput.addEventListener('input', performSearch);
-        regionFilter.addEventListener('change', performSearch);
-        serviceFilter.addEventListener('change', performSearch);
-
-        clearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            clearBtn.style.display = 'none';
-            performSearch();
-            searchInput.focus();
+        clearSearchButton.addEventListener('click', () => {
+            citySearchInput.value = '';
+            updateDisplay();
         });
 
-        resetBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            regionFilter.value = '';
-            serviceFilter.value = '';
-            clearBtn.style.display = 'none';
-            performSearch();
-        });
+        function updateDisplay() {
+            const searchTerm = citySearchInput.value.toLowerCase();
+            const selectedRegion = regionFilterSelect.value;
+            const selectedPopulation = populationFilterSelect.value;
 
-        // Initial count
-        this.updateResultsCount();
+            let visibleCitiesCount = 0;
+            let totalCities = 0;
 
-        // Add keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'k') {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (e.key === 'Escape' && document.activeElement === searchInput) {
-                searchInput.blur();
-            }
-        });
-    }
+            Array.from(citiesGrid.children).forEach(cityCard => {
+                const city = cityCard.dataset.city.toLowerCase();
+                const region = cityCard.dataset.region;
+                const population = cityCard.dataset.population;
 
-    filterCities(searchTerm, selectedRegion, selectedService) {
-        const citiesContainer = document.getElementById('cities-container');
-        const noResultsDiv = document.getElementById('no-cities-results');
-        const regionSections = citiesContainer.querySelectorAll('.region-section');
-        let visibleCitiesCount = 0;
+                const matchesSearch = city.includes(searchTerm);
+                const matchesRegion = selectedRegion === '' || region === selectedRegion;
+                const matchesPopulation = selectedPopulation === '' || population === selectedPopulation;
 
-        regionSections.forEach(section => {
-            const regionName = section.querySelector('h3').textContent;
-            const cityCards = section.querySelectorAll('.city-card-modern');
-            let visibleCitiesInRegion = 0;
-
-            // Check if region matches filter
-            const regionMatches = !selectedRegion || regionName === selectedRegion;
-
-            cityCards.forEach(card => {
-                const cityName = card.querySelector('h4 a').textContent.toLowerCase();
-                const cityText = card.textContent.toLowerCase();
-
-                const matchesSearch = !searchTerm || 
-                    cityName.includes(searchTerm) || 
-                    cityText.includes(searchTerm);
-
-                const matchesService = !selectedService || cityText.includes(selectedService.toLowerCase());
-
-                if (regionMatches && matchesSearch && matchesService) {
-                    card.style.display = 'block';
-                    visibleCitiesInRegion++;
+                if (matchesSearch && matchesRegion && matchesPopulation) {
+                    cityCard.style.display = 'block';
                     visibleCitiesCount++;
                 } else {
-                    card.style.display = 'none';
+                    cityCard.style.display = 'none';
                 }
+                totalCities++;
             });
 
-            // Show/hide region section
-            if (visibleCitiesInRegion > 0) {
-                section.style.display = 'block';
+            // Show/Hide No Results Message
+            if (visibleCitiesCount === 0) {
+                noResultsDiv.style.display = 'block';
             } else {
-                section.style.display = 'none';
+                noResultsDiv.style.display = 'none';
             }
-        });
 
-        // Show/hide no results message
-        if (visibleCitiesCount === 0) {
-            noResultsDiv.style.display = 'block';
-            citiesContainer.style.display = 'none';
-        } else {
-            noResultsDiv.style.display = 'none';
-            citiesContainer.style.display = 'block';
+            // Update Search Results Info
+            searchResultsInfo.textContent = `Showing ${visibleCitiesCount} of ${Object.keys(window.dynamicDirectory.ukCities).length} UK locations`;
+            clearSearchButton.style.display = citySearchInput.value ? 'inline-block' : 'none';
         }
     }
-
-    filterServices(searchTerm, selectedService) {
-        const servicesContainer = document.getElementById('services-container');
-        const noResultsDiv = document.getElementById('no-services-results');
-        const serviceCards = servicesContainer.querySelectorAll('.service-card-modern');
-        let visibleServicesCount = 0;
-
-        serviceCards.forEach(card => {
-            const serviceName = card.querySelector('h4 a').textContent.toLowerCase();
-            const serviceText = card.textContent.toLowerCase();
-
-            const matchesSearch = !searchTerm || 
-                serviceName.includes(searchTerm) || 
-                serviceText.includes(searchTerm);
-
-            const matchesFilter = !selectedService || 
-                card.querySelector('h4 a').textContent.includes(selectedService);
-
-            if (matchesSearch && matchesFilter) {
-                card.style.display = 'block';
-                visibleServicesCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        // Show/hide no results message
-        if (visibleServicesCount === 0) {
-            noResultsDiv.style.display = 'block';
-            servicesContainer.querySelector('.services-grid-modern').style.display = 'none';
-        } else {
-            noResultsDiv.style.display = 'none';
-            servicesContainer.querySelector('.services-grid-modern').style.display = 'grid';
-        }
-    }
-
-    updateResultsCount() {
-        const resultsCount = document.getElementById('results-count');
-        if (!resultsCount) return;
-
-        const visibleCities = document.querySelectorAll('.city-card-modern[style*="display: block"], .city-card-modern:not([style*="display: none"])').length;
-        const visibleServices = document.querySelectorAll('.service-card-modern[style*="display: block"], .service-card-modern:not([style*="display: none"])').length;
-        
-        const totalVisible = visibleCities + visibleServices;
-        
-        if (totalVisible === 0) {
-            resultsCount.textContent = 'No results found';
-        } else {
-            resultsCount.textContent = `Showing ${totalVisible} result${totalVisible !== 1 ? 's' : ''} (${visibleCities} cities, ${visibleServices} services)`;
-        }
-    }
-}
-
-// Initialize the dynamic directory generator
-document.addEventListener('DOMContentLoaded', function() {
-    window.dynamicDirectory = new DynamicDirectoryGenerator();
 });
-
-// Export for use in other scripts
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DynamicDirectoryGenerator;
-}

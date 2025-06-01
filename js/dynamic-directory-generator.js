@@ -311,14 +311,14 @@ class DynamicDirectoryGenerator {
                                 <div class="service-icon-modern">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company">Best SEO Company in ${city}</a></h4>
+                                <h4><a href="best-seo-company-${this.slugify(city)}.html">Best SEO Company in ${city}</a></h4>
                                 <p>Leading SEO company helping ${city} businesses dominate search results and drive more customers.</p>
                                 <div class="service-highlights">
                                     <span class="highlight-tag">Local SEO</span>
                                     <span class="highlight-tag">Google Rankings</span>
                                     <span class="highlight-tag">Lead Generation</span>
                                 </div>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=SEO Company" class="service-link">
+                                <a href="best-seo-company-${this.slugify(city)}.html" class="service-link">
                                     View Services <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -339,14 +339,14 @@ class DynamicDirectoryGenerator {
                         <div class="service-icon-modern">
                             <i class="fas ${this.getServiceIcon(service)}"></i>
                         </div>
-                        <h4><a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html">${service}</a></h4>
+                        <h4><a href="best-${this.slugify(service.replace(' SEO', ''))}-seo-services-uk.html">${service}</a></h4>
                         <p>Specialized SEO strategies for ${service.replace(' SEO', '').toLowerCase()} businesses across the UK.</p>
                         <div class="service-highlights">
                             <span class="highlight-tag">Industry Expertise</span>
                             <span class="highlight-tag">Proven Results</span>
                             <span class="highlight-tag">UK-wide Coverage</span>
                         </div>
-                        <a href="${this.baseUrl}/${this.slugify(service.replace(' SEO', ''))}-seo.html" class="service-link">
+                        <a href="best-${this.slugify(service.replace(' SEO', ''))}-seo-services-uk.html" class="service-link">
                             Learn More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>

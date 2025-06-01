@@ -176,9 +176,44 @@ class DynamicCityGenerator {
     }
 
     init() {
+        // Handle URL parameters or clean URL format
+        this.parseUrlAndSetData();
         this.updatePageMeta();
         this.generatePageContent();
         this.updateStructuredData();
+    }
+
+    parseUrlAndSetData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pathname = window.location.pathname;
+        
+        // Check if we have URL parameters (legacy format)
+        if (urlParams.get('city') || urlParams.get('service')) {
+            this.city = urlParams.get('city') || this.city;
+            this.service = urlParams.get('service') || this.service;
+            return;
+        }
+        
+        // Parse clean URL format (best-seo-company-cityname.html)
+        const cleanUrlMatch = pathname.match(/best-seo-company-([a-zA-Z0-9\-]+)\.html$/);
+        if (cleanUrlMatch) {
+            this.city = this.unslugify(cleanUrlMatch[1]);
+            this.service = 'SEO Company';
+            return;
+        }
+        
+        // Parse service URL format (best-service-seo-services-uk.html)
+        const serviceUrlMatch = pathname.match(/best-([a-zA-Z0-9\-]+)-seo-services-uk\.html$/);
+        if (serviceUrlMatch) {
+            this.service = this.unslugify(serviceUrlMatch[1]) + ' SEO';
+            return;
+        }
+    }
+
+    unslugify(slug) {
+        return slug.replace(/-/g, ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase())
+                  .replace(/&/g, '&');
     }
 
     updatePageMeta() {
@@ -588,9 +623,9 @@ class DynamicCityGenerator {
                     <div class="cities-grid">
                         ${Object.keys(this.cityData).filter(city => city !== this.city).slice(0, 8).map(city => `
                             <div class="city-card">
-                                <h4><a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}">${this.service} ${city}</a></h4>
+                                <h4><a href="best-seo-company-${this.slugify(city)}.html">${this.service} ${city}</a></h4>
                                 <p>Professional ${this.serviceData[this.service]?.description || 'SEO'} services in ${city}</p>
-                                <a href="dynamic-city-page.html?city=${encodeURIComponent(city)}&service=${encodeURIComponent(this.service)}" class="learn-more">Learn More →</a>
+                                <a href="best-seo-company-${this.slugify(city)}.html" class="learn-more">Learn More →</a>
                             </div>
                         `).join('')}
                     </div>
@@ -607,6 +642,14 @@ class DynamicCityGenerator {
     getBenefitIcon(index) {
         const icons = ['chart-line', 'users', 'bullseye', 'eye', 'star', 'trophy'];
         return icons[index] || 'star';
+    }
+
+    slugify(text) {
+        return text.toLowerCase()
+            .replace(/[^a-z0-9 -]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim();
     }
 
     updateStructuredData() {

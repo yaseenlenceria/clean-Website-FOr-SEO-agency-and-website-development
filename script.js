@@ -270,3 +270,11 @@ function initializePage() {
 
 // Call initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', initializePage);
+
+// Navigation Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (!hamburger || !navMenu) return;
+});

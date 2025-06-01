@@ -29,11 +29,11 @@ function loadHeader() {
         .then(data => {
             // Clean the data and remove any stray elements with fixed positioning
             let cleanData = data.trim();
-            
+
             // Remove any elements with "SEO Services" text and fixed positioning
             cleanData = cleanData.replace(/<[^>]*style="[^"]*position:\s*fixed[^"]*"[^>]*>.*?SEO Services.*?<\/[^>]*>/gi, '');
             cleanData = cleanData.replace(/SEO Services/gi, '');
-            
+
             // Clear any existing content first
             headerElement.innerHTML = '';
             headerElement.innerHTML = cleanData;
@@ -64,8 +64,10 @@ function loadHeader() {
                         <ul class="nav-menu">
                             <li><a href="/index.html">Home</a></li>
                             <li><a href="/services.html">Services</a></li>
-                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/uk-directory.html">Directory</a></li>
+                            <li><a href="/our-work.html">Our Work</a></li>
                             <li><a href="/blog.html">Blog</a></li>
+                            <li><a href="/about.html">About</a></li>
                             <li><a href="/contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -148,7 +150,7 @@ function initializeNavigation() {
                     document.body.style.position = 'fixed';
                     document.body.style.width = '100%';
                     document.body.style.top = `-${window.scrollY}px`;
-                    
+
                     // Store scroll position
                     window.navScrollPosition = window.scrollY;
                 } else {
@@ -157,7 +159,7 @@ function initializeNavigation() {
                     document.body.style.position = '';
                     document.body.style.width = '';
                     document.body.style.top = '';
-                    
+
                     // Restore scroll position
                     if (window.navScrollPosition !== undefined) {
                         window.scrollTo(0, window.navScrollPosition);
@@ -443,3 +445,4 @@ function loadComponent(elementId, componentPath) {
             .catch(error => console.error('Error loading component:', error));
     }
 }
+```

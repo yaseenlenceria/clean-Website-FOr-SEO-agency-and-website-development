@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK SEO Services Directory | OutsourceSU - Professional SEO Across the UK</title>
+    <meta name="description" content="Complete directory of professional SEO services across the UK. Find expert digital marketing solutions in your city. Covering all major UK cities and industries.">
+    <meta name="keywords" content="UK SEO services, SEO directory, digital marketing UK, local SEO, professional SEO services">
+    <meta name="author" content="OutsourceSU">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://outsourcesu.com/uk-directory">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="UK SEO Services Directory | OutsourceSU">
+    <meta property="og:description" content="Complete directory of professional SEO services across the UK. Find expert digital marketing solutions in your city.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://outsourcesu.com/uk-directory">
+    <meta property="og:image" content="https://outsourcesu.com/attached_assets/logo1.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UK SEO Services Directory | OutsourceSU">
+    <meta name="twitter:description" content="Complete directory of professional SEO services across the UK. Find expert digital marketing solutions in your city.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="attached_assets/favicon.jpg">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="css/directory-styles.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Structured Data for Directory -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "UK SEO Services Directory",
+        "description": "Complete directory of professional SEO services across the UK",
+        "url": "https://outsourcesu.com/uk-directory",
+        "publisher": {
+            "@type": "Organization",
+            "name": "OutsourceSU",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://outsourcesu.com/attached_assets/logo1.png"
+            }
+        },
+        "inLanguage": "en-GB",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "UK SEO Services by Location",
+            "numberOfItems": 70,
+            "itemListElement": [
+                {
+                    "@type": "Service",
+                    "name": "SEO Services London",
+                    "url": "https://outsourcesu.com/best-seo-services-london"
+                },
+                {
+                    "@type": "Service", 
+                    "name": "SEO Services Manchester",
+                    "url": "https://outsourcesu.com/best-seo-services-manchester"
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <script src="js/components.js"></script>
+    <div id="global-header"></div>
+
+    <!-- Main Content - Will be populated by JavaScript -->
+    <main class="directory-main">
+        <!-- Content will be dynamically generated -->
+    </main>
+
+    <!-- Global Footer -->
+    <div id="global-footer"></div>
+
+    <script src="js/dynamic-directory-generator.js"></script>
+    <script src="js/dynamic-tagging.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Set the current page type for dynamic generation
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.dynamicDirectory) {
+                window.dynamicDirectory.currentType = 'directory';
+                window.dynamicDirectory.generateDynamicContent();
+            }
+        });
+    </script>
+</body>
+</html>

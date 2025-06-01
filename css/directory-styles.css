@@ -1,0 +1,330 @@
+
+/* Dynamic Directory Styles */
+.directory-hero, .city-hero, .service-hero, .combined-hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.directory-hero h1, .city-hero h1, .service-hero h1, .combined-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.directory-hero p, .city-hero p, .service-hero p, .combined-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cities and Services Grid */
+.cities-directory, .services-directory {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.region-section {
+    margin-bottom: 50px;
+}
+
+.region-section h3 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #ff6b35;
+    padding-bottom: 10px;
+}
+
+.cities-grid, .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.city-card, .service-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.city-card:hover, .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.city-card h4, .service-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.city-card h4 a, .service-card h4 a {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.city-card h4 a:hover, .service-card h4 a:hover {
+    color: #ff6b35;
+}
+
+.city-card p, .service-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.learn-more {
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.learn-more:hover {
+    color: #e55a2b;
+}
+
+/* Four Sections Styling */
+.seo-benefits, .seo-process, .seo-services, .testimonials {
+    padding: 60px 0;
+}
+
+.seo-benefits {
+    background: white;
+}
+
+.seo-process {
+    background: #f8f9fa;
+}
+
+.seo-services {
+    background: white;
+}
+
+.testimonials {
+    background: #f8f9fa;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.benefit-card i {
+    font-size: 3rem;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.benefit-card p {
+    color: #666;
+}
+
+/* Process Steps */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ff6b35;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.step h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.step p {
+    color: #666;
+}
+
+/* Services Grid */
+.service-item {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.service-item h4 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    color: #666;
+}
+
+/* Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.testimonial::before {
+    content: '"';
+    font-size: 4rem;
+    color: #ff6b35;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+}
+
+.testimonial p {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 15px;
+    padding-left: 30px;
+}
+
+.testimonial cite {
+    color: #666;
+    font-weight: 600;
+}
+
+/* Contact Card */
+.contact-card-section {
+    padding: 60px 0;
+    background: #1a1a1a;
+}
+
+.contact-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.contact-card h3 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+}
+
+.contact-item i {
+    color: #ff6b35;
+}
+
+/* CTA Section */
+.contact-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #ff6b35 0%, #e55a2b 100%);
+    text-align: center;
+}
+
+.cta-card {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-card h3 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.cta-card p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .directory-hero h1, .city-hero h1, .service-hero h1, .combined-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .cities-grid, .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+}

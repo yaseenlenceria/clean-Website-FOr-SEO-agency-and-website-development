@@ -160,6 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
+        const navMenu = document.querySelector('.nav-menu');
+        const navToggle = document.querySelector('.nav-toggle, .hamburger');
         if (navMenu && navToggle) {
             if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
                 navMenu.classList.remove('active');
@@ -232,33 +234,7 @@ function updatePageContent(pageData) {
     });
 }
 
-// Service data for dynamic content
-const serviceData = {
-    'construction-seo': {
-        title: 'Best Construction SEO Services UK | Contractors & Builders',
-        h1: 'Construction SEO - Drive More Leads for Your Building Business',
-        metaDescription: 'Expert Construction SEO services for contractors, builders, roofers and trade businesses. Dominate local search and generate quality leads.',
-        services: [
-            'Local SEO for Contractors',
-            'Roofing Company SEO',
-            'Plumber SEO Services',
-            'Construction Website Design',
-            'Trade Business Marketing'
-        ]
-    },
-    'professional-services-seo': {
-        title: 'Professional Services SEO | Law Firms, Dentists, Accountants',
-        h1: 'Professional Services SEO - Attract High-Value Clients',
-        metaDescription: 'Specialized SEO for professional services including law firms, dental practices, accounting firms and financial advisors.',
-        services: [
-            'Law Firm SEO',
-            'Dental Practice SEO',
-            'Accountant SEO',
-            'Financial Advisor SEO',
-            'Medical Practice SEO'
-        ]
-    }
-};
+// Service data for dynamic content (removed duplicate declaration)
 
 // Initialize page-specific content
 function initializePage() {

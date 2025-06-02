@@ -260,7 +260,6 @@ const serviceData = {
     }
 };
 
-// Initialize page-specific content
 function initializePage() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     if (serviceData[currentPage]) {

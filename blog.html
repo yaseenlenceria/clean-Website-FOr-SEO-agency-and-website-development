@@ -170,6 +170,7 @@
     <!-- Global Footer -->
     <div id="global-footer"></div>
 
+    <script src="js/dynamic-tagging.js"></script>
     <script src="js/blog-posts.js"></script>
     <script src="script.js"></script>
 
@@ -178,12 +179,24 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Wait for all scripts to load
             setTimeout(function() {
+                console.log('Checking for blog loading function...');
                 if (typeof window.loadDynamicBlogPosts === 'function') {
+                    console.log('Loading blog posts...');
                     window.loadDynamicBlogPosts();
                 } else {
                     console.error('Blog loading function not available');
+                    // Fallback: try to load manually
+                    if (window.BLOG_POSTS && window.createBlogPostCard) {
+                        const blogGrid = document.querySelector('#dynamic-blog-grid');
+                        if (blogGrid) {
+                            window.BLOG_POSTS.forEach(post => {
+                                const card = window.createBlogPostCard(post);
+                                blogGrid.appendChild(card);
+                            });
+                        }
+                    }
                 }
-            }, 500);
+            }, 800);
         });
     </script>
 

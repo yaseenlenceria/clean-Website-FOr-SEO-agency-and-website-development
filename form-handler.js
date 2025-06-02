@@ -5,35 +5,39 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                company: formData.get('company'),
-                website: formData.get('website'),
-                industry: formData.get('industry'),
-                budget: formData.get('budget'),
-                message: formData.get('message')
-            };
-            
-            // Validate required fields
-            if (!data.name || !data.email || !data.message) {
-                alert('Please fill in all required fields (Name, Email, and Message).');
-                return;
+            // Only prevent default if we haven't configured FormSubmit yet
+            if (!this.hasAttribute('data-formsubmit-configured')) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    company: formData.get('company'),
+                    website: formData.get('website'),
+                    industry: formData.get('industry'),
+                    budget: formData.get('budget'),
+                    message: formData.get('message')
+                };
+                
+                // Validate required fields
+                if (!data.name || !data.email || !data.message) {
+                    alert('Please fill in all required fields (Name, Email, and Message).');
+                    return;
+                }
+                
+                // Configure and submit to FormSubmit
+                sendEmailNotification(data);
+                
+                // Mark as configured
+                this.setAttribute('data-formsubmit-configured', 'true');
+                
+                // Show success message (FormSubmit will redirect, but show message for UX)
+                showSuccessMessage();
             }
-            
-            // Send email using EmailJS or similar service
-            sendEmailNotification(data);
-            
-            // Show success message
-            showSuccessMessage();
-            
-            // Reset form
-            this.reset();
+            // If already configured, let the form submit naturally to FormSubmit
         });
     }
     
@@ -55,40 +59,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to send email notification
 function sendEmailNotification(data) {
-    // Using a more reliable method - FormSubmit service
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://formsubmit.co/outsourcesu@gmail.com';
-    form.style.display = 'none';
+    // Create a proper form element that will be submitted to FormSubmit
+    const existingForm = document.getElementById('contact-form');
     
-    // Add form fields
-    const fields = [
+    // Update the existing form to point to FormSubmit
+    existingForm.setAttribute('action', 'https://formsubmit.co/outsourcesu@gmail.com');
+    existingForm.setAttribute('method', 'POST');
+    
+    // Add FormSubmit configuration fields
+    const formSubmitFields = [
         { name: '_subject', value: `New SEO Audit Request from ${data.name}` },
         { name: '_captcha', value: 'false' },
         { name: '_template', value: 'table' },
         { name: '_next', value: window.location.href + '?success=true' },
-        { name: 'name', value: data.name },
-        { name: 'email', value: data.email },
-        { name: 'phone', value: data.phone || 'Not provided' },
-        { name: 'company', value: data.company || 'Not provided' },
-        { name: 'website', value: data.website || 'Not provided' },
-        { name: 'industry', value: data.industry || 'Not provided' },
-        { name: 'budget', value: data.budget || 'Not provided' },
-        { name: 'message', value: data.message },
-        { name: 'source', value: window.location.href },
-        { name: 'timestamp', value: new Date().toLocaleString() }
+        { name: '_autoresponse', value: 'Thank you for your SEO audit request! We will review your information and get back to you within 24 hours.' }
     ];
     
-    fields.forEach(field => {
+    // Remove any existing hidden FormSubmit fields
+    existingForm.querySelectorAll('input[name^="_"]').forEach(input => input.remove());
+    
+    // Add new FormSubmit configuration fields
+    formSubmitFields.forEach(field => {
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = field.name;
         input.value = field.value;
-        form.appendChild(input);
+        existingForm.appendChild(input);
     });
     
-    document.body.appendChild(form);
-    form.submit();
+    // Add source and timestamp
+    const sourceInput = document.createElement('input');
+    sourceInput.type = 'hidden';
+    sourceInput.name = 'source_page';
+    sourceInput.value = window.location.href;
+    existingForm.appendChild(sourceInput);
+    
+    const timestampInput = document.createElement('input');
+    timestampInput.type = 'hidden';
+    timestampInput.name = 'submission_time';
+    timestampInput.value = new Date().toLocaleString('en-GB');
+    existingForm.appendChild(timestampInput);
+    
+    // Now submit the form naturally
+    existingForm.submit();
 }
 
 // Function to handle newsletter subscription

@@ -58,13 +58,18 @@
     <meta name="ICBM" content="51.5074, -0.1278">
 
     <!-- Favicon and Meta Tags -->
-    <link rel="icon" type="image/x-icon" href="attached_assets/favicon.jpg">
-    <link rel="shortcut icon" type="image/x-icon" href="attached_assets/favicon.jpg">
-    <link rel="apple-touch-icon" sizes="180x180" href="attached_assets/favicon.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="attached_assets/favicon.jpg">
-    <link rel="icon" type="image/png" sizes="16x16" href="attached_assets/favicon.jpg">
-    <meta name="msapplication-TileImage" content="attached_assets/favicon.jpg">
-    <meta name="theme-color" content="#1a1a1a">
+    <link rel="icon" type="image/jpeg" href="/attached_assets/favicon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/attached_assets/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/attached_assets/favicon.jpg">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/attached_assets/favicon.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="/attached_assets/favicon.jpg">
+    <meta name="msapplication-TileImage" content="/attached_assets/favicon.jpg">
+    <meta name="msapplication-TileColor" content="#ff6b35">
+    <meta name="theme-color" content="#ff6b35">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/attached_assets/logo1.png">
+    <link rel="preload" as="image" href="/attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png">
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -518,7 +523,13 @@
                     </ul>
                 </div>
                 <div class="showcase-image">
-                    <img src="attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png" alt="OutsourceSU - Best SEO for Construction Industry in UK - 500+ Clients Ranked #1" class="featured-image">
+                    <img src="/attached_assets/Professional_SEO__Web_Development_Services_for_Business_Growth_1.png" 
+                     alt="Professional SEO & Web Development Services for Business Growth - OutsourceSU UK's Leading SEO Agency" 
+                     class="featured-image" 
+                     width="800" 
+                     height="600" 
+                     loading="eager"
+                     title="Professional SEO & Web Development Services for Business Growth - OutsourceSU">
                 </div>
                 <div class="showcase-text-right">
                     <h3>Proven Results</h3>

@@ -345,27 +345,6 @@ function createBlogPostCard(post) {
     return article;
 }
 
-// Component loading functions
-function loadComponent(elementId, filePath) {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-    
-    fetch(filePath)
-        .then(response => response.text())
-        .then(html => {
-            element.innerHTML = html;
-        })
-        .catch(error => {
-            console.error(`Error loading component ${filePath}:`, error);
-        });
-}
-
-// Load header and footer components
-document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('global-header', 'components/header.html');
-    loadComponent('global-footer', 'components/footer.html');
-});
-
 function updateBlogPostCard(card, post) {
     const title = card.querySelector('h2 a, h3 a');
     const excerpt = card.querySelector('p');
@@ -379,7 +358,7 @@ function updateBlogPostCard(card, post) {
     if (excerpt) excerpt.textContent = post.excerpt;
     if (date) {
         date.setAttribute('datetime', post.date);
-        date.textContent = formatComponentDate(post.date);
+        date.textContent = formatDate(post.date);
     }
     if (readTime) readTime.textContent = post.readTime;
     if (tags) {
@@ -397,7 +376,7 @@ function updateBlogPostCard(card, post) {
     });
 }
 
-function formatComponentDate(dateString) {
+function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', { 
         year: 'numeric', 
@@ -405,6 +384,8 @@ function formatComponentDate(dateString) {
         day: 'numeric' 
     });
 }
+
+// Load component function (kept for backwards compatibility)
 function loadComponent(elementId, componentPath) {
     const element = document.getElementById(elementId);
     if (element) {

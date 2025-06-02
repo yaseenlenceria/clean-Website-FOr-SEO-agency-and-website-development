@@ -232,67 +232,39 @@ function updatePageContent(pageData) {
     });
 }
 
-// Service data for dynamic content generation
-if (!window.serviceData) {
-    window.serviceData = {
-        'construction-seo': {
-            title: 'Best Construction SEO Services UK | Contractors & Builders',
-            h1: 'Construction SEO - Drive More Leads for Your Building Business',
-            metaDescription: 'Expert Construction SEO services for contractors, builders, roofers and trade businesses. Dominate local search and generate quality leads.',
-            services: [
-                'Local SEO for Contractors',
-                'Roofing Company SEO',
-                'Plumber SEO Services',
-                'Construction Website Design',
-                'Trade Business Marketing'
-            ]
-        },
-        'professional-services-seo': {
-            title: 'Professional Services SEO | Law Firms, Dentists, Accountants',
-            h1: 'Professional Services SEO - Attract High-Value Clients',
-            metaDescription: 'Specialized SEO for professional services including law firms, dental practices, accounting firms and financial advisors.',
-            services: [
-                'Law Firm SEO',
-                'Dental Practice SEO',
-                'Accountant SEO',
-                'Financial Advisor SEO',
-                'Medical Practice SEO'
-            ]
-        }
-    };
-}
+// Service data for dynamic content
+const serviceData = window.serviceData || {
+    'construction-seo': {
+        title: 'Best Construction SEO Services UK | Contractors & Builders',
+        h1: 'Construction SEO - Drive More Leads for Your Building Business',
+        metaDescription: 'Expert Construction SEO services for contractors, builders, roofers and trade businesses. Dominate local search and generate quality leads.',
+        services: [
+            'Local SEO for Contractors',
+            'Roofing Company SEO',
+            'Plumber SEO Services',
+            'Construction Website Design',
+            'Trade Business Marketing'
+        ]
+    },
+    'professional-services-seo': {
+        title: 'Professional Services SEO | Law Firms, Dentists, Accountants',
+        h1: 'Professional Services SEO - Attract High-Value Clients',
+        metaDescription: 'Specialized SEO for professional services including law firms, dental practices, accounting firms and financial advisors.',
+        services: [
+            'Law Firm SEO',
+            'Dental Practice SEO',
+            'Accountant SEO',
+            'Financial Advisor SEO',
+            'Medical Practice SEO'
+        ]
+    }
+};
 
 function initializePage() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
-    const data = window.serviceData[currentPage];
-
-        // Update hero content if exists
-        const heroTitle = document.querySelector('.hero-modern h1, .page-header h1');
-        if (heroTitle && data.title) {
-            heroTitle.textContent = data.title;
-        }
-
-        const heroDescription = document.querySelector('.hero-modern p, .page-header p');
-        if (heroDescription && data.description) {
-            heroDescription.textContent = data.description;
-        }
-
-        // Update meta tags
-        if (data.metaTitle) {
-            document.title = data.metaTitle;
-            updateMetaTag('og:title', data.metaTitle);
-            updateMetaTag('twitter:title', data.metaTitle);
-        }
-
-        if (data.metaDescription) {
-            updateMetaTag('description', data.metaDescription);
-            updateMetaTag('og:description', data.metaDescription);
-            updateMetaTag('twitter:description', data.metaDescription);
-        }
-
-        if (data.keywords) {
-            updateMetaTag('keywords', data.keywords);
-        }
+    if (serviceData[currentPage]) {
+        updatePageContent(serviceData[currentPage]);
+    }
 }
 
 // Call initialization when DOM is loaded

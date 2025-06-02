@@ -84,6 +84,84 @@ window.BLOG_POSTS = [
   }
 ];
 
+// Helper function to format dates
+window.formatDate = function(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+};
+
+// Function to create blog post cards
+window.createBlogPostCard = function(post) {
+    const postCard = document.createElement('div');
+    postCard.className = 'blog-post-card';
+    postCard.setAttribute('data-category', post.category);
+    
+    postCard.innerHTML = `
+        <div class="blog-image">
+            <img src="${post.image}" alt="${post.title}" loading="lazy">
+            <div class="blog-overlay">
+                <span class="blog-category">${post.category}</span>
+            </div>
+        </div>
+        <div class="blog-content">
+            <div class="blog-meta">
+                <span class="blog-date">${window.formatDate(post.date)}</span>
+                <span class="blog-read-time">${post.readTime}</span>
+            </div>
+            <h3><a href="${post.url}" title="${post.title}">${post.title}</a></h3>
+            <p class="blog-excerpt">${post.excerpt}</p>
+            <div class="blog-tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <a href="${post.url}" class="blog-read-more" title="Read ${post.title}">
+                Read More <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    `;
+    
+    // Make entire card clickable
+    postCard.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A') {
+            window.location.href = post.url;
+        }
+    });
+    
+    return postCard;
+};
+
+// Function to update existing blog post cards
+window.updateBlogPostCard = function(cardElement, post) {
+    if (!cardElement) return;
+    
+    const img = cardElement.querySelector('.blog-image img');
+    const category = cardElement.querySelector('.blog-category');
+    const date = cardElement.querySelector('.blog-date');
+    const readTime = cardElement.querySelector('.blog-read-time');
+    const title = cardElement.querySelector('h3 a');
+    const excerpt = cardElement.querySelector('.blog-excerpt');
+    const tagsContainer = cardElement.querySelector('.blog-tags');
+    const readMore = cardElement.querySelector('.blog-read-more');
+    
+    if (img) img.src = post.image;
+    if (img) img.alt = post.title;
+    if (category) category.textContent = post.category;
+    if (date) date.textContent = window.formatDate(post.date);
+    if (readTime) readTime.textContent = post.readTime;
+    if (title) {
+        title.textContent = post.title;
+        title.href = post.url;
+        title.title = post.title;
+    }
+    if (excerpt) excerpt.textContent = post.excerpt;
+    if (tagsContainer) {
+        tagsContainer.innerHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    }
+    if (readMore) {
+        readMore.href = post.url;
+        readMore.title = `Read ${post.title}`;
+    }
+};
+
 // Function to load blog posts dynamically
 window.loadDynamicBlogPosts = function() {
     const blogGrid = document.querySelector('.blog-grid, #dynamic-blog-grid');
@@ -94,7 +172,7 @@ window.loadDynamicBlogPosts = function() {
 
     // Add all blog posts to the grid
     window.BLOG_POSTS.forEach((post, index) => {
-        const postCard = createBlogPostCard(post);
+        const postCard = window.createBlogPostCard(post);
         if (post.featured) {
             postCard.classList.add('featured');
         }

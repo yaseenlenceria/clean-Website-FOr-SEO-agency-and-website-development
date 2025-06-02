@@ -317,7 +317,9 @@ class DynamicTaggingSystem {
 
 // Initialize the dynamic tagging system
 document.addEventListener('DOMContentLoaded', function() {
-    window.dynamicTagging = new DynamicTaggingSystem();
+    if (!window.dynamicTagging) {
+        window.dynamicTagging = new DynamicTaggingSystem();
+    }
 
     // Category tag functionality removed to prevent stray elements
 

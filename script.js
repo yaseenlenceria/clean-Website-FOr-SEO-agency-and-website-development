@@ -233,7 +233,7 @@ function updatePageContent(pageData) {
 }
 
 // Service data for dynamic content
-const serviceData = {
+const serviceData = window.serviceData || {
     'construction-seo': {
         title: 'Best Construction SEO Services UK | Contractors & Builders',
         h1: 'Construction SEO - Drive More Leads for Your Building Business',
@@ -260,7 +260,6 @@ const serviceData = {
     }
 };
 
-// Initialize page-specific content
 function initializePage() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     if (serviceData[currentPage]) {

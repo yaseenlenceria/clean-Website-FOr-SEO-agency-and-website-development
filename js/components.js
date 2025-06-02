@@ -1,3 +1,4 @@
+
 // Global variables for navigation
 if (typeof window.navMenu === 'undefined') {
     window.navMenu = null;
@@ -406,63 +407,38 @@ function loadComponent(elementId, componentPath) {
     }
 }
 
-// Header and footer loading function
-function loadComponents() {
-    // Load header
-    fetch('./components/header.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            const headerElement = document.getElementById('global-header');
-            if (headerElement) {
-                headerElement.innerHTML = data;
-                initializeNavigation();
-            }
-        })
-        .catch(error => console.error('Error loading header:', error));
-
-    // Load footer
-    fetch('./components/footer.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            const footerElement = document.getElementById('global-footer');
-            if (footerElement) {
-                footerElement.innerHTML = data;
-            }
-        })
-        .catch(error => console.error('Error loading footer:', error));
-}
-
-// Global header and footer loader
+// Load components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    loadComponents();
-});
+    loadHeader();
+    loadFooter();
+    addNavbarScrollEffects();
 
-// Add lazy loading for images
-const images = document.querySelectorAll('img[data-src]');
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
+    // Load blog posts if on blog page
+    if (window.location.pathname.includes('blog.html') || window.location.pathname.endsWith('/blog')) {
+        setTimeout(() => {
+            if (typeof window.loadDynamicBlogPosts === 'function') {
+                window.loadDynamicBlogPosts();
             }
-        });
-    });
+        }, 500);
+    }
 
-    images.forEach(img => imageObserver.observe(img));
-}
+    // Add lazy loading for images
+    const images = document.querySelectorAll('img[data-src]');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+});
 
 // Export for global access
 window.loadHeader = loadHeader;

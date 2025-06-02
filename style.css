@@ -1947,10 +1947,10 @@ body {
     border-color: transparent;
 }
 
-/* Testimonials Section - Organized White Card Design */
+/* Testimonials Section */
 .testimonials-section {
     padding: var(--spacing-xxl) 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    background: var(--card-bg);
     position: relative;
     overflow: hidden;
 }
@@ -1977,16 +1977,15 @@ body {
 }
 
 .testimonial-card {
-    background: white;
-    color: #333;
-    border: 1px solid #e0e0e0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px solid var(--border-dark);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     text-align: center;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .testimonial-card::before {
@@ -2035,14 +2034,14 @@ body {
 
 .testimonial-card .stars {
     color: #ffc107;
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: var(--spacing-md);
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
 .testimonial-card blockquote {
-    color: #333;
-    font-size: 16px;
+    color: var(--text-white);
+    font-size: 18px;
     line-height: 1.6;
     margin-bottom: var(--spacing-lg);
     font-style: italic;

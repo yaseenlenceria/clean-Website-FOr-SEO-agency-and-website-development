@@ -130,8 +130,9 @@
                 </a>
             </div>
 
-            <div id="dynamic-blog-grid">
+            <div class="blog-grid" id="dynamic-blog-grid">
                 <!-- Dynamic blog posts will be loaded here -->
+            </div>
 
             <!-- Newsletter Signup -->
             <div class="blog-newsletter">
@@ -175,9 +176,14 @@
     <script>
         // Initialize dynamic blog loading
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof window.loadDynamicBlogPosts === 'function') {
-                setTimeout(window.loadDynamicBlogPosts, 300);
-            }
+            // Wait for all scripts to load
+            setTimeout(function() {
+                if (typeof window.loadDynamicBlogPosts === 'function') {
+                    window.loadDynamicBlogPosts();
+                } else {
+                    console.error('Blog loading function not available');
+                }
+            }, 500);
         });
     </script>
 

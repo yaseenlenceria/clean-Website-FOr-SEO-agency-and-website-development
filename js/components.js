@@ -406,10 +406,10 @@ function loadComponent(elementId, componentPath) {
     }
 }
 
-// Global header and footer loader
-document.addEventListener('DOMContentLoaded', function() {
+// Header and footer loading function
+function loadComponents() {
     // Load header
-    fetch('/components/header.html')
+    fetch('./components/header.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error loading header:', error));
 
     // Load footer
-    fetch('/components/footer.html')
+    fetch('./components/footer.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -440,6 +440,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => console.error('Error loading footer:', error));
+}
+
+// Global header and footer loader
+document.addEventListener('DOMContentLoaded', function() {
+    loadComponents();
 });
 
 // Add lazy loading for images

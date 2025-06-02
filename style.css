@@ -1623,6 +1623,32 @@ body {
     border-color: transparent;
 }
 
+/* FAQ Section Styling */
+.faq-section-modern .faq-card-modern:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 107, 53, 0.5);
+    background: linear-gradient(135deg, #2e2e2e 0%, #3e3e3e 100%);
+}
+
+.faq-section-modern .faq-icon-modern {
+    transition: all 0.4s ease;
+}
+
+.faq-section-modern .faq-card-modern:hover .faq-icon-modern {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 25px rgba(255, 107, 53, 0.4);
+}
+
+.faq-section-modern .faq-card-modern:hover h3 {
+    color: #ff6b35;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.faq-section-modern .faq-card-modern:hover p {
+    color: #f0f0f0;
+}
+
 /* Services Showcase - Enhanced with better hover effects */
 .services-showcase {
     padding: var(--spacing-xxl) 0;

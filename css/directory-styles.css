@@ -1,6 +1,6 @@
 /* Dynamic Directory Styles */
 .directory-hero, .city-hero, .service-hero, .combined-hero {
-    background: linear-gradient(135deg, #ff6b35 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #ff6b35 0%, #e55a2e 50%, #1a1a1a 100%);
     color: white;
     padding: 80px 0;
     text-align: center;
@@ -470,7 +470,7 @@
 /* CTA Section */
 .contact-cta {
     padding: 80px 0;
-    background: linear-gradient(135deg, #ff6b35 0%, #e55a2b 100%);
+    background: linear-gradient(135deg, #ff6b35 0%, #e55a2e 100%);
     text-align: center;
 }
 
@@ -656,7 +656,7 @@
 /* Free SEO Audit Section */
 .free-audit-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     color: white;
     text-align: center;
 }

@@ -21,6 +21,12 @@ class DynamicTaggingSystem {
                 businessType: 'Roofing',
                 serviceArea: 'UK'
             },
+            'best-roofing-companies-seo.html': {
+                category: 'Roofing Services',
+                tags: ['roofing SEO', 'roofer marketing', 'best roofing companies', 'roofing SEO specialists'],
+                businessType: 'Roofing',
+                serviceArea: 'UK'
+            },
             'professional-services-seo.html': {
                 category: 'Professional Services',
                 tags: ['professional SEO', 'law firm SEO', 'medical SEO', 'consultancy SEO'],

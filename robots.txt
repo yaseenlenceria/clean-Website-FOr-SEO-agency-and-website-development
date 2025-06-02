@@ -1,19 +1,8 @@
 User-agent: *
 Allow: /
 
-# Primary sitemap location
-Sitemap: https://outsourcesu.com/sitemap.xml
-
-
-Allow: /blog/
-
-# Allow important directories
+# Image optimization
 Allow: /attached_assets/
-Allow: /js/
-Allow: /*.css
-Allow: /*.js
-
-# Allow important file types for mobile-first indexing
 Allow: *.png
 Allow: *.jpg
 Allow: *.jpeg
@@ -21,38 +10,14 @@ Allow: *.gif
 Allow: *.webp
 Allow: *.svg
 Allow: *.ico
-Allow: *.css
-Allow: *.js
-Allow: *.woff
-Allow: *.woff2
-Allow: *.ttf
-Allow: *.eot
 
-# Mobile-specific allowances
-Allow: /style.css
-Allow: /script.js
-Allow: /js/
-Allow: /components/
+# Sitemap
+Sitemap: https://outsourcesu.com/sitemap.xml
 
-# Disallow development files only
-Disallow: /.config/
-Disallow: /components/
-Disallow: /*.log
-Disallow: /*.tmp
-Disallow: /seo-*.js
-Disallow: /meta-optimizer.js
-Disallow: /sitemap-generator.js
-Disallow: /update-all-pages.js
-Disallow: /process-components.html
-Disallow: /template-update.txt
-Disallow: /audit-card/
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /attached_assets/
 
-# Crawl delay for SEO bots
+# Crawl delay for bots
 User-agent: AhrefsBot
 Crawl-delay: 10
-
-User-agent: MJ12bot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 5

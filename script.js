@@ -233,7 +233,7 @@ function updatePageContent(pageData) {
 }
 
 // Service data for dynamic content
-const serviceData = window.serviceData || {
+window.serviceData = window.serviceData || {
     'construction-seo': {
         title: 'Best Construction SEO Services UK | Contractors & Builders',
         h1: 'Construction SEO - Drive More Leads for Your Building Business',

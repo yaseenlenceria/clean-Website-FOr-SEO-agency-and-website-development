@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
             // Get form data for validation
             const formData = new FormData(this);
             const data = {
@@ -14,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Validate required fields
             if (!data.name || !data.email || !data.message) {
-                e.preventDefault();
                 alert('Please fill in all required fields (Name, Email, and Message).');
                 return;
             }
@@ -25,8 +26,30 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
 
-            // Let the form submit naturally to submit-form.com
-            // The success/error handling will be done via redirect or response
+            // Submit form via fetch to prevent redirect
+            fetch('https://submit-form.com/oAWs77hqm', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success popup
+                    showSuccessMessage();
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
         });
     }
 

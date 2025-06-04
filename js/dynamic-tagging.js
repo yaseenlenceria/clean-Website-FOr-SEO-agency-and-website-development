@@ -70,6 +70,12 @@ class DynamicTaggingSystem {
                 tags: ['SEO tips', 'digital marketing insights', 'business growth', 'marketing strategies'],
                 businessType: 'Educational Content',
                 serviceArea: 'UK'
+            },
+            'best-galway-roofing.html': {
+                category: 'Local Roofing Directory',
+                tags: ['Galway roofing companies', 'best roofers Galway', 'roofing directory Galway', 'top roofing companies', 'Ireland roofing'],
+                businessType: 'Local Directory',
+                serviceArea: 'Galway'
             }
         };
 

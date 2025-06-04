@@ -3,6 +3,14 @@
 (function() {
     'use strict';
 
+    // Load Google Sheets Analytics
+    const script = document.createElement('script');
+    script.src = '/google-sheets-analytics.js';
+    script.onload = function() {
+        console.log('📊 Google Sheets Analytics loaded');
+    };
+    document.head.appendChild(script);
+
     // Google Analytics 4 Setup (replace with your actual GA4 ID)
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

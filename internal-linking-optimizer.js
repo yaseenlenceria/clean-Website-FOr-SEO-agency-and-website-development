@@ -32,6 +32,10 @@ const keywordToPageMapping = {
     
     // Core pages
     'seo services': { url: 'services', priority: 9, title: 'SEO Services' },
+    'ecommerce seo': { url: 'commerce-seo-services', priority: 8, title: 'Ecommerce SEO Services' },
+    'shopify seo': { url: 'commerce-seo-services', priority: 8, title: 'Shopify SEO Services' },
+    'woocommerce seo': { url: 'commerce-seo-services', priority: 8, title: 'WooCommerce SEO Services' },
+    'online store seo': { url: 'commerce-seo-services', priority: 8, title: 'Online Store SEO Services' },
     'contact us': { url: 'contact', priority: 8, title: 'Contact OutsourceSU' },
     'about us': { url: 'about', priority: 7, title: 'About OutsourceSU' },
     'our work': { url: 'our-work', priority: 7, title: 'Our Work - Case Studies' },

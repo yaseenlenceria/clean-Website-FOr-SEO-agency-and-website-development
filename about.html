@@ -70,13 +70,30 @@
     <link rel="icon" type="image/jpeg" sizes="16x16" href="/attached_assets/favicon.jpg">
     <meta name="msapplication-TileImage" content="/attached_assets/favicon.jpg">
     <meta name="msapplication-TileColor" content="#ff6b35">
-    <meta name="theme-color" content="#ff6b35"><link rel="sitemap" type="application/xml" title="Image Sitemap" href="/image-sitemap.xml"></head>
+    <meta name="theme-color" content="#ff6b35"><link rel="sitemap" type="application/xml" title="Image Sitemap" href="/image-sitemap.xml"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://outsourcesu.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://outsourcesu.com/about"
+    }
+  ]
+}</script></head>
 <body>
     <script src="js/components.js"></script>
     <div id="global-header"></div>
 
     <!-- About Hero Section -->
-    <section class="hero-modern">
+    <section class="hero-modern"><nav class="breadcrumb" style="margin: 20px 0; font-size: 14px;"><a href="/" title="Home">Home</a> → <span>About</span></nav>
         <div class="container">
             <div class="hero-content-grid">
                 <div class="hero-left">

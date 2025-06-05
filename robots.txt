@@ -1,32 +1,35 @@
 User-agent: *
 Allow: /
 
-# Image optimization
+# Image optimization for Google Search
 Allow: /attached_assets/
-Allow: *.png
-Allow: *.jpg
-Allow: *.jpeg
-Allow: *.gif
-Allow: *.webp
-Allow: *.svg
-Allow: *.ico
+Allow: *.png$
+Allow: *.jpg$
+Allow: *.jpeg$
+Allow: *.gif$
+Allow: *.webp$
+Allow: *.svg$
+Allow: *.ico$
 
 # Sitemaps
 Sitemap: https://outsourcesu.com/sitemap-index.xml
 Sitemap: https://outsourcesu.com/sitemap.xml
 Sitemap: https://outsourcesu.com/image-sitemap.xml
 
-# Google Image Bot
+# Google Image Bot specific rules
 User-agent: Googlebot-Image
 Allow: /attached_assets/
-Allow: *.png
-Allow: *.jpg
-Allow: *.jpeg
-Allow: *.gif
-Allow: *.webp
-Allow: *.svg
-Allow: *.ico
+Allow: *.png$
+Allow: *.jpg$
+Allow: *.jpeg$
+Allow: *.gif$
+Allow: *.webp$
+Allow: *.svg$
+Allow: *.ico$
 
-# Crawl delay for bots
+# Crawl delay for SEO tools
 User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
 Crawl-delay: 10

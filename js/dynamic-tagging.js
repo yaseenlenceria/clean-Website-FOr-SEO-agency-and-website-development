@@ -76,6 +76,12 @@ class DynamicTaggingSystem {
                 tags: ['Galway roofing companies', 'best roofers Galway', 'roofing directory Galway', 'top roofing companies', 'Ireland roofing'],
                 businessType: 'Local Directory',
                 serviceArea: 'Galway'
+            },
+            'commerce-seo-services.html': {
+                category: 'Ecommerce SEO Services',
+                tags: ['ecommerce SEO', 'Shopify SEO', 'WooCommerce SEO', 'Magento SEO', 'online store SEO', 'product page optimization'],
+                businessType: 'Ecommerce',
+                serviceArea: 'UK'
             }
         };
 

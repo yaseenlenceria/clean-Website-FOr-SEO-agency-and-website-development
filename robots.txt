@@ -11,12 +11,21 @@ Allow: *.webp
 Allow: *.svg
 Allow: *.ico
 
-# Sitemap
+# Sitemaps
+Sitemap: https://outsourcesu.com/sitemap-index.xml
 Sitemap: https://outsourcesu.com/sitemap.xml
+Sitemap: https://outsourcesu.com/image-sitemap.xml
 
 # Google Image Bot
 User-agent: Googlebot-Image
 Allow: /attached_assets/
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.webp
+Allow: *.svg
+Allow: *.ico
 
 # Crawl delay for bots
 User-agent: AhrefsBot

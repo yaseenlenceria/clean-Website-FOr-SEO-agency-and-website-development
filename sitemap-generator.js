@@ -68,6 +68,8 @@ const pageConfig = {
     // Blog pages
     'blog.html': { priority: 0.8, changefreq: 'weekly' },
     'blog/digital-marketing-real-estate-2025.html': { priority: 0.7, changefreq: 'monthly' },
+    'blog/10-benefits-of-seo-for-roofing-companies.html': { priority: 0.8, changefreq: 'monthly' },
+    'blog/10-benefits-of-seo-for-celebrants.html': { priority: 0.7, changefreq: 'monthly' },
 
     // Legal and policy pages - low priority but necessary
     'privacy-policy.html': { priority: 0.3, changefreq: 'yearly' },

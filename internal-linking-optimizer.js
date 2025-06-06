@@ -36,6 +36,14 @@ const keywordToPageMapping = {
     'shopify seo': { url: 'commerce-seo-services', priority: 8, title: 'Shopify SEO Services' },
     'woocommerce seo': { url: 'commerce-seo-services', priority: 8, title: 'WooCommerce SEO Services' },
     'online store seo': { url: 'commerce-seo-services', priority: 8, title: 'Online Store SEO Services' },
+    'commerce seo': { url: 'commerce-seo-services', priority: 8, title: 'Commerce SEO Services' },
+    'magento seo': { url: 'commerce-seo-services', priority: 8, title: 'Magento SEO Services' },
+    
+    // Blog content keywords
+    'seo for roofing companies': { url: 'blog/10-benefits-of-seo-for-roofing-companies', priority: 7, title: '10 Benefits of SEO for Roofing Companies' },
+    'roofing business marketing': { url: 'blog/10-benefits-of-seo-for-roofing-companies', priority: 7, title: 'Roofing Business Marketing Guide' },
+    'seo for celebrants': { url: 'blog/10-benefits-of-seo-for-celebrants', priority: 6, title: 'SEO for Celebrants' },
+    'celebrant marketing': { url: 'blog/10-benefits-of-seo-for-celebrants', priority: 6, title: 'Celebrant Marketing Guide' },
     'contact us': { url: 'contact', priority: 8, title: 'Contact OutsourceSU' },
     'about us': { url: 'about', priority: 7, title: 'About OutsourceSU' },
     'our work': { url: 'our-work', priority: 7, title: 'Our Work - Case Studies' },
@@ -45,8 +53,9 @@ const keywordToPageMapping = {
 // Related content mapping for contextual linking
 const relatedContentMapping = {
     'construction-seo': ['best-contractors-seo', 'roofing-seo-services-uk', 'best-architects-seo'],
-    'roofing-seo-services-uk': ['construction-seo', 'roof-repair-seo', 'commercial-roofing-seo'],
-    'professional-services-seo': ['best-law-firm-seo', 'best-dentists-seo', 'best-accountants-seo'],
+    'roofing-seo-services-uk': ['construction-seo', 'roof-repair-seo', 'commercial-roofing-seo', 'blog/10-benefits-of-seo-for-roofing-companies'],
+    'professional-services-seo': ['best-law-firm-seo', 'best-dentists-seo', 'best-accountants-seo', 'blog/10-benefits-of-seo-for-celebrants'],
+    'commerce-seo-services': ['services', 'professional-services-seo', 'construction-seo'],
     'best-law-firm-seo': ['professional-services-seo', 'best-accountants-seo', 'best-consultancy-seo'],
     'best-dentists-seo': ['professional-services-seo', 'best-medical-seo', 'top-10-dentists-london'],
     'real-estate-seo': ['construction-seo', 'best-architects-seo', 'professional-services-seo']

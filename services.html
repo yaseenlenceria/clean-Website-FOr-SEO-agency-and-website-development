@@ -501,351 +501,63 @@
     <script src="script.js"></script>
 
     <style>
-    /* Updated Color Scheme - Following Roofing Blog Design */
-    :root {
-        --modern-primary: #2563eb;
-        --modern-accent: #1d4ed8;
-        --modern-success: #059669;
-        --modern-warning: #d97706;
-        --modern-bg: #f8fafc;
-        --modern-card-bg: #ffffff;
-        --modern-text: #1e293b;
-        --modern-text-light: #64748b;
-        --modern-border: #e2e8f0;
-        --modern-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --modern-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    }
-
-    /* Service Cards Modern Styling */
-    .service-card {
-        background: var(--modern-card-bg);
-        border-radius: 12px;
-        padding: 30px;
-        box-shadow: var(--modern-shadow);
-        transition: all 0.3s ease;
-        border: 1px solid var(--modern-border);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--modern-gradient);
-    }
-
-    .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    .service-card .help-icon {
-        background: var(--modern-gradient);
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        font-size: 24px;
-    }
-
-    .service-card h3 {
-        color: var(--modern-text);
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        line-height: 1.3;
-    }
-
-    .service-card p {
-        color: var(--modern-text-light);
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-
-    .service-features {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-    }
-
-    .service-features li {
-        color: var(--modern-text);
-        padding: 8px 0;
-        padding-left: 25px;
-        position: relative;
-        font-size: 14px;
-    }
-
-    .service-features li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: var(--modern-success);
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    .btn-primary-modern {
-        background: var(--modern-gradient);
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn-primary-modern:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
-    }
-
-    /* Help Cards Styling */
-    .help-card {
-        background: var(--modern-card-bg);
-        border-radius: 12px;
-        padding: 30px;
-        box-shadow: var(--modern-shadow);
-        transition: all 0.3s ease;
-        border: 1px solid var(--modern-border);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .help-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--modern-gradient);
-    }
-
-    .help-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-
-    .help-card .help-icon {
-        background: var(--modern-gradient);
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        font-size: 24px;
-    }
-
-    .help-card h3 {
-        color: var(--modern-text);
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-
-    .help-card p {
-        color: var(--modern-text-light);
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-
     .service-links {
         margin: 15px 0;
     }
-
     .service-links a {
         display: inline-block;
         margin: 3px 8px 3px 0;
-        padding: 6px 12px;
-        background: var(--modern-bg);
-        color: var(--modern-text);
+        padding: 4px 8px;
+        background: #f0f0f0;
+        color: #333;
         text-decoration: none;
-        border-radius: 6px;
+        border-radius: 4px;
         font-size: 12px;
-        font-weight: 500;
         transition: all 0.3s ease;
-        border: 1px solid var(--modern-border);
     }
-
     .service-links a:hover {
-        background: var(--modern-gradient);
+        background: var(--primary-color);
         color: white;
-        transform: translateY(-1px);
     }
-
-    .help-link {
-        color: var(--modern-primary);
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .help-link:hover {
-        color: var(--modern-accent);
-        transform: translateX(5px);
-    }
-
-    /* Services Category Grid */
     .services-category-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px;
         margin-top: 40px;
     }
-
     .category-section {
-        background: var(--modern-card-bg);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: var(--modern-shadow);
-        border: 1px solid var(--modern-border);
-        position: relative;
-        overflow: hidden;
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    .category-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--modern-gradient);
-    }
-
     .category-section h4 {
-        color: var(--modern-text);
-        margin-bottom: 20px;
+        color: var(--primary-color);
+        margin-bottom: 15px;
         font-size: 18px;
-        font-weight: 700;
-        border-bottom: 2px solid var(--modern-border);
+        border-bottom: 2px solid #eee;
         padding-bottom: 10px;
     }
-
-    .category-section h4 i {
-        color: var(--modern-primary);
-        margin-right: 10px;
-    }
-
     .category-section ul {
         list-style: none;
         padding: 0;
     }
-
     .category-section li {
-        margin: 10px 0;
+        margin: 8px 0;
     }
-
     .category-section a {
-        color: var(--modern-text-light);
+        color: #555;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: color 0.3s ease;
         font-size: 14px;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
     }
-
     .category-section a:hover {
-        color: var(--modern-primary);
-        transform: translateX(5px);
+        color: var(--primary-color);
     }
-
     .category-section a::before {
-        content: "→";
-        color: var(--modern-primary);
+        content: "→ ";
+        color: var(--primary-color);
         font-weight: bold;
-        transition: all 0.3s ease;
-    }
-
-    /* Section Headers */
-    .section-header h2 {
-        color: var(--modern-text);
-        font-size: 36px;
-        font-weight: 800;
-        margin-bottom: 15px;
-        background: var(--modern-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .section-header p {
-        color: var(--modern-text-light);
-        font-size: 18px;
-        line-height: 1.6;
-    }
-
-    /* Page Header */
-    .page-header {
-        background: var(--modern-gradient);
-        color: white;
-        padding: 80px 0;
-        text-align: center;
-    }
-
-    .page-header h1 {
-        font-size: 48px;
-        font-weight: 800;
-        margin-bottom: 20px;
-    }
-
-    .page-header p {
-        font-size: 20px;
-        opacity: 0.9;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    /* Process and Help Sections Background */
-    .process-section {
-        background: var(--modern-bg);
-        padding: 80px 0;
-    }
-
-    .help-business-section {
-        padding: 80px 0;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .service-card, .help-card, .category-section {
-            padding: 20px;
-        }
-        
-        .section-header h2 {
-            font-size: 28px;
-        }
-        
-        .page-header h1 {
-            font-size: 36px;
-        }
-        
-        .page-header p {
-            font-size: 18px;
-        }
     }
     </style>
 

@@ -1,3 +1,4 @@
+
 // Auto-generated blog posts data
 // Last updated: 2025-05-29T17:58:44.274Z
 
@@ -26,7 +27,7 @@ window.BLOG_POSTS = [
     "category": "Business Growth",
     "date": "2025-05-29",
     "readTime": "1 min read",
-    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "image": "attached_assets/best_seo_for_roofing_companies_in_birmingham.png",
     "tags": [
       "SEO",
       "Digital Marketing",
@@ -58,7 +59,7 @@ window.BLOG_POSTS = [
     "category": "Real Estate Marketing",
     "date": "2025-05-29",
     "readTime": "11 min read",
-    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "image": "attached_assets/The_Best_SEO_for_real_estate_and_property_industry_in_the_UK.png",
     "tags": [
       "real estate digital marketing 2025",
       "property marketing strategies",
@@ -74,11 +75,44 @@ window.BLOG_POSTS = [
     "category": "Business Growth",
     "date": "2025-05-29",
     "readTime": "7 min read",
-    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "image": "attached_assets/the_best_seo_for_dental_practices_in_UK.png",
     "tags": [
       "dental marketing agencies",
       "dental SEO",
       "practice growth"
+    ],
+    "featured": false
+  },
+  {
+    "filename": "10-benefits-of-seo-for-roofing-companies.html",
+    "url": "blog/10-benefits-of-seo-for-roofing-companies.html",
+    "title": "10 Benefits of SEO for Roofing Companies: Get Found, Get Hired",
+    "excerpt": "Discover 10 benefits of SEO for roofing companies in 2025. Learn how to boost leads, dominate local searches, and grow your roofing business with proven SEO strategies.",
+    "category": "Roofing SEO",
+    "date": "2025-01-28",
+    "readTime": "10 min read",
+    "image": "attached_assets/seo_for_roofing_companies_2025.png",
+    "tags": [
+      "SEO for roofing companies",
+      "roofing lead generation",
+      "local SEO for roofers",
+      "roofing business marketing"
+    ],
+    "featured": false
+  },
+  {
+    "filename": "10-benefits-of-seo-for-celebrants.html",
+    "url": "blog/10-benefits-of-seo-for-celebrants.html",
+    "title": "10 Benefits of SEO for Celebrants: Grow Your Ceremony Business Online",
+    "excerpt": "Learn how SEO can transform your celebrant business by increasing visibility, boosting bookings, and building trust with potential clients online.",
+    "category": "Business Growth",
+    "date": "2025-06-06",
+    "readTime": "7 min read",
+    "image": "attached_assets/seo_for_celebrants_uk.png",
+    "tags": [
+      "celebrant SEO",
+      "local SEO",
+      "marketing for celebrants"
     ],
     "featured": false
   }

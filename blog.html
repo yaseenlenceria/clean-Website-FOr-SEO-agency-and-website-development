@@ -632,9 +632,16 @@
     <div id="global-footer"></div>
 
     <script src="js/components.js"></script>
+    <script src="js/blog-posts.js"></script>
     <script src="script.js"></script>
 
     <script>
+        // Load dynamic blog posts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.loadDynamicBlogPosts === 'function') {
+                window.loadDynamicBlogPosts();
+            }
+        });
         // Blog filter functionality
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');

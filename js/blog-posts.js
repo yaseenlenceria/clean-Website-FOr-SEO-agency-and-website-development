@@ -115,6 +115,40 @@ window.BLOG_POSTS = [
       "marketing for celebrants"
     ],
     "featured": false
+  },
+  {
+    "filename": "top-6-best-shopify-seo-agencies-in-uk.html",
+    "url": "blog/top-6-best-shopify-seo-agencies-in-uk.html",
+    "title": "Top 6 Best Shopify SEO Agencies in the UK (2025)",
+    "excerpt": "Discover the leading Shopify SEO agencies in the UK that can boost your ecommerce store's rankings, drive organic traffic, and increase online sales.",
+    "category": "Agency Rankings",
+    "date": "2025-01-20",
+    "readTime": "9 min read",
+    "image": "attached_assets/best_seo_for_the_e-commerce_industry_in_the_uk.png",
+    "tags": [
+      "Shopify SEO",
+      "ecommerce marketing",
+      "UK agencies",
+      "online store optimization"
+    ],
+    "featured": false
+  },
+  {
+    "filename": "top-7-aftermarket-motorcycle-parts-stores-uk.html",
+    "url": "blog/top-7-aftermarket-motorcycle-parts-stores-uk.html",
+    "title": "Top 7 Aftermarket Motorcycle Parts Stores in the UK (2025)",
+    "excerpt": "Complete guide to the best aftermarket motorcycle parts stores in the UK. Find performance upgrades, replacement parts, and accessories for your bike.",
+    "category": "Business Rankings",
+    "date": "2025-01-15",
+    "readTime": "8 min read",
+    "image": "attached_assets/best_SEO_for_construction_industry_in_uk.png",
+    "tags": [
+      "motorcycle parts",
+      "UK stores",
+      "aftermarket parts",
+      "bike accessories"
+    ],
+    "featured": false
   }
 ];
 
@@ -198,20 +232,42 @@ window.updateBlogPostCard = function(cardElement, post) {
 
 // Function to load blog posts dynamically
 window.loadDynamicBlogPosts = function() {
-    const blogGrid = document.querySelector('.blog-grid, #dynamic-blog-grid');
+    const blogGrid = document.querySelector('.blog-grid');
+    const dynamicContainer = document.querySelector('#dynamic-blog-posts');
+    
     if (!blogGrid || !window.BLOG_POSTS) return;
 
-    // Clear existing content
-    blogGrid.innerHTML = '';
+    // Clear dynamic container if it exists
+    if (dynamicContainer) {
+        dynamicContainer.innerHTML = '';
+    }
 
-    // Add all blog posts to the grid
+    // Get existing static posts to avoid duplicates
+    const existingPosts = Array.from(blogGrid.querySelectorAll('.blog-post-card')).map(card => {
+        const link = card.querySelector('h2 a, h3 a');
+        return link ? link.getAttribute('href') : null;
+    }).filter(Boolean);
+
+    // Add new blog posts that aren't already displayed
     window.BLOG_POSTS.forEach((post, index) => {
+        // Skip if this post is already displayed as a static post
+        if (existingPosts.includes(post.url)) {
+            return;
+        }
+
         const postCard = window.createBlogPostCard(post);
-        if (post.featured) {
+        
+        if (post.featured && !blogGrid.querySelector('.blog-post-card.featured')) {
             postCard.classList.add('featured');
         }
-        blogGrid.appendChild(postCard);
+        
+        // Add to dynamic container or main grid
+        if (dynamicContainer) {
+            dynamicContainer.appendChild(postCard);
+        } else {
+            blogGrid.appendChild(postCard);
+        }
     });
 
-    console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts`);
+    console.log(`✅ Loaded ${window.BLOG_POSTS.length} blog posts total`);
 };

@@ -302,6 +302,7 @@
                 <button class="filter-btn" data-filter="Business Growth">Business Growth</button>
                 <button class="filter-btn" data-filter="Roofing SEO">Roofing SEO</button>
                 <button class="filter-btn" data-filter="Real Estate Marketing">Real Estate</button>
+                <button class="filter-btn" data-filter="Business Rankings">Business Rankings</button>
             </div>
 
             <div class="blog-grid" id="blog-posts-container">
@@ -467,6 +468,9 @@
                         </a>
                     </div>
                 </article>
+
+                <!-- Additional Blog Posts will be loaded dynamically -->
+                <div id="dynamic-blog-posts"></div>
             </div>
 
             <!-- Directory Link Section -->
@@ -637,35 +641,46 @@
     <script src="script.js"></script>
 
     <script>
-        // Load dynamic blog posts on page load
+        
+        // Blog filter functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Load dynamic blog posts first
             if (typeof window.loadDynamicBlogPosts === 'function') {
                 window.loadDynamicBlogPosts();
             }
-        });
-        // Blog filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const blogCards = document.querySelectorAll('.blog-post-card');
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
+            // Initialize filter functionality
+            function initializeFilters() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        // Add active class to clicked button
+                        this.classList.add('active');
 
-                    const filter = this.getAttribute('data-filter');
+                        const filter = this.getAttribute('data-filter');
+                        const blogCards = document.querySelectorAll('.blog-post-card');
 
-                    blogCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter || card.classList.contains('featured')) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                        blogCards.forEach(card => {
+                            const cardCategory = card.getAttribute('data-category');
+                            const isFeatured = card.classList.contains('featured');
+                            
+                            if (filter === 'all' || cardCategory === filter || (isFeatured && filter === 'all')) {
+                                card.style.display = 'block';
+                                card.style.opacity = '1';
+                            } else {
+                                card.style.display = 'none';
+                                card.style.opacity = '0';
+                            }
+                        });
                     });
                 });
-            });
+            }
+
+            // Initialize filters after a short delay to ensure all posts are loaded
+            setTimeout(initializeFilters, 100);
 
             // Newsletter form submission
             const newsletterForm = document.querySelector('.newsletter-form');

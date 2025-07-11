@@ -269,3 +269,59 @@ function initializePage() {
 
 // Call initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', initializePage);
+
+// Universal FAQ Toggle Function
+function toggleFAQ(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('i');
+
+    // Close all other FAQs
+    document.querySelectorAll('.faq-answer.active, .faq-answer-modern.active').forEach(item => {
+        if (item !== answer) {
+            item.classList.remove('active');
+            const question = item.previousElementSibling;
+            question.classList.remove('active');
+            const questionIcon = question.querySelector('i');
+            if (questionIcon) {
+                questionIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+    });
+
+    // Toggle current FAQ
+    answer.classList.toggle('active');
+    element.classList.toggle('active');
+
+    // Rotate icon
+    if (icon) {
+        if (answer.classList.contains('active')) {
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+}
+
+// Alternative function name for compatibility
+function toggleFaq(element) {
+    toggleFAQ(element);
+}
+
+// Initialize FAQ functionality when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle FAQ questions with onclick attributes
+    document.querySelectorAll('.faq-question, .faq-question-modern').forEach(question => {
+        question.addEventListener('click', function() {
+            toggleFAQ(this);
+        });
+    });
+
+    // Handle FAQ buttons (for newer implementations)
+    document.querySelectorAll('.faq-item button').forEach(button => {
+        button.addEventListener('click', function() {
+            toggleFAQ(this);
+        });
+    });
+});
+
+// Add any additional JavaScript functionality here

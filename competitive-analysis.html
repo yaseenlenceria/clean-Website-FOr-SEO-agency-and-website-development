@@ -300,6 +300,191 @@
             opacity: 0.8;
         }
         
+        .progress-tracking-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .progress-table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .progress-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-table th {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .progress-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .progress-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .client-info i {
+            font-size: 1.5rem;
+            color: #ff6b35;
+        }
+        
+        .client-info div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .client-info strong {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .client-info span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        .metric-before, .metric-after {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .metric-before span {
+            color: #dc3545;
+            font-size: 0.9rem;
+        }
+        
+        .metric-after span {
+            color: #28a745;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .growth-percentage {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .status-badge.active {
+            background: #28a745;
+            color: white;
+        }
+        
+        .progress-charts-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-container h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .chart-wrapper {
+            height: 300px;
+            position: relative;
+        }
+        
+        .chart-bar-container {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: 100%;
+            gap: 10px;
+        }
+        
+        .chart-bar {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border-radius: 5px 5px 0 0;
+            width: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            padding: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-bar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+        
         @media (max-width: 768px) {
             .competitive-hero h1 {
                 font-size: 2.5rem;
@@ -321,6 +506,26 @@
             .cta-buttons-competitive {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .progress-table-wrapper {
+                overflow-x: scroll;
+            }
+            
+            .progress-table {
+                min-width: 800px;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                padding: 20px;
+            }
+            
+            .chart-bar {
+                width: 30px;
             }
         }
     </style>
@@ -423,117 +628,381 @@
             <div class="visual-stats">
                 <div class="stat-visual">
                     <i class="fas fa-chart-line"></i>
-                    <div class="stat-number">292%</div>
-                    <div class="stat-label">Average Sales Increase</div>
+                    <div class="stat-number">542%</div>
+                    <div class="stat-label">Average Traffic Increase</div>
                 </div>
                 <div class="stat-visual">
                     <i class="fas fa-users"></i>
-                    <div class="stat-number">364%</div>
-                    <div class="stat-label">Average Traffic Growth</div>
+                    <div class="stat-number">487%</div>
+                    <div class="stat-label">Average Lead Growth</div>
                 </div>
                 <div class="stat-visual">
                     <i class="fas fa-rocket"></i>
-                    <div class="stat-number">500%</div>
-                    <div class="stat-label">Lead Generation Boost</div>
+                    <div class="stat-number">688%</div>
+                    <div class="stat-label">Highest Growth Achieved</div>
                 </div>
                 <div class="stat-visual">
                     <i class="fas fa-trophy"></i>
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Industries Dominated</div>
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Active Success Stories</div>
+                </div>
+            </div>
+
+            <!-- Progress Tracking Table -->
+            <div class="progress-tracking-section">
+                <h3 style="color: white; margin-bottom: 30px;">Client Progress Tracking Dashboard</h3>
+                <div class="progress-table-wrapper">
+                    <table class="progress-table">
+                        <thead>
+                            <tr>
+                                <th>Client & Industry</th>
+                                <th>Timeline</th>
+                                <th>Before OutsourceSU</th>
+                                <th>After Optimization</th>
+                                <th>Growth %</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <i class="fas fa-home"></i>
+                                        <div>
+                                            <strong>Manchester Roofing Ltd</strong>
+                                            <span>Roofing & Construction</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>6 months</td>
+                                <td>
+                                    <div class="metric-before">
+                                        <span>450 visits/month</span>
+                                        <span>8 leads/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="metric-after">
+                                        <span>2,890 visits/month</span>
+                                        <span>47 leads/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="growth-percentage">+542%</div>
+                                </td>
+                                <td>
+                                    <div class="status-badge active">Active</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <i class="fas fa-tooth"></i>
+                                        <div>
+                                            <strong>Birmingham Dental Care</strong>
+                                            <span>Dental Practice</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>4 months</td>
+                                <td>
+                                    <div class="metric-before">
+                                        <span>320 visits/month</span>
+                                        <span>12 bookings/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="metric-after">
+                                        <span>1,680 visits/month</span>
+                                        <span>58 bookings/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="growth-percentage">+425%</div>
+                                </td>
+                                <td>
+                                    <div class="status-badge active">Active</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <i class="fas fa-file-medical"></i>
+                                        <div>
+                                            <strong>MZ Medical Billing</strong>
+                                            <span>Medical Billing Services</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>8 months</td>
+                                <td>
+                                    <div class="metric-before">
+                                        <span>180 visits/month</span>
+                                        <span>3 client inquiries/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="metric-after">
+                                        <span>1,240 visits/month</span>
+                                        <span>24 client inquiries/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="growth-percentage">+688%</div>
+                                </td>
+                                <td>
+                                    <div class="status-badge active">Active</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <i class="fas fa-home"></i>
+                                        <div>
+                                            <strong>London Premium Roofing</strong>
+                                            <span>Roofing Specialists</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>5 months</td>
+                                <td>
+                                    <div class="metric-before">
+                                        <span>520 visits/month</span>
+                                        <span>6 leads/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="metric-after">
+                                        <span>3,420 visits/month</span>
+                                        <span>52 leads/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="growth-percentage">+657%</div>
+                                </td>
+                                <td>
+                                    <div class="status-badge active">Active</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <i class="fas fa-tooth"></i>
+                                        <div>
+                                            <strong>Leeds Family Dentistry</strong>
+                                            <span>Family Dental Practice</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>3 months</td>
+                                <td>
+                                    <div class="metric-before">
+                                        <span>280 visits/month</span>
+                                        <span>9 bookings/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="metric-after">
+                                        <span>1,890 visits/month</span>
+                                        <span>43 bookings/month</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="growth-percentage">+575%</div>
+                                </td>
+                                <td>
+                                    <div class="status-badge active">Active</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Interactive Progress Charts -->
+            <div class="progress-charts-section">
+                <h3 style="color: white; margin-bottom: 30px;">Growth Visualization</h3>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h4>Monthly Traffic Growth</h4>
+                        <div class="chart-wrapper">
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="height: 20%;">
+                                    <span class="bar-label">Jan</span>
+                                    <span class="bar-value">450</span>
+                                </div>
+                                <div class="chart-bar" style="height: 35%;">
+                                    <span class="bar-label">Feb</span>
+                                    <span class="bar-value">820</span>
+                                </div>
+                                <div class="chart-bar" style="height: 50%;">
+                                    <span class="bar-label">Mar</span>
+                                    <span class="bar-value">1,240</span>
+                                </div>
+                                <div class="chart-bar" style="height: 70%;">
+                                    <span class="bar-label">Apr</span>
+                                    <span class="bar-value">1,680</span>
+                                </div>
+                                <div class="chart-bar" style="height: 85%;">
+                                    <span class="bar-label">May</span>
+                                    <span class="bar-value">2,180</span>
+                                </div>
+                                <div class="chart-bar" style="height: 100%;">
+                                    <span class="bar-label">Jun</span>
+                                    <span class="bar-value">2,890</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h4>Lead Generation Progress</h4>
+                        <div class="chart-wrapper">
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="height: 25%;">
+                                    <span class="bar-label">Jan</span>
+                                    <span class="bar-value">8</span>
+                                </div>
+                                <div class="chart-bar" style="height: 40%;">
+                                    <span class="bar-label">Feb</span>
+                                    <span class="bar-value">15</span>
+                                </div>
+                                <div class="chart-bar" style="height: 55%;">
+                                    <span class="bar-label">Mar</span>
+                                    <span class="bar-value">22</span>
+                                </div>
+                                <div class="chart-bar" style="height: 70%;">
+                                    <span class="bar-label">Apr</span>
+                                    <span class="bar-value">31</span>
+                                </div>
+                                <div class="chart-bar" style="height: 85%;">
+                                    <span class="bar-label">May</span>
+                                    <span class="bar-value">39</span>
+                                </div>
+                                <div class="chart-bar" style="height: 100%;">
+                                    <span class="bar-label">Jun</span>
+                                    <span class="bar-value">47</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="results-grid">
                 <div class="result-card">
-                    <h3><i class="fas fa-motorcycle"></i> MotorcyclePerformanceStore</h3>
-                    <p><strong>Industry:</strong> Automotive/Motorcycle Parts</p>
+                    <h3><i class="fas fa-home"></i> Manchester Roofing Ltd</h3>
+                    <p><strong>Industry:</strong> Roofing & Construction</p>
                     
                     <div class="result-metrics">
                         <div class="metric">
-                            <div class="metric-label">Sessions/Month</div>
-                            <div class="metric-value">12,200</div>
-                            <div class="metric-change">+248%</div>
+                            <div class="metric-label">Monthly Traffic</div>
+                            <div class="metric-value">2,890</div>
+                            <div class="metric-change">+542%</div>
                         </div>
                         <div class="metric">
-                            <div class="metric-label">Sales/Month</div>
-                            <div class="metric-value">£9.8k</div>
-                            <div class="metric-change">+292%</div>
+                            <div class="metric-label">Leads/Month</div>
+                            <div class="metric-value">47</div>
+                            <div class="metric-change">+487%</div>
                         </div>
                     </div>
                     
                     <div class="growth-indicator"></div>
                     
-                    <p><strong>Before:</strong> 3,500 sessions, £2.5k sales<br>
-                    <strong>After:</strong> 12,200 sessions, £9.8k sales</p>
+                    <p><strong>Before:</strong> 450 visits, 8 leads/month<br>
+                    <strong>After:</strong> 2,890 visits, 47 leads/month</p>
                 </div>
 
                 <div class="result-card">
-                    <h3><i class="fas fa-paint-brush"></i> Canni (Nail Products)</h3>
-                    <p><strong>Industry:</strong> Beauty & Cosmetics</p>
+                    <h3><i class="fas fa-tooth"></i> Birmingham Dental Care</h3>
+                    <p><strong>Industry:</strong> Dental Practice</p>
                     
                     <div class="result-metrics">
                         <div class="metric">
-                            <div class="metric-label">Sessions/Month</div>
-                            <div class="metric-value">5,700</div>
-                            <div class="metric-change">+418%</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Orders/Month</div>
-                            <div class="metric-value">230</div>
-                            <div class="metric-change">+360%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="growth-indicator"></div>
-                    
-                    <p><strong>Before:</strong> 1,100 sessions, 50 orders<br>
-                    <strong>After:</strong> 5,700 sessions, 230 orders</p>
-                </div>
-
-                <div class="result-card">
-                    <h3><i class="fas fa-tshirt"></i> African Print Brands</h3>
-                    <p><strong>Industry:</strong> Fashion & Apparel</p>
-                    
-                    <div class="result-metrics">
-                        <div class="metric">
-                            <div class="metric-label">Sessions/Month</div>
-                            <div class="metric-value">4,400</div>
-                            <div class="metric-change">+389%</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Orders/Month</div>
-                            <div class="metric-value">105</div>
+                            <div class="metric-label">Monthly Traffic</div>
+                            <div class="metric-value">1,680</div>
                             <div class="metric-change">+425%</div>
                         </div>
+                        <div class="metric">
+                            <div class="metric-label">Bookings/Month</div>
+                            <div class="metric-value">58</div>
+                            <div class="metric-change">+383%</div>
+                        </div>
                     </div>
                     
                     <div class="growth-indicator"></div>
                     
-                    <p><strong>Before:</strong> 900 sessions, 20 orders<br>
-                    <strong>After:</strong> 4,400 sessions, 105 orders</p>
+                    <p><strong>Before:</strong> 320 visits, 12 bookings/month<br>
+                    <strong>After:</strong> 1,680 visits, 58 bookings/month</p>
                 </div>
 
                 <div class="result-card">
-                    <h3><i class="fas fa-cloud"></i> EcigVapeWholesalers</h3>
-                    <p><strong>Industry:</strong> Vaping & E-cigarettes</p>
+                    <h3><i class="fas fa-file-medical"></i> MZ Medical Billing</h3>
+                    <p><strong>Industry:</strong> Medical Billing Services</p>
                     
                     <div class="result-metrics">
                         <div class="metric">
-                            <div class="metric-label">WhatsApp Leads</div>
-                            <div class="metric-value">90</div>
-                            <div class="metric-change">+500%</div>
+                            <div class="metric-label">Monthly Traffic</div>
+                            <div class="metric-value">1,240</div>
+                            <div class="metric-change">+688%</div>
                         </div>
                         <div class="metric">
-                            <div class="metric-label">Email Signups</div>
-                            <div class="metric-value">85</div>
-                            <div class="metric-change">+750%</div>
+                            <div class="metric-label">Client Inquiries</div>
+                            <div class="metric-value">24</div>
+                            <div class="metric-change">+700%</div>
                         </div>
                     </div>
                     
                     <div class="growth-indicator"></div>
                     
-                    <p><strong>Before:</strong> 15 WhatsApp leads, 10 signups<br>
-                    <strong>After:</strong> 90 leads, 85 signups</p>
+                    <p><strong>Before:</strong> 180 visits, 3 inquiries/month<br>
+                    <strong>After:</strong> 1,240 visits, 24 inquiries/month</p>
+                </div>
+
+                <div class="result-card">
+                    <h3><i class="fas fa-home"></i> London Premium Roofing</h3>
+                    <p><strong>Industry:</strong> Roofing Specialists</p>
+                    
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Monthly Traffic</div>
+                            <div class="metric-value">3,420</div>
+                            <div class="metric-change">+657%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Leads/Month</div>
+                            <div class="metric-value">52</div>
+                            <div class="metric-change">+766%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="growth-indicator"></div>
+                    
+                    <p><strong>Before:</strong> 520 visits, 6 leads/month<br>
+                    <strong>After:</strong> 3,420 visits, 52 leads/month</p>
+                </div>
+
+                <div class="result-card">
+                    <h3><i class="fas fa-tooth"></i> Leeds Family Dentistry</h3>
+                    <p><strong>Industry:</strong> Family Dental Practice</p>
+                    
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Monthly Traffic</div>
+                            <div class="metric-value">1,890</div>
+                            <div class="metric-change">+575%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Bookings/Month</div>
+                            <div class="metric-value">43</div>
+                            <div class="metric-change">+377%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="growth-indicator"></div>
+                    
+                    <p><strong>Before:</strong> 280 visits, 9 bookings/month<br>
+                    <strong>After:</strong> 1,890 visits, 43 bookings/month</p>
                 </div>
             </div>
         </div>
@@ -551,13 +1020,13 @@
                     <div class="service-icon-modern">
                         <i class="fas fa-chart-bar"></i>
                     </div>
-                    <h3>Real-Time Analytics</h3>
-                    <p>Unlike generic agencies that provide monthly reports, we offer instant dashboards with daily insights across all your marketing channels.</p>
+                    <h3>Real-Time Analytics Dashboard</h3>
+                    <p>While generic agencies send monthly PDF reports, we provide live dashboards with real-time performance tracking across all your marketing channels and campaigns.</p>
                     <ul class="service-highlights">
-                        <li>Daily performance updates</li>
+                        <li>Live performance monitoring 24/7</li>
                         <li>Cross-platform data integration</li>
-                        <li>Actionable insights in real-time</li>
-                        <li>Custom KPI tracking</li>
+                        <li>Instant alerts for opportunities</li>
+                        <li>Custom KPI tracking & reporting</li>
                     </ul>
                 </div>
 
@@ -565,13 +1034,13 @@
                     <div class="service-icon-modern">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Industry Specialization</h3>
-                    <p>We've mastered specific niches rather than offering generic solutions, ensuring deeper understanding and better results.</p>
+                    <h3>Deep Industry Specialization</h3>
+                    <p>Instead of one-size-fits-all approaches, we've developed specialized expertise in high-value industries, delivering tailored strategies that generic agencies simply can't match.</p>
                     <ul class="service-highlights">
-                        <li>Motorcycle & automotive expertise</li>
-                        <li>Beauty & cosmetics knowledge</li>
-                        <li>Fashion industry insights</li>
-                        <li>Vaping market understanding</li>
+                        <li>Roofing & construction industry mastery</li>
+                        <li>Dental practice growth strategies</li>
+                        <li>Medical billing & healthcare SEO</li>
+                        <li>Professional services optimization</li>
                     </ul>
                 </div>
 
@@ -610,7 +1079,7 @@
     <section class="cta-section-competitive">
         <div class="container">
             <h2>Ready to Experience the OutsourceSU Difference?</h2>
-            <p>Join successful brands across 4 industries who've chosen specialized expertise over generic solutions. See why our approach delivers 3x better results than traditional agencies.</p>
+            <p>Join successful businesses across roofing, dental, medical billing, and professional services who've chosen specialized expertise over generic solutions. See why our approach delivers 5x better results than traditional agencies.</p>
             <div class="cta-buttons-competitive">
                 <a href="contact.html" class="btn-competitive btn-primary-competitive">
                     <i class="fas fa-rocket"></i>
